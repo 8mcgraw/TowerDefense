@@ -76,7 +76,7 @@ public class SionHead : MonoBehaviour
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.TakeDamage();
+            enemy.TakeDamage(1);
         }
     }
     }

@@ -73,6 +73,9 @@
     <Compile Include="Assets\EndScreen.cs" />
     <Compile Include="Assets\EntitySummoner.cs" />
     <Compile Include="Assets\enemyAI.cs" />
+    <Compile Include="Assets\ProjectileScript.cs" />
+    <Compile Include="Assets\TowerScript.cs" />
+    <Compile Include="Assets\ProjectileScript1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
