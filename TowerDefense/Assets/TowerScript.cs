@@ -7,6 +7,7 @@ public class TowerScript : MonoBehaviour
 {
     bool close = false;
     bool carrying = false;
+    public int damage;
     public GameObject player, Projectile;
     public Animator animator;
     public GameObject[] target = new GameObject[100];
@@ -109,13 +110,13 @@ public class TowerScript : MonoBehaviour
         if (collision.gameObject == target[0])
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            if (enemy != null)
+            if ((enemy != null)&&(enemy.currentHealth>0))
             {
                 transform.LookAt(target[0].transform);
-                Instantiate(Projectile);
-                //projectilescript.attack(target[0]);
-                enemy.TakeDamage(50);
-                Destroy(target[0]);
+                projectilescript.attack(target[0]);
+                enemy.TakeDamage(damage);
+            } else {
+                popTarget();
             }
         }
     }
