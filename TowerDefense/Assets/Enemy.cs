@@ -28,8 +28,8 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Die());
         }
     }
-    public void TakeDamage(){
-        currentHealth -= 1;
+    public void TakeDamage(int i){
+        currentHealth -= i;
     }
     IEnumerator Die(){
         animator.SetBool("Dead", true);
