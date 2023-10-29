@@ -16,7 +16,7 @@ public class GameLoopManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
         // SummonTest();
-        InvokeRepeating("SummonTest", 6f, 1f);
+        InvokeRepeating("SummonTest", 1f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
@@ -45,11 +45,12 @@ public class GameLoopManager : MonoBehaviour
             }
             if(EnemiesToRemove.Count > 0){
                 for (int i=0; i< EnemiesToRemove.Count; i++){
+                    Debug.Log(EnemiesToRemove);
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
             if(GameObject.FindGameObjectsWithTag("Enemy").Length == 20){
-                endLoop = true;
+                //endLoop = true;
             }
             yield return null;
         }

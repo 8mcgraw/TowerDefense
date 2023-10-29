@@ -44,7 +44,7 @@ public class ProjectileScript : MonoBehaviour
     public void attack(GameObject target)
     {
         this.gameObject.SetActive(true);
-        Debug.Log("test");
+        //Debug.Log("test");
         newTarget = target;
         activate = true;
     }

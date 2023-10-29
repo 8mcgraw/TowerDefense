@@ -45,6 +45,17 @@ public class TowerScript : MonoBehaviour
         }
     }
 
+    void FixedUpdate(){
+        Enemy enemy = target[0].gameObject.GetComponent<Enemy>();
+            if ((enemy != null)&&(enemy.currentHealth>0))
+            {
+                transform.LookAt(target[0].transform);
+                projectilescript.attack(target[0]);
+                enemy.TakeDamage(damage);
+            } else {
+                popTarget();
+            }
+    }
 
     void pushTarget(GameObject newTarget)
     {
@@ -105,19 +116,19 @@ public class TowerScript : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject == target[0])
-        {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            if ((enemy != null)&&(enemy.currentHealth>0))
-            {
-                transform.LookAt(target[0].transform);
-                projectilescript.attack(target[0]);
-                enemy.TakeDamage(damage);
-            } else {
-                popTarget();
-            }
-        }
-    }
+    // private void OnTriggerStay(Collider collision)
+    // {
+    //     if (collision.gameObject == target[0])
+    //     {
+    //         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+    //         if ((enemy != null)&&(enemy.currentHealth>0))
+    //         {
+    //             transform.LookAt(target[0].transform);
+    //             projectilescript.attack(target[0]);
+    //             enemy.TakeDamage(damage);
+    //         } else {
+    //             popTarget();
+    //         }
+    //     }
+    // }
 }

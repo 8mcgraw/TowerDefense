@@ -21,11 +21,12 @@ public class Enemy : MonoBehaviour
         agent.destination = goal.position;
     }
     void Update(){
+        if(currentHealth <= 0){
+            StartCoroutine(Die());
+        } else {
         Transform goal = GameObject.FindGameObjectWithTag("Finish").transform;
         UnityEngine.AI.NavMeshAgent agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = goal.position;
-        if(currentHealth <= 0){
-            StartCoroutine(Die());
         }
     }
     public void TakeDamage(int i){
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
         //gameObject.SetActive(false);
         //EntitySummoner.RemoveEnemy(this);
         yield return new WaitForSeconds(4);
+        EntitySummoner.RemoveEnemy(this);
         //GameLoopManager.EnqueueEnemyToRemove(this);
     }
 }
