@@ -57,25 +57,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\playerScript.cs" />
-    <Compile Include="Assets\RabbitHead.cs" />
-    <Compile Include="Assets\VillageElderScript.cs" />
+    <Compile Include="Assets\OrbScript.cs" />
+    <Compile Include="Assets\OldStuff\VillageElderScript.cs" />
     <Compile Include="Assets\SceneManager.cs" />
     <Compile Include="Assets\WinCondition.cs" />
+    <Compile Include="Assets\ProjectileScript.cs" />
     <Compile Include="Assets\GameLoopManager.cs" />
     <Compile Include="Assets\FailGame.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemySummonData.cs" />
-    <Compile Include="Assets\TextScript.cs" />
-    <Compile Include="Assets\CameraSwitch.cs" />
-    <Compile Include="Assets\SillyHead.cs" />
-    <Compile Include="Assets\BodyScript.cs" />
-    <Compile Include="Assets\SionHead.cs" />
-    <Compile Include="Assets\EndScreen.cs" />
-    <Compile Include="Assets\EntitySummoner.cs" />
-    <Compile Include="Assets\enemyAI.cs" />
-    <Compile Include="Assets\ProjectileScript.cs" />
+    <Compile Include="Assets\OldStuff\TextScript.cs" />
+    <Compile Include="Assets\OldStuff\CameraSwitch.cs" />
     <Compile Include="Assets\TowerScript.cs" />
-    <Compile Include="Assets\ProjectileScript1.cs" />
+    <Compile Include="Assets\OldStuff\BodyScript.cs" />
+    <Compile Include="Assets\OldStuff\SionHead.cs" />
+    <Compile Include="Assets\OldStuff\EndScreen.cs" />
+    <Compile Include="Assets\EntitySummoner.cs" />
+    <Compile Include="Assets\OrbPhysics.cs" />
+    <Compile Include="Assets\OldStuff\enemyAI.cs" />
+    <Compile Include="Assets\Underground\tilemapRender.cs" />
+    <Compile Include="Assets\Underground\underSpawn.cs" />
+    <Compile Include="Assets\Underground\BreakScript.cs" />
+    <Compile Include="Assets\Underground\craftingBank.cs" />
+    <Compile Include="Assets\Underground\playerScriptUnderground.cs" />
+    <Compile Include="Assets\Underground\CraftingScript.cs" />
+    <Compile Include="Assets\Underground\Currencies.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
