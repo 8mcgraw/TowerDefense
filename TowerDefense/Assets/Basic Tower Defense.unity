@@ -1347,6 +1347,8 @@ GameObject:
   - component: {fileID: 590817898}
   - component: {fileID: 590817897}
   - component: {fileID: 590817896}
+  - component: {fileID: 590817899}
+  - component: {fileID: 590817900}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Path
@@ -1432,6 +1434,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590817894}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &590817899
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590817894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 1.03}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &590817900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590817894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6340b376674eed042b1147c6d583fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &597520024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1813,6 +1840,8 @@ GameObject:
   - component: {fileID: 786172971}
   - component: {fileID: 786172970}
   - component: {fileID: 786172969}
+  - component: {fileID: 786172972}
+  - component: {fileID: 786172973}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Path
@@ -1898,6 +1927,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786172967}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &786172972
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786172967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 1.03}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &786172973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786172967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6340b376674eed042b1147c6d583fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809202060
 GameObject:
   m_ObjectHideFlags: 0
@@ -3873,6 +3927,8 @@ GameObject:
   - component: {fileID: 1814520336}
   - component: {fileID: 1814520335}
   - component: {fileID: 1814520334}
+  - component: {fileID: 1814520337}
+  - component: {fileID: 1814520338}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Path
@@ -3958,6 +4014,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814520332}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1814520337
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814520332}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 1.03}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1814520338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814520332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6340b376674eed042b1147c6d583fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816482270
 GameObject:
   m_ObjectHideFlags: 0
@@ -4417,6 +4498,8 @@ GameObject:
   - component: {fileID: 1974748166}
   - component: {fileID: 1974748165}
   - component: {fileID: 1974748164}
+  - component: {fileID: 1974748167}
+  - component: {fileID: 1974748168}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Path
@@ -4502,6 +4585,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974748162}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1974748167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974748162}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 1.03}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1974748168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974748162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6340b376674eed042b1147c6d583fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1984656051
 GameObject:
   m_ObjectHideFlags: 0
@@ -4578,6 +4686,8 @@ GameObject:
   - component: {fileID: 1993937400}
   - component: {fileID: 1993937399}
   - component: {fileID: 1993937398}
+  - component: {fileID: 1993937401}
+  - component: {fileID: 1993937402}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Path
@@ -4663,6 +4773,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993937396}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1993937401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993937396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.61, y: 3.42, z: 1.12}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1993937402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1993937396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6340b376674eed042b1147c6d583fd10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1997858028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2349447699307845686, guid: 1ae4e52761ed77e41a9de378166dba11, type: 3}

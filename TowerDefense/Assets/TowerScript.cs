@@ -36,7 +36,7 @@ public class TowerScript : MonoBehaviour
             animator.SetBool("carrying", false);
             carrying = false;
             //this.GetComponent<SphereCollider>().enabled = true;
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
 
         }
