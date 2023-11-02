@@ -46,12 +46,5 @@ public class playerScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(Input.GetKey(KeyCode.E)){
-            
-        }
-    }
-
 
 }

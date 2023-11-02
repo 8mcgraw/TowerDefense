@@ -19,7 +19,7 @@ public class OrbScript : MonoBehaviour
         if (target[0] != null)
         {
         Enemy enemy = target[0].gameObject.GetComponent<Enemy>();
-            if ((target[0]!=null)&&(enemy != null)&&(enemy.currentHealth>0)&&(this.transform.parent.parent.parent==null)&&(this.transform.parent.parent.tag=="Tower"))
+            if ((target[0]!=null)&&(enemy != null)&&(enemy.currentHealth>0)&&(this.transform.parent!=null)&&(this.transform.parent.parent!=null)&&(this.transform.parent.parent.parent==null)&&(this.transform.parent.parent.tag=="Tower"))
             {
                 transform.LookAt(target[0].transform);
                 projectilescript.attack(target[0]);

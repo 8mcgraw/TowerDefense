@@ -7,72 +7,84 @@ using System.Linq;
 public class BreakScript : MonoBehaviour
 {
     public TMPro.TMP_Text text, text1;
-    public GameObject broken, Currencies;
+    public GameObject Bank;
     public bool tileMined = false;
+    public int timer = 0;
 
     private void Start()
     {
-        this.gameObject.SetActive(false);
     }
 
-    void Update()
+    private void FixedUpdate()
+    {
+        if (tileMined){
+            StartCoroutine(Mining(timer+1));
+            tileMined = false;
+        }
+    }
+    public IEnumerator Mining(int x)
     {
         //If playerscript finishes its wait time and sends a true
         if (tileMined)
         {
+            if (timer==1) {
+                float dropChance = Random.Range(1f, 100f);
 
-            float dropChance = Random.Range(1f, 100f);
-
-            //50% chance of getting dirt or granite
-            if (broken.tag == "dirt")
-            {
-                if (dropChance < 50f)
+                //50% chance of getting dirt or granite
+                if (this.gameObject.tag == "dirt")
                 {
-                    GetComponent<Currencies>().addToCurrencies("Dirt", 1);
-                    text.text = GetComponent<Currencies>().listCurrencies();
+                    if (dropChance < 50f)
+                    {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Dirt", 1);
+                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
+                    }
+                    else
+                    {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Granite", 1);
+                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
+                    }
                 }
-                else
+                //50% chance of getting iron or gold
+                if (this.gameObject.tag == "rock")
                 {
-                    GetComponent<Currencies>().incrementCurrency("Granite", 1);
-                    text.text = GetComponent<Currencies>().listCurrencies();
+                    if (dropChance < 50f)
+                    {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Iron", 1);
+                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
+                    }
+                    else
+                    {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Gold", 1);
+                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
+                    }
                 }
+                //50% chance of getting wood or orbs
+                if (this.gameObject.tag == "wood")
+                {
+                    if (dropChance < 50f)
+                    {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Wood", 1);
+                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
+                    }
+                    else
+                    {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Orbs", 1);
+                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
+                    }
+                }
+                this.gameObject.SetActive(false);
             }
-            //50% chance of getting iron or gold
-            if (broken.tag == "rock")
-            {
-                if (dropChance < 50f)
-                {
-                    GetComponent<Currencies>().addToCurrencies("Iron", 1);
-                    text.text = GetComponent<Currencies>().listCurrencies();
-                }
-                else
-                {
-                    GetComponent<Currencies>().incrementCurrency("Gold", 1);
-                    text.text = GetComponent<Currencies>().listCurrencies();
-                }
-            }
-            //50% chance of getting wood or orbs
-            if (broken.tag == "wood")
-            {
-                if (dropChance < 50f)
-                {
-                    GetComponent<Currencies>().addToCurrencies("Wood", 1);
-                    text.text = GetComponent<Currencies>().listCurrencies();
-                }
-                else
-                {
-                    GetComponent<Currencies>().incrementCurrency("Orbs", 1);
-                    text.text = GetComponent<Currencies>().listCurrencies();
-                }
-            }
+            yield return new WaitForSeconds(1);
+            timer=x;
+            tileMined = false;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (tag == "Player")
+        if (other.tag == "Player")
         {
-            this.gameObject.SetActive(true);
+            //this.gameObject.SetActive(true);
         }
     }
 }

@@ -9,6 +9,7 @@ public class TowerScript : MonoBehaviour
     public bool carrying = false;
     public GameObject player;
     public Animator animator;
+    public bool onPath = false;
     void Start()
     {
 
@@ -20,22 +21,25 @@ public class TowerScript : MonoBehaviour
     {
         if ((close == true) && (Input.GetKey(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(!FindChildWithTag(this.gameObject, "Orb")))
         {
-            //this.GetComponent<SphereCollider>().enabled = false;
+            this.GetComponent<Rigidbody>().isKinematic = true;
+            this.GetComponent<BoxCollider>().enabled = false;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            this.transform.position = player.transform.position + new Vector3(0.28f, -0.3f, -0.2f);
+            this.transform.position = player.transform.position + new Vector3(0f, 2.5f, 2f);
             this.transform.parent = player.transform;
-            //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
+            this.transform.rotation = new Quaternion(0,0,0,0);
             animator.SetBool("carrying", true);
             carrying = true;
         }
-        if ((carrying == true) && (Input.GetKey(KeyCode.Q)))
+        if ((carrying == true) && (Input.GetKey(KeyCode.Q))&&(!onPath))
         {
             this.transform.parent = null;
-            this.transform.position = player.transform.position + player.transform.forward + this.transform.up*2;
+            //this.transform.position = player.transform.position + player.transform.forward + this.transform.up*2;
             //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
             animator.SetBool("carrying", false);
             carrying = false;
             //this.GetComponent<SphereCollider>().enabled = true;
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<BoxCollider>().enabled = true;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
 
@@ -47,6 +51,9 @@ public class TowerScript : MonoBehaviour
         {
             close = true;
         }
+        if (collision.transform.tag == "Path"){
+            onPath = true;
+        }
     }
     private void OnTriggerExit(Collider collision)
     {
@@ -54,13 +61,16 @@ public class TowerScript : MonoBehaviour
         {
             close = false;
         }
+        if (collision.transform.tag == "Path"){
+            onPath = false;
+        }
 
 
     }
 
     private void OnTriggerStay(Collider collision)
     {
-        if ((!FindChildWithTag(this.gameObject, "Orb"))&&(this.transform.parent==null)&&(collision.gameObject.tag == "Orb")&&(collision.transform.parent == null))
+        if ((!FindChildWithTag(this.gameObject, "Orb"))&&(this.transform.parent==null)&&(collision.gameObject.tag == "Orb")&&(collision.transform.parent == null)&&(!onPath))
         {
             collision.GetComponent<Rigidbody>().useGravity = false;
             //collision.GetComponent<SphereCollider>().enabled = false;
@@ -72,6 +82,9 @@ public class TowerScript : MonoBehaviour
             collision.transform.position = this.transform.position + new Vector3(0.07f, 0.75f, 0.0f);
             collision.transform.rotation = this.transform.rotation * Quaternion.Euler(0, 280, 0);
             collision.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        if (collision.transform.tag == "Path"){
+            onPath = true;
         }
     }
     bool FindChildWithTag(GameObject parent, string tag) {

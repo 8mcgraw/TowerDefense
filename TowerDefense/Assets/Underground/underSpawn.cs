@@ -17,4 +17,10 @@ public class underSpawn : MonoBehaviour
     {
         
     }
+
+    // void MovetoUnderGround(){
+    //     Player.transform.localPosition = Spawn.transform.localPosition;
+            // change scene
+            //swap active scene? keep both loaded.
+    // }
 }
