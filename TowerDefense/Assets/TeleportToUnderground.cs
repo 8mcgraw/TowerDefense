@@ -22,7 +22,7 @@ public UnityEngine.SceneManagement.Scene overworldScene;
 
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag == "Player"){
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Lv1 Underground");
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Lv1 Underground");
             //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene("LV1 Underground");
             UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(overworldScene);

@@ -22,22 +22,26 @@ public class playerScript : MonoBehaviour
     private void FixedUpdate()
     {
         if(Input.GetKey(KeyCode.W)){
-            transform.position += Vector3.Scale(Vector3.forward, speed);
+            GetComponent<Rigidbody>().AddForce(Vector3.forward, ForceMode.Impulse);
+            //transform.position += Vector3.Scale(Vector3.forward, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }
         if(Input.GetKey(KeyCode.S)){
-            transform.position += Vector3.Scale(Vector3.back, speed);
+            GetComponent<Rigidbody>().AddForce(-Vector3.forward, ForceMode.Impulse);
+            //transform.position += Vector3.Scale(Vector3.back, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
         }
         if(Input.GetKey(KeyCode.A)){
-            transform.position += Vector3.Scale(Vector3.left, speed);
+            GetComponent<Rigidbody>().AddForce(Vector3.left, ForceMode.Impulse);
+            //transform.position += Vector3.Scale(Vector3.left, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,270,0));
         }
         if(Input.GetKey(KeyCode.D)){
-            transform.position += Vector3.Scale(Vector3.right, speed);
+            GetComponent<Rigidbody>().AddForce(Vector3.right, ForceMode.Impulse);
+            //transform.position += Vector3.Scale(Vector3.right, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,90,0));
         }

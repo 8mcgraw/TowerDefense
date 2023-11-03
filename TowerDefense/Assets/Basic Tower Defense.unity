@@ -1244,7 +1244,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   projectilescript: {fileID: 2031718302}
-  damage: 1
+  damage: 3
 --- !u!135 &493987809
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carrying: 0
-  player: {fileID: 220819318}
+  player: {fileID: 2120570973}
   animator: {fileID: 1882981158}
   onPath: 0
 --- !u!54 &1129733063
@@ -3873,7 +3873,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   projectilescript: {fileID: 489627053}
-  damage: 1
+  damage: 3
 --- !u!135 &1599080455
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4409,6 +4409,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe5aa4388c20894faeed21e36b17258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1921593084
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921593079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.009999997
+  m_Center: {x: 0, y: -1.30838135e-17, z: 0.0018413827}
 --- !u!1001 &1931157915
 PrefabInstance:
   m_ObjectHideFlags: 0
