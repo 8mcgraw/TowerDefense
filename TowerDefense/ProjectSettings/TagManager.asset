@@ -10,6 +10,10 @@ TagManager:
   - Enemy
   - Orb
   - Tower
+  - wood
+  - dirt
+  - rock
+  - crystal
   layers:
   - Default
   - TransparentFX

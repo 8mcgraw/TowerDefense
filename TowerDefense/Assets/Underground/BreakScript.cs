@@ -58,12 +58,12 @@ public class BreakScript : MonoBehaviour
                         text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                 }
-                //50% chance of getting wood or orbs
-                if (this.gameObject.tag == "wood")
+                //50% chance of getting gems or orbs
+                if (this.gameObject.tag == "crystal")
                 {
                     if (dropChance < 50f)
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Wood", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Gems", 1);
                         text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                     else
