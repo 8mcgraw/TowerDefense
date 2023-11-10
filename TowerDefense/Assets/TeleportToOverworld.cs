@@ -7,6 +7,9 @@ public class TeleportToOverworld : MonoBehaviour
 {
 public UnityEngine.SceneManagement.Scene undergroundScene;
 public UnityEngine.SceneManagement.Scene overworldScene;
+public GameObject destination;
+public GameObject cameraUnderworld;
+public GameObject cameraOverworld;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +25,13 @@ public UnityEngine.SceneManagement.Scene overworldScene;
 
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag == "Player"){
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Basic Tower Defense");
-            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Basic Tower Defense");
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(undergroundScene);
+            // UnityEngine.SceneManagement.SceneManager.LoadScene("Basic Tower Defense");
+            // //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
+            // UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Basic Tower Defense");
+            // UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(undergroundScene);
+            collider.transform.position = destination.transform.position + new Vector3(0,0,2);
+            cameraUnderworld.SetActive(false);
+            cameraOverworld.SetActive(true);
         }
     }
 }

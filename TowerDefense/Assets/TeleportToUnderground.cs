@@ -7,6 +7,10 @@ public class TeleportToUnderground : MonoBehaviour
 {
 public UnityEngine.SceneManagement.Scene undergroundScene;
 public UnityEngine.SceneManagement.Scene overworldScene;
+public GameObject cameraUnderworld;
+public GameObject cameraOverworld;
+
+public GameObject destination;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +26,13 @@ public UnityEngine.SceneManagement.Scene overworldScene;
 
     void OnTriggerEnter(Collider collider){
         if(collider.gameObject.tag == "Player"){
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Lv1 Underground");
-            //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene("LV1 Underground");
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(overworldScene);
+            // UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Lv1 Underground");
+            // //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
+            // UnityEditor.SceneManagement.EditorSceneManager.OpenScene("LV1 Underground");
+            // UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(overworldScene);
+            collider.transform.position = destination.transform.position + new Vector3(0,0,2);
+            cameraOverworld.SetActive(false);
+            cameraUnderworld.SetActive(true);
         }
     }
 }
