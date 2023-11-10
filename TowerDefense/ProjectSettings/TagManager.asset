@@ -15,6 +15,9 @@ TagManager:
   - rock
   - crystal
   - enemy
+  - short
+  - regular
+  - tall
   layers:
   - Default
   - TransparentFX

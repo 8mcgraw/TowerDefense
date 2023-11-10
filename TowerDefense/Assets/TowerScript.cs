@@ -11,9 +11,40 @@ public class TowerScript : MonoBehaviour
     public Animator animator;
     public bool onPath = false;
     public GameObject SpherePos;
+    public string MaterialType = "wood";
+    public GameObject Model;
+    public GameObject[] Materials;
+
     void Start()
     {
+        if (Model.tag == "short"){
+            
+        } else if (Model.tag == "regular"){
 
+        } else if (Model.tag == "tall"){
+
+        }
+        if (MaterialType == "iron"){
+            foreach(GameObject material in Materials){
+                material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+                material.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0.2f,0.2f,0.2f));
+                material.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.3f,0.3f,0.35f) * 1);
+            }
+        }
+        if (MaterialType == "wood"){
+            foreach(GameObject material in Materials){
+                material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+                material.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0.6037736f,0.5085683f,0.2876468f));
+                material.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0f,0f,0f) * 1);
+            }
+        }
+        if (MaterialType == "gold"){
+            foreach(GameObject material in Materials){
+                material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
+                material.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(1f,1f,0f));
+                material.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.44f,0.44f,0f) * 1);
+            }
+        }
     }
 
 
