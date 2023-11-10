@@ -19,9 +19,10 @@ public class OrbPhysics : MonoBehaviour
     {
         if ((close == true) && (Input.GetKey(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(this.transform.parent==null))
         {
-            //this.GetComponent<SphereCollider>().enabled = false;
+            this.GetComponent<SphereCollider>().enabled = false;
+            this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            this.transform.position = player.transform.position + new Vector3(0.28f, -0.3f, -0.2f);
+            this.transform.position = player.transform.position + new Vector3(0f, 0f, -1f);
             this.transform.parent = player.transform;
             //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
             animator.SetBool("carrying", true);
@@ -30,11 +31,11 @@ public class OrbPhysics : MonoBehaviour
         if ((carrying == true) && (Input.GetKey(KeyCode.Q)))
         {
             this.transform.parent = null;
-            this.transform.position = player.transform.position + player.transform.forward;
             //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
             animator.SetBool("carrying", false);
             carrying = false;
-            //this.GetComponent<SphereCollider>().enabled = true;
+            this.GetComponent<SphereCollider>().enabled = true;
+            this.GetComponent<Rigidbody>().isKinematic = true;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
 

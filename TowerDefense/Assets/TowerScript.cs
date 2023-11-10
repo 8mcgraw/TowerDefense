@@ -10,6 +10,7 @@ public class TowerScript : MonoBehaviour
     public GameObject player;
     public Animator animator;
     public bool onPath = false;
+    public GameObject SpherePos;
     void Start()
     {
 
@@ -79,7 +80,7 @@ public class TowerScript : MonoBehaviour
             collision.transform.SetParent(this.gameObject.transform);
             // Debug.Log("THIS OBJECT: "+this.gameObject.transform.tag);
             // Debug.Log("THIS PARENT: "+collision.transform.parent.tag);
-            collision.transform.position = this.transform.position + new Vector3(0.07f, 0.75f, 0.0f);
+            collision.transform.position = SpherePos.gameObject.transform.position;;
             collision.transform.rotation = this.transform.rotation * Quaternion.Euler(0, 280, 0);
             collision.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
