@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject Spawn;
     public Animator animator;
     public float maxHealth;
     public float currentHealth;
     public float speed;
+    public int NodeIndex;
     public int ID;
 
     void Start(){
@@ -15,7 +17,7 @@ public class Enemy : MonoBehaviour
     }
     public void Init(){
         currentHealth = maxHealth;
-        
+        transform.position = Spawn.transform.position;//ADDED to force start position
         Transform goal = GameObject.FindGameObjectWithTag("Finish").transform;
         UnityEngine.AI.NavMeshAgent agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = goal.position;

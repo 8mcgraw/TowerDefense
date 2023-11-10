@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3285459159161033477}
-  - component: {fileID: 8833839575002224391}
   - component: {fileID: 5166234752455463353}
   - component: {fileID: 2889924232545861671}
   - component: {fileID: 6468428317989891271}
@@ -36,23 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8833839575002224391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2797750347272587711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 987e75ad5cdf4ca4cb8480b63dc296a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 3358967388358112459}
-  maxHealth: 100
-  currentHealth: 100
-  speed: 3.5
-  ID: 1
 --- !u!54 &5166234752455463353
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -177,11 +159,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fb14efd3dda2c8459017234d254af4a, type: 3}
---- !u!95 &3358967388358112459 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0fb14efd3dda2c8459017234d254af4a, type: 3}
-  m_PrefabInstance: {fileID: 9221092349566011738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8682201070409690801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fb14efd3dda2c8459017234d254af4a, type: 3}

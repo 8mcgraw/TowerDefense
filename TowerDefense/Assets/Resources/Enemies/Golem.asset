@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fb58e1692a947b44927a1dbe891ced4, type: 3}
-  m_Name: Basic
+  m_Name: Golem
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 2797750347272587711, guid: 5782327bfe31fc844a11f1abef78e4ca, type: 3}
+  EnemyPrefab: {fileID: 1077356408, guid: 404815f54666ee54fa493f1d657cbed3, type: 3}
   EnemyID: 1

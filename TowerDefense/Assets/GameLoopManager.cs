@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GameLoopManager : MonoBehaviour
 {
+    public static Vector3[] NodePositions;
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
+
+    public Transform NodeParent;
     public bool endLoop = false;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        EnemiesToRemove = new Queue<Enemy>();
         EnemyIDsToSummon = new Queue<int>();
+        EnemiesToRemove = new Queue<Enemy>();
         EntitySummoner.Init();
+
+        NodePositions = new Vector3[NodeParent.childCount];
+
+        for (int i = 0; i < NodePositions.Length; i++)
+        {
+            NodePositions[i] = NodeParent.GetChild(i).position;
+        }
 
         StartCoroutine(GameLoop());
         // SummonTest();
@@ -22,8 +32,9 @@ public class GameLoopManager : MonoBehaviour
 
     // Update is called once per frame
 
-    void SummonTest(){
-        EnqueueEnemyIDsToSummon(1);
+    void SummonTest()
+    {
+        EnqueueEnemyIDToSummon(1);
     }
 
     void RemoveTest(){
@@ -39,12 +50,14 @@ public class GameLoopManager : MonoBehaviour
         {
             //Spawn Enemies, Towers, Move Enemies, Tick Towers, Apply Effects, Damage Enemies, Remove Enemies, Remove Towers.
             if(EnemyIDsToSummon.Count > 0){
-                for(int i = 0; i<EnemyIDsToSummon.Count; i++ ){
+                for(int i = 0; i<EnemyIDsToSummon.Count; i++ )
+                {
                     EntitySummoner.SummonEnemy(EnemyIDsToSummon.Dequeue());
                 }
             }
             if(EnemiesToRemove.Count > 0){
-                for (int i=0; i< EnemiesToRemove.Count; i++){
+                for (int i=0; i< EnemiesToRemove.Count; i++)
+                {
                     Debug.Log(EnemiesToRemove);
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
@@ -58,7 +71,7 @@ public class GameLoopManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
     }
 
-    public static void EnqueueEnemyIDsToSummon(int ID){
+    public static void EnqueueEnemyIDToSummon(int ID){
         EnemyIDsToSummon.Enqueue(ID);
     }
     public static void EnqueueEnemyToRemove(Enemy EnemyToRemove){
