@@ -10,9 +10,22 @@ public class BreakScript : MonoBehaviour
     public GameObject Bank;
     public bool tileMined = false;
     public int timer = 0;
+    public int health = 1;
 
     private void Start()
     {
+        if (this.gameObject.tag == "dirt")
+        {
+            health = 1;
+        }
+        if (this.gameObject.tag == "rock")
+        {
+            health = 2;
+        }
+        if (this.gameObject.tag == "crystal")
+        {
+            health = 3;
+        }
     }
 
     private void FixedUpdate()
@@ -27,7 +40,7 @@ public class BreakScript : MonoBehaviour
         //If playerscript finishes its wait time and sends a true
         if (tileMined)
         {
-            if (timer==1) {
+            if (timer==health) {
                 float dropChance = Random.Range(1f, 100f);
 
                 //50% chance of getting dirt or granite
@@ -74,7 +87,7 @@ public class BreakScript : MonoBehaviour
                 }
                 this.gameObject.SetActive(false);
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.1f);
             timer=x;
             tileMined = false;
         }

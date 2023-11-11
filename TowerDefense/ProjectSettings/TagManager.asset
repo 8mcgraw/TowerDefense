@@ -18,6 +18,7 @@ TagManager:
   - short
   - regular
   - tall
+  - animation
   layers:
   - Default
   - TransparentFX

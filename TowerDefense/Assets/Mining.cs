@@ -19,7 +19,7 @@ public class Mining : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (miningTimer > 100)
+        if (miningTimer > 20)
         {
             canMine = true;
         } else {

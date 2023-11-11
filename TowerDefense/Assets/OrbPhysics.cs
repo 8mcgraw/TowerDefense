@@ -22,7 +22,7 @@ public class OrbPhysics : MonoBehaviour
             this.GetComponent<SphereCollider>().enabled = false;
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            this.transform.position = player.transform.position + new Vector3(0f, 0f, -1f);
+            this.transform.position = player.transform.position + new Vector3(0f, 0f, 0f);
             this.transform.parent = player.transform;
             //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
             animator.SetBool("carrying", true);

@@ -56,7 +56,7 @@ public class TowerScript : MonoBehaviour
             this.GetComponent<Rigidbody>().isKinematic = true;
             this.GetComponent<BoxCollider>().enabled = false;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            this.transform.position = player.transform.position + new Vector3(0f, 2.5f, 2f);
+            this.transform.position = player.transform.position + new Vector3(0f, 2f, 0f);
             this.transform.parent = player.transform;
             this.transform.rotation = new Quaternion(0,0,0,0);
             animator.SetBool("carrying", true);

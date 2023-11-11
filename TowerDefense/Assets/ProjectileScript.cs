@@ -12,6 +12,7 @@ public class ProjectileScript : MonoBehaviour
     public string attackType = "bullet";
     private Vector3 originalSize;
     private int attackDamage = 0;
+    public GameObject bulletAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class ProjectileScript : MonoBehaviour
     void FixedUpdate()
     {
         if ((attackType == "lazer")&&(activate == true)){
+            if (bulletAnimation != null){
+                Destroy(bulletAnimation);
+            }
             this.gameObject.SetActive(true);
             //transform.LookAt(newTarget.transform);
             //this.gameObject.transform.localScale = new Vector3(0.6f, i%10, 0.49f);
