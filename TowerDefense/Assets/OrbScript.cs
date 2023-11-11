@@ -9,31 +9,51 @@ public class OrbScript : MonoBehaviour
     public int damage;
     public float cooldown = 100f;
     public float timer = 50f;
-    public bool setSpeed = false;
-    public float range = 10f; //adjust collider to fit range, change range in model section
+    public bool setTower = false;
+    SphereCollider myCollider;
+    string projectileType;
+    public float range = 0f; //adjust collider to fit range, change range in model section
     // Start is called before the first frame update
     void Start()
     {
+        myCollider = GetComponent<SphereCollider>();
         
     }
 
     
 
     void FixedUpdate(){
-        if((this.transform.parent.parent != null)&&(this.transform.parent.parent.tag == "Tower")&&(setSpeed == false)){
-            string Model = this.transform.parent.parent.GetComponent<TowerScript>().Model.tag;
+        if((this.transform.parent.parent != null)&&(this.transform.parent.parent.tag == "Tower")&&(setTower == false)){
+            TowerScript Tower = this.transform.parent.parent.GetComponent<TowerScript>();
+            string Model = Tower.Model.tag;
+            if (Tower.MaterialType == "wood"){
+                range = 5f;
+                projectileType = "bullet";
+                cooldown = 10f;
+                damage = 5;
+            } else if (Tower.MaterialType == "iron"){
+                range = 3f;
+                projectileType = "lazer";
+                cooldown = 2f;
+                damage = 1;
+            } else if (Tower.MaterialType == "gold"){
+                range = 7.5f;
+                projectileType = "splash";
+                cooldown = 20f;
+                damage = 10;
+            }
             if (Model == "short"){
             cooldown = cooldown * 0.5f;
-            }
-
-            if (Model == "regular"){
+            range = range * 0.5f;
+            } else if (Model == "regular"){
             cooldown = cooldown * 1f;
-            }
-
-            if (Model == "tall"){
+            range = range * 1f;
+            } else if (Model == "tall"){
             cooldown = cooldown * 2f;
+            range = range * 2f;
             }
-            setSpeed = true;
+            myCollider.radius = range;
+            setTower = true;
         }
         if (timer > 0){
             timer--;
@@ -46,8 +66,7 @@ public class OrbScript : MonoBehaviour
                 if ((target[0]!=null)&&(enemy != null)&&(enemy.currentHealth>0)&&(this.transform.parent!=null)&&(this.transform.parent.parent!=null)&&(this.transform.parent.parent.parent==null)&&(this.transform.parent.parent.tag=="Tower"))
                 {
                     transform.LookAt(target[0].transform);
-                    projectilescript.attack(target[0]);
-                    enemy.TakeDamage(damage);
+                    projectilescript.attack(target[0], projectileType, damage);
                 } else {
                     popTarget(target[0]);
                 }
