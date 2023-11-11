@@ -71,6 +71,7 @@
     <Compile Include="Assets\GameLoopManager.cs" />
     <Compile Include="Assets\Storage\AurynSky\Desert Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\FailGame.cs" />
+    <Compile Include="Assets\SpherePos.cs" />
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\Underground\BreakScript.cs" />
     <Compile Include="Assets\EnemySummonData.cs" />
@@ -110,6 +111,9 @@
     <None Include="Assets\Storage\Tower Defence\Shaders\Double Side.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Storage\AurynSky\Dungeon Pack\READ ME.txt" />
+    <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Readme.txt" />
+    <None Include="Assets\Hovl Studio\HSFiles\Shaders\Blend_TwoSides.shader" />
+    <None Include="Assets\Hovl Studio\HSFiles\Shaders\Blend_CenterGlow.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Storage\Meshtint Free Knight\www.meshtint.com.txt" />
@@ -120,11 +124,14 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Storage\SimpleSky\ReadMe.txt" />
+    <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Add_CenterGlow.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Storage\AurynSky\WinterArena\READ ME.txt" />
     <None Include="Assets\Storage\AurynSky\Desert Pack\READ ME.txt" />
+    <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Blend_CenterGlow.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Hovl Studio\HSFiles\Shaders\Add_CenterGlow.shader" />
     <None Include="Assets\Storage\AurynSky\Gems Ultimate Pack\READ ME.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

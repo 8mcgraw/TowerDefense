@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EntitySummoner : MonoBehaviour
 {
+    public static GameObject spawn;
     public static List<Enemy> EnemiesInGame;
     public static List<Transform> EnemiesInGameTransform;
     public static Dictionary<int, GameObject> EnemyPrefabs;
@@ -54,11 +55,13 @@ public class EntitySummoner : MonoBehaviour
             else
             {
                 //Instantiate New Instance of Enemy And Initialize
-                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], Vector3.zero, Quaternion.identity);
+                //Vector3 pos = spawn.transform.position;
+                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], spawn.transform.position, Quaternion.identity);
                 SummonedEnemy = NewEnemy.GetComponent<Enemy>();
                 SummonedEnemy.Init();
             }
-        } else {
+        }
+        else {
             Debug.Log($"ENTITY SUMMONER: {EnemyID} not found");
             return null;
         }

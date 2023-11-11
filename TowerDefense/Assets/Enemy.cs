@@ -17,15 +17,21 @@ public class Enemy : MonoBehaviour
     }
     public void Init(){
         currentHealth = maxHealth;
-        transform.position = Spawn.transform.position;//ADDED to force start position
+        gameObject.transform.position = Spawn.transform.position;//Spawn.gameObject.GetComponent<GameLoopManager>().NodeParent.position;
+        NodeIndex = 0;
+
         Transform goal = GameObject.FindGameObjectWithTag("Finish").transform;
         UnityEngine.AI.NavMeshAgent agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        //agent.transform.position = Spawn.transform.position;
         agent.destination = goal.position;
     }
     void Update(){
-        if(currentHealth <= 0){
+        if(currentHealth <= 0)
+        {
             StartCoroutine(Die());
-        } else {
+        }
+        else
+        {
         Transform goal = GameObject.FindGameObjectWithTag("Finish").transform;
         UnityEngine.AI.NavMeshAgent agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = goal.position;
