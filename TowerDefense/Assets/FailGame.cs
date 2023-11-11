@@ -17,7 +17,7 @@ public class FailGame : MonoBehaviour
     }
     void OnTriggerEnter (Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "enemy")
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Failed Screen");
         }

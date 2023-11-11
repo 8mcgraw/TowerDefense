@@ -10,6 +10,8 @@ public class GameLoopManager : MonoBehaviour
 
     public Transform NodeParent;
     public bool endLoop = false;
+    public int timer = 0;
+    public bool wave1 = false;
     // Start is called before the first frame update
     private void Start()
     {
@@ -26,7 +28,7 @@ public class GameLoopManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
         // SummonTest();
-        InvokeRepeating("SummonTest", 6f, 1f);
+        //InvokeRepeating("SummonTest", 6f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
@@ -62,6 +64,18 @@ public class GameLoopManager : MonoBehaviour
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
+            if ((timer > 1000)&&(wave1==false)){
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                wave1=true;
+            }
+            if (timer > 3000){
+                endLoop = true;
+            }
             if(GameObject.FindGameObjectsWithTag("Enemy").Length == 20){
                 //endLoop = true;
             }
@@ -69,6 +83,11 @@ public class GameLoopManager : MonoBehaviour
         }
         Debug.Log("Game Over"); 
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
+    } 
+
+    void FixedUpdate()
+    {
+        timer++;
     }
 
     public static void EnqueueEnemyIDToSummon(int ID){
