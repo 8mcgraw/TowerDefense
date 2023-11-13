@@ -10,6 +10,7 @@ public class OrbScript : MonoBehaviour
     public float cooldown = 100f;
     public float timer = 50f;
     public bool setTower = false;
+    public string orbEffect;
     SphereCollider myCollider;
     string projectileType;
     public float range = 0f; //adjust collider to fit range, change range in model section
@@ -66,7 +67,7 @@ public class OrbScript : MonoBehaviour
                 if ((target[0]!=null)&&(enemy != null)&&(enemy.currentHealth>0)&&(this.transform.parent!=null)&&(this.transform.parent.parent!=null)&&(this.transform.parent.parent.parent==null)&&(this.transform.parent.parent.tag=="Tower")&&(this.transform.parent.parent.GetComponent<TowerScript>().onPath==false))
                 {
                     transform.LookAt(target[0].transform);
-                    projectilescript.attack(target[0], projectileType, damage);
+                    projectilescript.attack(target[0], projectileType, damage, orbEffect);
                 } else {
                     popTarget(target[0]);
                 }

@@ -41,31 +41,31 @@ public class CraftingScript : MonoBehaviour
                 if (Input.GetKey(KeyCode.Alpha1)){
                     timer = 0;
                     orb = true;
-                    t = "Press 1 to buy a death orb. \nPress 2 to buy a fire orb.\nPress 3 to buy an ice orb.\nPress 4 to return.\n";
+                    t = "Press 1 to buy a death orb for 1 orb. \nPress 2 to buy a fire orb for 1 gem.\nPress 3 to buy an ice orb for 1 gem.\nPress 4 to return.\n";
                 }else if (Input.GetKey(KeyCode.Alpha2)){
                     timer = 0;
                     shortTower = true;
-                    t = "Press 1 to buy a wood short tower. \nPress 2 to buy an iron short tower.\nPress 3 to buy a gold short tower.\nPress 4 to return.\n";
+                    t = "Press 1 to buy a wood short tower for 1 dirt. \nPress 2 to buy an iron short tower for 1 iron.\nPress 3 to buy a gold short tower for 1 gold.\nPress 4 to return.\n";
                 }else if (Input.GetKey(KeyCode.Alpha3)){
                     timer = 0;
                     regularTower = true;
-                    t = "Press 1 to buy a wood regular tower. \nPress 2 to buy an iron regular tower.\nPress 3 to buy a gold regular tower.\nPress 4 to return.\n";
+                    t = "Press 1 to buy a wood regular tower for 1 dirt. \nPress 2 to buy an iron regular tower for 1 iron.\nPress 3 to buy a gold regular tower for 1 gold.\nPress 4 to return.\n";
                 }else if (Input.GetKey(KeyCode.Alpha4)){
                     timer = 0;
                     tallTower = true;
-                    t = "Press 1 to buy a wood tall tower. \nPress 2 to buy an iron tall tower.\nPress 3 to buy a gold tall tower.\nPress 4 to return.\n";
+                    t = "Press 1 to buy a wood tall tower for 1 dirt. \nPress 2 to buy an iron tall tower for 1 iron.\nPress 3 to buy a gold tall tower for 1 gold.\nPress 4 to return.\n";
                 }
             }
             if (orb){
                 if (Input.GetKey(KeyCode.Alpha1) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(DeathOrb, "Dirt", 1));
+                    StartCoroutine(Buy(DeathOrb, "Orbs", 1));
                 } else if (Input.GetKey(KeyCode.Alpha2) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(FireOrb, "Dirt", 1));
+                    StartCoroutine(Buy(FireOrb, "Gems", 1));
                 } else if (Input.GetKey(KeyCode.Alpha3) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(IceOrb, "Dirt", 1));
+                    StartCoroutine(Buy(IceOrb, "Gems", 1));
                 } else if (Input.GetKey(KeyCode.Alpha4) && timer>20){
                     timer = 0;
                     orb = false;
@@ -76,10 +76,10 @@ public class CraftingScript : MonoBehaviour
                     StartCoroutine(Buy(ShortTower, "Dirt", 1, "wood"));
                 } else if (Input.GetKey(KeyCode.Alpha2) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(ShortTower, "Dirt", 1, "iron"));
+                    StartCoroutine(Buy(ShortTower, "Iron", 1, "iron"));
                 } else if (Input.GetKey(KeyCode.Alpha3) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(ShortTower, "Dirt", 1, "gold"));
+                    StartCoroutine(Buy(ShortTower, "Gold", 1, "gold"));
                 } else if (Input.GetKey(KeyCode.Alpha4) && timer>20){
                     timer = 0;
                     shortTower = false;
@@ -90,10 +90,10 @@ public class CraftingScript : MonoBehaviour
                     StartCoroutine(Buy(RegularTower, "Dirt", 1, "wood"));
                 } else if (Input.GetKey(KeyCode.Alpha2) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(RegularTower, "Dirt", 1, "iron"));
+                    StartCoroutine(Buy(RegularTower, "Iron", 1, "iron"));
                 } else if (Input.GetKey(KeyCode.Alpha3) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(RegularTower, "Dirt", 1, "gold"));
+                    StartCoroutine(Buy(RegularTower, "Gold", 1, "gold"));
                 } else if (Input.GetKey(KeyCode.Alpha4) && timer>20){
                     timer = 0;
                     regularTower = false;
@@ -105,10 +105,10 @@ public class CraftingScript : MonoBehaviour
                     StartCoroutine(Buy(TallTower, "Dirt", 1, "wood"));
                 } else if (Input.GetKey(KeyCode.Alpha2) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(TallTower, "Dirt", 1, "iron"));
+                    StartCoroutine(Buy(TallTower, "Iron", 1, "iron"));
                 } else if (Input.GetKey(KeyCode.Alpha3) && timer>20){
                     timer = 0;
-                    StartCoroutine(Buy(TallTower, "Dirt", 1, "gold"));
+                    StartCoroutine(Buy(TallTower, "Gold", 1, "gold"));
                 } else if (Input.GetKey(KeyCode.Alpha4) && timer>20){
                     timer = 0;
                     tallTower = false;

@@ -11,7 +11,7 @@ public class GameLoopManager : MonoBehaviour
     public Transform NodeParent;
     public bool endLoop = false;
     public int timer = 0;
-    public bool wave1 = false;
+    public bool wave1 = false, wave2 = false, wave3 = false;
     // Start is called before the first frame update
     private void Start()
     {
@@ -64,16 +64,25 @@ public class GameLoopManager : MonoBehaviour
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
-            if ((timer > 1000)&&(wave1==false)){
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
+            if ((timer > 1500)&&(wave1==false)){
                 EnqueueEnemyIDToSummon(1);
                 wave1=true;
             }
-            if (timer > 3000){
+            if ((timer > 2000)&&(wave2==false)){
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                wave2=true;
+            }
+            if ((timer > 3000)&&(wave3==false)){
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                EnqueueEnemyIDToSummon(1);
+                wave3=true;
+            }
+            if (timer > 3700){
                 endLoop = true;
             }
             if(GameObject.FindGameObjectsWithTag("Enemy").Length == 20){

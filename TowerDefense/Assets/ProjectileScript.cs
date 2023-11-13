@@ -13,6 +13,7 @@ public class ProjectileScript : MonoBehaviour
     private Vector3 originalSize;
     private int attackDamage = 0;
     public GameObject bulletAnimation;
+    private string effect;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class ProjectileScript : MonoBehaviour
             if (i%10 >= 9){
                 activate = false;
                 newTarget.gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
+                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effect);
             }
             i++;
         } else if((attackType == "bullet")&&(activate == true)){
@@ -67,7 +69,7 @@ public class ProjectileScript : MonoBehaviour
                     //pierce??
             // this.gameObject.transform.position = Vector3.Lerp(this.transform.parent.position, newTarget.transform.position, (i%10)/10);
             // this.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.3f*Vector3.Distance(this.transform.parent.position, newTarget.transform.position));
-    public void attack(GameObject target, string type, int damage)
+    public void attack(GameObject target, string type, int damage, string orbEffect)
     {
         this.gameObject.SetActive(true);
         //Debug.Log("test");
@@ -75,6 +77,7 @@ public class ProjectileScript : MonoBehaviour
         activate = true;
         attackType = type;
         attackDamage = damage;
+        effect = orbEffect;
     }
 
 }
