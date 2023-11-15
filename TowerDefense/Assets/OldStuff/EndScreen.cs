@@ -15,6 +15,8 @@ public class EndScreen : MonoBehaviour
     {
         if(Input.GetKey ("return")){
             UnityEngine.SceneManagement.SceneManager.LoadScene("Basic Tower Defense");
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Basic Tower Defense");
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Failed Screen");
         }
     }
 }

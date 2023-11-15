@@ -48,6 +48,7 @@ public class ProjectileScript : MonoBehaviour
             if (i%10 >= 9){
                 activate = false;
                 newTarget.gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
+                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effect);
             }
             i++;
         } else if ((attackType == "splash")&&(activate == true)) {
@@ -58,6 +59,7 @@ public class ProjectileScript : MonoBehaviour
             if (i%20 >= 19){
                 activate = false;
                 newTarget.gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
+                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effect);
             }
             i++;
         } else {

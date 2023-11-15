@@ -20,6 +20,8 @@ public class FailGame : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Failed Screen");
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Failed Screen");
+            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Basic Tower Defense");
         }
     }
 }
