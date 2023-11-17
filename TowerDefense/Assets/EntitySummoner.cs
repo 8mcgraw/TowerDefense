@@ -10,6 +10,8 @@ public class EntitySummoner : MonoBehaviour
     public static Dictionary<int, GameObject> EnemyPrefabs;
     public static Dictionary<int, Queue<Enemy>> EnemyObjectPools;
 
+    public GameObject[] spawnPoints;
+
     public static bool IsInitialized;
     // Start is called before the first frame update
     public static void Init()
@@ -35,7 +37,7 @@ public class EntitySummoner : MonoBehaviour
         }
 
     }
-    public static Enemy SummonEnemy(int EnemyID)
+    public Enemy SummonEnemy(int EnemyID, int spawnPoint)
     {
         Enemy SummonedEnemy = null;
 
@@ -54,7 +56,7 @@ public class EntitySummoner : MonoBehaviour
             else
             {
                 //Instantiate New Instance of Enemy And Initialize
-                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], new Vector3(-4.4f, 0f, 5.2f), Quaternion.identity);
+                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z), Quaternion.identity);
                 SummonedEnemy = NewEnemy.GetComponent<Enemy>();
                 SummonedEnemy.Init();
             }

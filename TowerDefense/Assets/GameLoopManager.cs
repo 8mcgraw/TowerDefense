@@ -12,6 +12,7 @@ public class GameLoopManager : MonoBehaviour
     public bool endLoop = false;
     public int timer = 0;
     public bool wave1 = false, wave2 = false, wave3 = false;
+    public GameObject summoner;
     // Start is called before the first frame update
     private void Start()
     {
@@ -25,6 +26,7 @@ public class GameLoopManager : MonoBehaviour
         {
             NodePositions[i] = NodeParent.GetChild(i).position;
         }
+
 
         StartCoroutine(GameLoop());
         // SummonTest();
@@ -50,11 +52,12 @@ public class GameLoopManager : MonoBehaviour
 
         while(endLoop == false)
         {
+            int spawnPoint = 0;
             //Spawn Enemies, Towers, Move Enemies, Tick Towers, Apply Effects, Damage Enemies, Remove Enemies, Remove Towers.
             if(EnemyIDsToSummon.Count > 0){
                 for(int i = 0; i<EnemyIDsToSummon.Count; i++ )
                 {
-                    EntitySummoner.SummonEnemy(EnemyIDsToSummon.Dequeue());
+                    summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(EnemyIDsToSummon.Dequeue(), spawnPoint);
                 }
             }
             if(EnemiesToRemove.Count > 0){
@@ -64,26 +67,10 @@ public class GameLoopManager : MonoBehaviour
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
-            if ((timer > 1500)&&(wave1==false)){
+            if ((timer % 200 == 0)&&(wave1==false)){
+                spawnPoint = Random.Range(0, 4);
                 EnqueueEnemyIDToSummon(1);
-                wave1=true;
-            }
-            if ((timer > 2000)&&(wave2==false)){
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                wave2=true;
-            }
-            if ((timer > 3000)&&(wave3==false)){
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                EnqueueEnemyIDToSummon(1);
-                wave3=true;
-            }
-            if (timer > 3700){
-                endLoop = true;
+                //wave1=true;
             }
             if(GameObject.FindGameObjectsWithTag("Enemy").Length == 20){
                 //endLoop = true;
