@@ -9,22 +9,28 @@ public class BreakScript : MonoBehaviour
     public TMPro.TMP_Text text, text1;
     public GameObject Bank;
     public bool tileMined = false;
-    public int timer = 0;
-    public int health = 1;
+    public float timer = 0f;
+    public float health = 10f;
+    public GameObject meshObject;
+    public float c;
 
     private void Start()
     {
+        meshObject = this.gameObject;
+        if (this.gameObject.transform.childCount > 0){
+            meshObject = this.gameObject.transform.GetChild(0).gameObject;
+        }
         if (this.gameObject.tag == "dirt")
         {
-            health = 1;
+            health = 10f;
         }
         if (this.gameObject.tag == "rock")
         {
-            health = 2;
+            health = 20f;
         }
         if (this.gameObject.tag == "crystal")
         {
-            health = 3;
+            health = 30f;
         }
     }
 
@@ -34,8 +40,13 @@ public class BreakScript : MonoBehaviour
             StartCoroutine(Mining(timer+1));
             tileMined = false;
         }
+        if (timer>0){
+            //break animation
+            c = ((health-timer)/health);
+            meshObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(c,c,c));
+        }
     }
-    public IEnumerator Mining(int x)
+    public IEnumerator Mining(float x)
     {
         //If playerscript finishes its wait time and sends a true
         if (tileMined)
