@@ -22,6 +22,9 @@ public class BreakScript : MonoBehaviour
 
     private void Start()
     {
+        text = GameObject.Find("Resources").GetComponent<TMPro.TMP_Text>();
+        Bank = GameObject.Find("Bank");
+
         int dirtChance = 0;
         int rockChance = 0;
         int crystalChance = 0;
