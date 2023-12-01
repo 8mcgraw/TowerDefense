@@ -122,7 +122,7 @@ public class CraftingScript : MonoBehaviour
         if (number>0){
             Debug.Log("Buying");
             number=0;
-            if (Bank.gameObject.GetComponent<Currencies>().incrementCurrency(resource, -cost)){
+            if (/*Bank.gameObject.GetComponent<Currencies>().incrementCurrency(resource, -cost)*/true){
                 t += "Success!\n";
                 product.SetActive(true);
                 if (type != null){

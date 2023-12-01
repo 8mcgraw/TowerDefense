@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class GameLoopManager : MonoBehaviour
 {
-    public static Vector3[] NodePositions;
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
-
-    public Transform NodeParent;
     public bool endLoop = false;
     public int timer = 0;
     public bool wave1 = false, wave2 = false, wave3 = false;
-    public GameObject summoner;
+    public bool pause1 = false, pause2 = false, pause3 = false;
+    public int spawnPoint = 0;
+    public int level = 1;
+    public bool pause = false;
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        EnemyIDsToSummon = new Queue<int>();
         EnemiesToRemove = new Queue<Enemy>();
+        EnemyIDsToSummon = new Queue<int>();
         EntitySummoner.Init();
-
-        NodePositions = new Vector3[NodeParent.childCount];
-
-        for (int i = 0; i < NodePositions.Length; i++)
-        {
-            NodePositions[i] = NodeParent.GetChild(i).position;
-        }
-
 
         StartCoroutine(GameLoop());
         // SummonTest();
@@ -36,9 +28,8 @@ public class GameLoopManager : MonoBehaviour
 
     // Update is called once per frame
 
-    void SummonTest()
-    {
-        EnqueueEnemyIDToSummon(1);
+    void SummonTest(){
+        //EnqueueEnemyIDsToSummon(1);
     }
 
     void RemoveTest(){
@@ -52,38 +43,57 @@ public class GameLoopManager : MonoBehaviour
 
         while(endLoop == false)
         {
-            int spawnPoint = 0;
             //Spawn Enemies, Towers, Move Enemies, Tick Towers, Apply Effects, Damage Enemies, Remove Enemies, Remove Towers.
             if(EnemyIDsToSummon.Count > 0){
                 for(int i = 0; i<EnemyIDsToSummon.Count; i++ )
                 {
-                    summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(EnemyIDsToSummon.Dequeue(), spawnPoint);
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(EnemyIDsToSummon.Dequeue(), spawnPoint);
                 }
             }
             if(EnemiesToRemove.Count > 0){
-                for (int i=0; i< EnemiesToRemove.Count; i++)
-                {
-                    Debug.Log(EnemiesToRemove);
+                for (int i=0; i< EnemiesToRemove.Count; i++){
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
-            if ((timer % 200 == 0)&&(wave1==false)){
-                spawnPoint = Random.Range(0, 4);
-                EnqueueEnemyIDToSummon(1);
-                //wave1=true;
+            if(level==0){
+                if ((timer % 200 == 0)&&(wave1==false)){
+                    spawnPoint = Random.Range(0, 4);
+                    //Debug.Log(spawnPoint);
+                    EnqueueEnemyIDToSummon(1);
+                    //wave1=true;
+                }
             }
-            if(GameObject.FindGameObjectsWithTag("Enemy").Length == 20){
-                //endLoop = true;
+            if(level==1){
+                if ((timer > 1000)&&(!wave1)&&(!pause1)){
+                    pause = true;
+                    pause1 = true;
+                }
+                if ((!pause)&&(pause1)&&(!wave1)){
+                    wave1=true;
+                    spawnPoint = 0;
+                    EnqueueEnemyIDToSummon(1);
+                    EnqueueEnemyIDToSummon(1);
+                    EnqueueEnemyIDToSummon(1);
+                    EnqueueEnemyIDToSummon(1);
+                }
+
             }
             yield return null;
         }
         Debug.Log("Game Over"); 
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
-    } 
+    }
 
     void FixedUpdate()
     {
-        timer++;
+        if (!pause){
+            timer++;
+        }
+    }
+
+    public void StartWave(){
+        pause = false;
+        //Debug.Log("Wave Started2");
     }
 
     public static void EnqueueEnemyIDToSummon(int ID){

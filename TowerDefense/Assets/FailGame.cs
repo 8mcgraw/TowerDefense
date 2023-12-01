@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FailGame : MonoBehaviour
 {
+    public bool close = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,15 +14,28 @@ public class FailGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(close == true){
+            if(Input.GetKeyDown(KeyCode.E)){
+                GameLoopManager gameLoopManager = GameObject.Find("GameMaster").GetComponent<GameLoopManager>();
+                gameLoopManager.StartWave();
+                //Debug.Log("Wave Started");
+            }
+        }
     }
     void OnTriggerEnter (Collider collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Failed Screen");
-            UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Failed Screen");
-            UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Basic Tower Defense");
+        }
+        if (collision.gameObject.tag == "Player"){
+            close = true;
+        }
+    }
+    void OnTriggerExit (Collider collision)
+    {
+        if (collision.gameObject.tag == "Player"){
+            close = false;
         }
     }
 }

@@ -14,17 +14,19 @@ public class TowerScript : MonoBehaviour
     public string MaterialType = "wood";
     public GameObject Model;
     public GameObject[] Materials;
+    public Light myRange;
+    public float range = 0f;
 
     void Start()
     {
-        if (Model.tag == "short"){
-            
-        } else if (Model.tag == "regular"){
+        myRange = SpherePos.gameObject.AddComponent<Light>();
+        myRange.type = LightType.Point;
+        myRange.color = Color.blue;
+        myRange.intensity = 100;
+        myRange.enabled = false;
 
-        } else if (Model.tag == "tall"){
-
-        }
         if (MaterialType == "iron"){
+            range = 3f;
             foreach(GameObject material in Materials){
                 material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
                 material.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0.2f,0.2f,0.2f));
@@ -32,6 +34,7 @@ public class TowerScript : MonoBehaviour
             }
         }
         if (MaterialType == "wood"){
+            range = 5f;
             foreach(GameObject material in Materials){
                 material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
                 material.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(0.6037736f,0.5085683f,0.2876468f));
@@ -39,18 +42,32 @@ public class TowerScript : MonoBehaviour
             }
         }
         if (MaterialType == "gold"){
+            range = 7.5f;
             foreach(GameObject material in Materials){
                 material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
                 material.GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(1f,1f,0f));
                 material.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.44f,0.44f,0f) * 1);
             }
         }
+        if (Model.tag == "short"){
+            range = range * 0.5f;
+        } else if (Model.tag == "regular"){
+            range = range * 1f;
+        } else if (Model.tag == "tall"){
+            range = range * 2f;
+        }
+        myRange.range = range;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if (onPath){
+            myRange.color = Color.red;
+        } else {
+            myRange.color = Color.blue;
+        }
         if ((close == true) && (Input.GetKey(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(!FindChildWithTag(this.gameObject, "Orb")))
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
@@ -60,7 +77,8 @@ public class TowerScript : MonoBehaviour
             this.transform.parent = player.transform;
             this.transform.rotation = new Quaternion(0,0,0,0);
             animator.SetBool("carrying", true);
-            carrying = true;
+            carrying = true;            
+            myRange.enabled = true;
         }
         if ((carrying == true) && (Input.GetKey(KeyCode.Q))&&(!onPath))
         {
@@ -73,7 +91,7 @@ public class TowerScript : MonoBehaviour
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<BoxCollider>().enabled = true;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
+            myRange.enabled = false;
 
         }
     }

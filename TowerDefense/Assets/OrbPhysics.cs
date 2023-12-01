@@ -17,7 +17,8 @@ public class OrbPhysics : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((close == true) && (Input.GetKey(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(this.transform.parent==null))
+
+        if ((close == true) && (Input.GetKeyDown(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(this.transform.parent==null))
         {
             this.GetComponent<SphereCollider>().enabled = false;
             this.GetComponent<Rigidbody>().isKinematic = false;
@@ -27,8 +28,7 @@ public class OrbPhysics : MonoBehaviour
             //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
             animator.SetBool("carrying", true);
             carrying = true;
-        }
-        if ((carrying == true) && (Input.GetKey(KeyCode.Q)))
+        }else if ((carrying == true) && (Input.GetKeyDown(KeyCode.E)))
         {
             this.transform.parent = null;
             //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
@@ -37,7 +37,21 @@ public class OrbPhysics : MonoBehaviour
             this.GetComponent<SphereCollider>().enabled = true;
             this.GetComponent<Rigidbody>().isKinematic = true;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
 
+        } else if ((carrying == true) && (Input.GetKeyDown(KeyCode.Q)))
+        {
+            this.transform.parent = null;
+            //this.transform.position = player.transform.position + player.transform.forward + this.transform.up*2;
+            //this.transform.rotation = player.transform.rotation * Quaternion.Euler(new Vector3(270, 0, 130));
+            animator.SetBool("carrying", false);
+            carrying = false;
+            this.GetComponent<SphereCollider>().enabled = true;
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            //look at player and set velocity away from player
+            this.transform.LookAt(player.transform.parent.transform);
+            this.GetComponent<Rigidbody>().velocity = this.transform.forward * -10;
 
         }
     }
@@ -47,6 +61,7 @@ public class OrbPhysics : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             close = true;
+            
         }
     }
 
