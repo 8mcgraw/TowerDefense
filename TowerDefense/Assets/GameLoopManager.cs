@@ -13,6 +13,7 @@ public class GameLoopManager : MonoBehaviour
     public int spawnPoint = 0;
     public int level = 0;
     public bool pause = false;
+    public bool startWave;
     // Start is called before the first frame update
     void Start()
     {

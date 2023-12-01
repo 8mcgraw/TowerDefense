@@ -7,6 +7,7 @@ public class playerScript : MonoBehaviour
     public Vector3 speed = new Vector3(0.1f, 0.1f, 0.1f);
     public Animator animator;
     public GameObject model;
+    public GameObject GameMaster;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,7 @@ public class playerScript : MonoBehaviour
             && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex < 8)
         {
             GameMaster.gameObject.GetComponent<GameLoopManager>().startWave = true;
+            GameMaster.gameObject.GetComponent<GameLoopManager>().StartWave();
             Debug.Log("Wave Started");
 
         }
