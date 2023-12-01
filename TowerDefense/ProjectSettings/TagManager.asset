@@ -19,6 +19,8 @@ TagManager:
   - regular
   - tall
   - animation
+  - Goal1
+  - Goal2
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Path1
   - 
   - 
   - 
@@ -55,4 +57,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Path1
+    uniqueID: 395286519
     locked: 0
