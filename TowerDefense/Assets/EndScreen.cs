@@ -14,7 +14,11 @@ public class EndScreen : MonoBehaviour
     void Update()
     {
         if(Input.GetKey ("return")){
+<<<<<<< Updated upstream:TowerDefense/Assets/EndScreen.cs
             UnityEngine.SceneManagement.SceneManager.LoadScene("Basic Tower Defense");
+=======
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Basic Tower Defense");
+>>>>>>> Stashed changes:TowerDefense/Assets/OldStuff/EndScreen.cs
         }
     }
 }

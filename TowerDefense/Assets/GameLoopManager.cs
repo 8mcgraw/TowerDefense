@@ -7,6 +7,15 @@ public class GameLoopManager : MonoBehaviour
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
     public bool endLoop = false;
+<<<<<<< Updated upstream
+=======
+    public int timer = 0;
+    public bool wave1 = false, wave2 = false, wave3 = false;
+    public bool pause1 = false, pause2 = false, pause3 = false;
+    public int spawnPoint = 0;
+    public int level = 0;
+    public bool pause = false;
+>>>>>>> Stashed changes
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +48,14 @@ public class GameLoopManager : MonoBehaviour
         {
             //Spawn Enemies, Towers, Move Enemies, Tick Towers, Apply Effects, Damage Enemies, Remove Enemies, Remove Towers.
             if(EnemyIDsToSummon.Count > 0){
+<<<<<<< Updated upstream
                 for(int i = 0; i<EnemyIDsToSummon.Count; i++ ){
                     EntitySummoner.SummonEnemy(EnemyIDsToSummon.Dequeue());
+=======
+                for(int i = 0; i<EnemyIDsToSummon.Count; i++ )
+                {
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(EnemyIDsToSummon.Dequeue(), spawnPoint);
+>>>>>>> Stashed changes
                 }
             }
             if(EnemiesToRemove.Count > 0){
@@ -48,13 +63,53 @@ public class GameLoopManager : MonoBehaviour
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
+<<<<<<< Updated upstream
             if(GameObject.FindGameObjectsWithTag("Enemy").Length == 20){
                 endLoop = true;
+=======
+            if(level==0){
+                if ((timer % 200 == 0)&&(wave1==false)){
+                    spawnPoint = Random.Range(0, 4);
+                    Debug.Log(spawnPoint);
+                    EnqueueEnemyIDToSummon(1);
+                    //wave1=true;
+                }
+            }
+            if(level==1){
+                if ((timer > 1000)&&(!wave1)&&(!pause1)){
+                    pause = true;
+                    pause1 = true;
+                }
+                if ((!pause)&&(pause1)&&(!wave1)){
+                    wave1=true;
+                    spawnPoint = 0;
+                    EnqueueEnemyIDToSummon(1);
+                    EnqueueEnemyIDToSummon(1);
+                    EnqueueEnemyIDToSummon(1);
+                    EnqueueEnemyIDToSummon(1);
+                }
+
+>>>>>>> Stashed changes
             }
             yield return null;
         }
         Debug.Log("Game Over"); 
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
+<<<<<<< Updated upstream
+=======
+    }
+
+    void FixedUpdate()
+    {
+        if (!pause){
+            timer++;
+        }
+    }
+
+    public void StartWave(){
+        pause = false;
+        //Debug.Log("Wave Started2");
+>>>>>>> Stashed changes
     }
 
     public static void EnqueueEnemyIDsToSummon(int ID){

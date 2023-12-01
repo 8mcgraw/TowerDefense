@@ -36,8 +36,14 @@ public class EntitySummoner : MonoBehaviour
     public static Enemy SummonEnemy(int EnemyID)
     {
         Enemy SummonedEnemy = null;
+<<<<<<< Updated upstream
 
         if(EnemyPrefabs.ContainsKey(EnemyID)){
+=======
+        spawnPoint = spawnPoint % spawnPoints.Length;
+        if(EnemyPrefabs.ContainsKey(EnemyID))
+        {
+>>>>>>> Stashed changes
             Queue<Enemy> ReferencedQueue = EnemyObjectPools[EnemyID];
             if (ReferencedQueue.Count > 0)
             {
@@ -50,7 +56,12 @@ public class EntitySummoner : MonoBehaviour
             else
             {
                 //Instantiate New Instance of Enemy And Initialize
+<<<<<<< Updated upstream
                 GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], Vector3.zero, Quaternion.identity);
+=======
+                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z), Quaternion.identity);
+                //Debug.Log(spawnPoint);
+>>>>>>> Stashed changes
                 SummonedEnemy = NewEnemy.GetComponent<Enemy>();
             }
         } else {
