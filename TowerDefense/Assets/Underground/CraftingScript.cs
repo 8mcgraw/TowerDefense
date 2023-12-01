@@ -20,6 +20,27 @@ public class CraftingScript : MonoBehaviour
         TowerCraft = GameObject.Find("TowerCraft");
         TowerCraft.gameObject.SetActive(false);
     }
+    void Update()
+    {
+        //if towercraft child 0, child 0 is active, press 1 to craft short tower, 2 for regular, 3 for tall
+        if (TowerCraft.transform.GetChild(0).transform.GetChild(0).gameObject.activeSelf){
+            if (Input.GetKeyDown(KeyCode.Alpha1)){
+                CraftShortTower();
+            } else if (Input.GetKeyDown(KeyCode.Alpha2)){
+                CraftregularTower();
+            } else if (Input.GetKeyDown(KeyCode.Alpha3)){
+                CraftTallTower();
+            }
+        } else if (TowerCraft.transform.GetChild(0).transform.GetChild(1).gameObject.activeSelf){
+            if (Input.GetKeyDown(KeyCode.Alpha1)){
+                CraftDirtTower();
+            } else if (Input.GetKeyDown(KeyCode.Alpha2)){
+                CraftIronTower();
+            } else if (Input.GetKeyDown(KeyCode.Alpha3)){
+                CraftGoldTower();
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other) {
         if (other.transform.tag == "Player"){
             TowerCraft.gameObject.SetActive(true);

@@ -11,7 +11,7 @@ public class TowerScript : MonoBehaviour
     public Animator animator;
     public bool onPath = false;
     public GameObject SpherePos;
-    public string MaterialType = "wood";
+    public string MaterialType = "dirt";
     public GameObject Model;
     public GameObject[] Materials;
     public Light myRange;
@@ -33,7 +33,7 @@ public class TowerScript : MonoBehaviour
                 material.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", new Color(0.3f,0.3f,0.35f) * 1);
             }
         }
-        if (MaterialType == "wood"){
+        if (MaterialType == "dirt"){
             range = 5f;
             foreach(GameObject material in Materials){
                 material.GetComponent<MeshRenderer>().material.EnableKeyword("_EMISSION");
