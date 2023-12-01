@@ -7,7 +7,6 @@ using System;
 
 public class BreakScript : MonoBehaviour
 {
-    public TMPro.TMP_Text text, text1;
     public GameObject Bank;
     public bool tileMined = false;
     public float timer = 0f;
@@ -22,7 +21,6 @@ public class BreakScript : MonoBehaviour
 
     private void Start()
     {
-        text = GameObject.Find("Resources").GetComponent<TMPro.TMP_Text>();
         Bank = GameObject.Find("Bank");
 
         int dirtChance = 0;
@@ -157,12 +155,10 @@ public class BreakScript : MonoBehaviour
                     if (dropChance < 101f)
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Dirt", 1);
-                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                     else
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Granite", 1);
-                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                 }
                 //50% chance of getting iron or gold
@@ -171,12 +167,10 @@ public class BreakScript : MonoBehaviour
                     if (dropChance < 30f)
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Iron", 1);
-                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                     else if (dropChance < 50f)
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Gold", 1);
-                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                 }
                 //50% chance of getting gems or orbs
@@ -185,12 +179,10 @@ public class BreakScript : MonoBehaviour
                     if (dropChance < 50f)
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Gems", 1);
-                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                     else
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Orbs", 1);
-                        text.text = Bank.gameObject.GetComponent<Currencies>().listCurrencies();
                     }
                 }
                 this.gameObject.SetActive(false);
