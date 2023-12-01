@@ -29,9 +29,9 @@ public class BreakScript : MonoBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Tower Defense Title"){
 
         } else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Basic Tower Defense"){
-            dirtChance = 6;
-            rockChance = 0;
-            crystalChance = 4;
+            dirtChance = 4;
+            rockChance = 5;
+            crystalChance = 1;
         }
         int r = UnityEngine.Random.Range(0,10);
         if (r <= dirtChance)

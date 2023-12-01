@@ -44,6 +44,25 @@ public class playerScript : MonoBehaviour
         if(Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false){
             animator.SetBool("walking", false);
         }
+        if (GameMaster.gameObject.GetComponent<GameLoopManager>().startWave == false)
+        {
+
+            //    t1.text = "Press Enter to Start Wave";
+            Debug.Log("Press Enter to Start Wave");
+        }
+        //else {
+        //    if(t1.text == "Press Enter to Start Wave")
+        //    {
+        //        t1.text == "";
+        //    }
+        //}
+        if(Input.GetKey(KeyCode.Return) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 2
+            && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex < 8)
+        {
+            GameMaster.gameObject.GetComponent<GameLoopManager>().startWave = true;
+            Debug.Log("Wave Started");
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
