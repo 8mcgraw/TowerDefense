@@ -2,43 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class CraftingScript : MonoBehaviour
-{
-    public TMP_Text text, text1;
+{   
     //public GameObject magicTower, fireTower, turretTower;
-    public GameObject Bank, DeathOrb, FireOrb, IceOrb, ShortTower, RegularTower, TallTower;
-    bool shortTower = false, regularTower = false, tallTower = false;
-    public int number = 1;
-    private string t;
+    public GameObject Bank, ShortTower, RegularTower, TallTower;
+    public bool shortTower = false, regularTower = false, tallTower = false;
     /// <summary>
     /// private int timer = 0;
     /// </summary>
     public GameObject TowerCraft;
+    public GameObject TowerCraftBackground;
     // Start is called before the first frame update
     void Start()
     {
-
+        TowerCraft = GameObject.Find("TowerCraft");
+        TowerCraft.gameObject.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (TowerCraft == null){
-            TowerCraft = GameObject.Find("TowerCraft");
-        } 
-    }
-
     private void OnTriggerEnter(Collider other) {
         if (other.transform.tag == "Player"){
-            TowerCraft.transform.GetChild(0).gameObject.SetActive(true);
+            TowerCraft.gameObject.SetActive(true);
+            TowerCraft.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+            TowerCraft.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         
         if (other.transform.tag == "Player"){
-            TowerCraft.transform.GetChild(0).gameObject.SetActive(false);
+            TowerCraft.gameObject.SetActive(false);
         }
         shortTower = false;
         regularTower = false;
@@ -69,38 +62,56 @@ public class CraftingScript : MonoBehaviour
     }
     public void CraftDirtTower(){
         if (shortTower){
-            StartCoroutine(Buy(ShortTower, "dirt", 1));
+            StartCoroutine(Buy(ShortTower, "dirt", 1, "dirt"));
         } else if (regularTower){
-            StartCoroutine(Buy(RegularTower, "dirt", 2));
+            StartCoroutine(Buy(RegularTower, "dirt", 2, "dirt"));
         } else if (tallTower){
-            StartCoroutine(Buy(TallTower, "dirt", 3));
+            StartCoroutine(Buy(TallTower, "dirt", 3, "dirt"));
         }
+        
+        TowerCraft.gameObject.SetActive(false);
+        shortTower = false;
+        regularTower = false;
+        tallTower = false;
+        TowerCraft.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+        TowerCraft.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
     }
     public void CraftIronTower(){
         if (shortTower){
-            StartCoroutine(Buy(ShortTower, "iron", 1));
+            StartCoroutine(Buy(ShortTower, "iron", 1, "iron"));
         } else if (regularTower){
-            StartCoroutine(Buy(RegularTower, "iron", 2));
+            StartCoroutine(Buy(RegularTower, "iron", 2, "iron"));
         } else if (tallTower){
-            StartCoroutine(Buy(TallTower, "iron", 3));
+            StartCoroutine(Buy(TallTower, "iron", 3, "iron"));
         }
+        TowerCraft.gameObject.SetActive(false);
+        shortTower = false;
+        regularTower = false;
+        tallTower = false;
+        TowerCraft.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+        TowerCraft.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
     }
     public void CraftGoldTower(){
         if (shortTower){
-            StartCoroutine(Buy(ShortTower, "gold", 1));
+            StartCoroutine(Buy(ShortTower, "gold", 1, "gold"));
         } else if (regularTower){
-            StartCoroutine(Buy(RegularTower, "gold", 2));
+            StartCoroutine(Buy(RegularTower, "gold", 2, "gold"));
         } else if (tallTower){
-            StartCoroutine(Buy(TallTower, "gold", 3));
+            StartCoroutine(Buy(TallTower, "gold", 3, "gold"));
         }
+        TowerCraft.gameObject.SetActive(false);
+        shortTower = false;
+        regularTower = false;
+        tallTower = false;
+        TowerCraft.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
+        TowerCraft.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    public IEnumerator Buy(GameObject product, string resource, int cost, string type = null){
+    IEnumerator Buy(GameObject product, string resource, int cost, string type = null){  
         //if (number>0){
             Debug.Log("Buying");
             //number=0;
             if (/*Bank.gameObject.GetComponent<Currencies>().incrementCurrency(resource, -cost)*/true){
-                t += "Success!\n";
                 product.SetActive(true);
                 if (type != null){
                     product.GetComponent<TowerScript>().MaterialType = type;
@@ -108,12 +119,11 @@ public class CraftingScript : MonoBehaviour
                 Instantiate(product, this.gameObject.transform.position + new Vector3(-2,3,0), Quaternion.identity);
                 product.SetActive(false);
             } else {
-                t += "You don't have enough resources to craft this\n";
+                Debug.Log("Not enough resources");
             }
         //}
-        //yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2);
         //number=1;
-        return;
     }
 
 }
