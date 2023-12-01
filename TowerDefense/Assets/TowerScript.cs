@@ -68,7 +68,7 @@ public class TowerScript : MonoBehaviour
         } else {
             myRange.color = Color.blue;
         }
-        if ((close == true) && (Input.GetKey(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(!FindChildWithTag(this.gameObject, "Orb")))
+        if ((close == true) && (Input.GetKeyDown(KeyCode.E))&& (animator.GetBool("carrying") == false )&&(!FindChildWithTag(this.gameObject, "Orb")))
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
             this.GetComponent<BoxCollider>().enabled = false;
@@ -79,8 +79,7 @@ public class TowerScript : MonoBehaviour
             animator.SetBool("carrying", true);
             carrying = true;            
             myRange.enabled = true;
-        }
-        if ((carrying == true) && (Input.GetKey(KeyCode.Q))&&(!onPath))
+        } else if ((carrying == true) && ((Input.GetKeyDown(KeyCode.E))||(Input.GetKeyDown(KeyCode.Q)))&&(!onPath))
         {
             this.transform.parent = null;
             //this.transform.position = player.transform.position + player.transform.forward + this.transform.up*2;
