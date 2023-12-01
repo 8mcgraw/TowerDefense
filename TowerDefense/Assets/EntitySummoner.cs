@@ -39,6 +39,11 @@ public class EntitySummoner : MonoBehaviour
     }
     public Enemy SummonEnemy(int EnemyID, int spawnPoint)
     {
+        if (spawnPoints.Length < 1){
+            spawnPoint = 0;
+        } else {
+            spawnPoint = spawnPoint % spawnPoints.Length;
+        }
         Enemy SummonedEnemy = null;
 
         if(EnemyPrefabs.ContainsKey(EnemyID))

@@ -26,7 +26,7 @@ public class progression : MonoBehaviour
             selection selectionScript = GameObject.Find("Selection").GetComponent<selection>();
             selectionScript.levelsCompleted = levelsCompleted;
             //at any point hit escape to go back to level select
-           
+
         }
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -34,5 +34,13 @@ public class progression : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("LevelSelector");
             //UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(currentScene);
         }
+        //if underground camera is active, make the music muffled
+        if ((GameObject.Find("Main Camera Underground") != null) && (GameObject.Find("Main Camera Underground").activeSelf))
+        {
+            //change the spatial blend of the audio source to 0.1f
+            this.gameObject.GetComponent<AudioSource>().spatialBlend = 0.5f;
+        } else {
+            //change the spatial blend of the audio source to 0.1f
+            this.gameObject.GetComponent<AudioSource>().spatialBlend = 0.0f;}
     }
 }

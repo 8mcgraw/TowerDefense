@@ -123,11 +123,11 @@ public class ProjectileScript : MonoBehaviour
             this.gameObject.transform.localScale = Vector3.Lerp(transform.localScale, transform.localScale * (Vector3.Distance(transform.position, newTarget.transform.position)), i / 10);
             this.gameObject.transform.position = Vector3.Lerp(transform.position, Vector3.Lerp(transform.position, newTarget.transform.position, 0.5F), i / 10);
         }
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     //on destroy
-    public void OnDestroy()
+    public void OnDisable()
     {
         Destroy(audioSource, splashSound.length);
     }

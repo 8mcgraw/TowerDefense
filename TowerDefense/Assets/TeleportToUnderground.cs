@@ -14,8 +14,8 @@ public GameObject destination;
     // Start is called before the first frame update
     void Start()
     {
-        undergroundScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Assets/Underground/LV1 Underground.unity");
-        overworldScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        // undergroundScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("Assets/Underground/LV1 Underground.unity");
+        // overworldScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame

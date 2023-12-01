@@ -11,7 +11,7 @@ public class GameLoopManager : MonoBehaviour
     public bool wave1 = false, wave2 = false, wave3 = false;
     public bool pause1 = false, pause2 = false, pause3 = false;
     public int spawnPoint = 0;
-    public int level = 1;
+    public int level = 0;
     public bool pause = false;
     // Start is called before the first frame update
     void Start()
@@ -22,14 +22,14 @@ public class GameLoopManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
         // SummonTest();
-        //InvokeRepeating("SummonTest", 6f, 1f);
+        InvokeRepeating("SummonTest", 1f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
     // Update is called once per frame
 
     void SummonTest(){
-        //EnqueueEnemyIDsToSummon(1);
+        EnqueueEnemyIDToSummon(1);
     }
 
     void RemoveTest(){
@@ -58,7 +58,7 @@ public class GameLoopManager : MonoBehaviour
             if(level==0){
                 if ((timer % 200 == 0)&&(wave1==false)){
                     spawnPoint = Random.Range(0, 4);
-                    //Debug.Log(spawnPoint);
+                    Debug.Log(spawnPoint);
                     EnqueueEnemyIDToSummon(1);
                     //wave1=true;
                 }

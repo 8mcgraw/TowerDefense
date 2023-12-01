@@ -13,8 +13,8 @@ public GameObject cameraOverworld;
     // Start is called before the first frame update
     void Start()
     {
-        overworldScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("");
-        undergroundScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        // overworldScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("");
+        // undergroundScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame

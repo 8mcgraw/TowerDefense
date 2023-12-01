@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FailGame : MonoBehaviour
 {
+    public int health = 100;
     public bool close = false;
     // Start is called before the first frame update
     void Start()
@@ -22,13 +23,20 @@ public class FailGame : MonoBehaviour
             }
         }
     }
-    void OnTriggerEnter (Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "enemy")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Failed Screen");
+            health -= 10;
+            Debug.Log("Health: " + health);
+            if (health <= 0)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Failed Screen");
+            }
+            Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "Player"){
+        if (collision.gameObject.tag == "Player")
+        {
             close = true;
         }
     }

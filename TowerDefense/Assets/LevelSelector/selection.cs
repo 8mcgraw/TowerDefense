@@ -23,9 +23,9 @@ public class selection : MonoBehaviour
                 //set the tag to playable, set the color to green, set the light to blue
                 levels[i].tag = "complete";
                 levels[i].GetComponent<Renderer>().material.color = Color.green;
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.1f);
                 levels[i].GetComponent<Light>().color = Color.blue;
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.2f);
             } else {
                 //check if its the next playable level
                 if(i>0){
@@ -33,16 +33,16 @@ public class selection : MonoBehaviour
                         //set the tag to nextlevel, set the color to blue, set the light to white
                         levels[i].tag = "nextlevel";
                         levels[i].GetComponent<Renderer>().material.color = Color.white;
-                        yield return new WaitForSeconds(0.3f);
+                        yield return new WaitForSeconds(0.1f);
                         levels[i].GetComponent<Light>().color = Color.yellow;
-                        yield return new WaitForSeconds(0.3f);
+                        yield return new WaitForSeconds(0.2f);
                     } else {
                         //set the tag to unplayable, set the color to grey, set the light to red
                         levels[i].tag = "unplayable";
                         levels[i].GetComponent<Renderer>().material.color = Color.grey;
-                        yield return new WaitForSeconds(0.3f);
+                        yield return new WaitForSeconds(0.1f);
                         levels[i].GetComponent<Light>().color = Color.red;
-                        yield return new WaitForSeconds(0.3f);
+                        yield return new WaitForSeconds(0.2f);
                     }
                 }
             }
