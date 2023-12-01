@@ -26,12 +26,14 @@ public class resources : MonoBehaviour
             }
             resourcesBackground.SetActive(false);
         } else {
-                resourcesBackground.SetActive(true);
-        }
-        if ((Bank != null)&&(Bank.GetComponent<Currencies>().currencies != null)){
-            Debug.Log("BankUpdate");
-            currencies = Bank.GetComponent<Currencies>().currencies;
-            BankUpdate();
+            resourcesBackground.SetActive(true);
+           // Debug.Log("Bank");
+            if (Bank.GetComponent<Currencies>().updated){
+                Bank.GetComponent<Currencies>().updated = false;
+                //Debug.Log("BankUpdate");
+                currencies = Bank.GetComponent<Currencies>().currencies;
+                BankUpdate();
+            }
         }
         //for each resourcesBackground child, if the dictionary contains its name, enable it
         
