@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     //effects: slowed, burning, cursed, poisoned, frozen, stunned, bleeding, blown 
     public GameObject slow, slow2, cursed, poisoned, frozen, stunned, bleeding, burning, blown;
     public int bonusDamageOnHit = 0;
-    public int dot = 0;
+    public float dot = 0f;
 
     void Start(){
         Init();
@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
         speed = baseSpeed;
     }
     void Update(){
+    }
+    void FixedUpdate(){
         if(currentHealth <= 0){
             StartCoroutine(Die());
         } else {
@@ -40,22 +42,22 @@ public class Enemy : MonoBehaviour
         UnityEngine.AI.NavMeshAgent agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = goal.position;
         }
-    }
-    void FixedUpdate(){
-        if (dot>0){
+
+        if (dot>0f){
             currentHealth -= dot;
         }
         for (int i = 0; i < effects.Length; i++)
         {
-            if (effects[i] == null)
+            if (effects[i] == "")
             {
                 break;
+            } else {
+                effectDuration[i]--;
+                if (effectDuration[i] <= 0)
+                {
+                    RemoveEffect(effects[i]);
+                } 
             }
-            effectDuration[i]--;
-            if (effectDuration[i] <= 0)
-            {
-                RemoveEffect(effects[i]);
-            } 
         }
 
     }
@@ -67,7 +69,7 @@ public class Enemy : MonoBehaviour
 
         for (int i = 0; i < effects.Length; i++)
         {
-            if (effects[i] == null)
+            if (effects[i] == "")
             {
                 effects[i] = effect;
                 effectDuration[i] = 300;
@@ -82,11 +84,11 @@ public class Enemy : MonoBehaviour
         bool found = false;
         for (int i = 0; i < effects.Length; i++)
         {
-            if (effects[i] == null)
+            if (effects[i] == "")
             {
                 if (found)
                 {
-                    effects[i - 1] = null;
+                    effects[i - 1] = "";
                     effectDuration[i - 1] = 0;
                 }
                 return;
@@ -117,7 +119,7 @@ public class Enemy : MonoBehaviour
                 bonusDamageOnHit += 3;
                 cursed.SetActive(true);
             } else if (effect == "poisoned"){
-                dot += 2;
+                dot += 0.2f;
                 poisoned.SetActive(true);
             } else if (effect == "frozen"){
                 removedSpeedFrozen = speed;
@@ -128,10 +130,10 @@ public class Enemy : MonoBehaviour
                 speed = 0;
                 stunned.SetActive(true);
             } else if (effect == "bleeding"){
-                dot += 3;
+                dot += 0.3f;
                 bleeding.SetActive(true);
             } else if (effect == "burning"){
-                dot += 1;
+                dot += 0.1f;
                 bonusDamageOnHit += 1;
                 burning.SetActive(true);
             } else if (effect == "blown"){
@@ -163,7 +165,7 @@ public class Enemy : MonoBehaviour
                 bonusDamageOnHit -= 3;
                 cursed.SetActive(false);
             } else if (effect == "poisoned"){
-                dot -= 2;
+                dot -= 0.2f;
                 poisoned.SetActive(false);
             } else if (effect == "frozen"){
                 speed += removedSpeedFrozen;
@@ -174,10 +176,10 @@ public class Enemy : MonoBehaviour
                 removedSpeedStun = 0;
                 stunned.SetActive(false);
             } else if (effect == "bleeding"){
-                dot -= 3;
+                dot -= 0.3f;
                 bleeding.SetActive(false);
             } else if (effect == "burning"){
-                dot -= 1;
+                dot -= 0.1f;
                 bonusDamageOnHit -= 1;
                 burning.SetActive(false);
             } else if (effect == "blown"){
@@ -188,6 +190,15 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator Die(){
         animator.SetBool("Dead", true);
+        //remove effects
+        for (int i = 0; i < effects.Length; i++)
+        {
+            if (effects[i] == "")
+            {
+                break;
+            }
+            RemoveEffect(effects[i]);
+        }
         speed = 0;
         GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         //Destroy(gameObject);

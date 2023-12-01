@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class ToggleSFX : MonoBehaviour
 {
+    public bool sfx = true;
+    public bool music = true;
     public GameObject sfxOn;
     public GameObject sfxOff;
     // Start is called before the first frame update
@@ -19,13 +21,13 @@ public class ToggleSFX : MonoBehaviour
     }
 
     public void ToggleSFXOn(){
-        AudioListener.volume = 1f;
+        sfx = true;
         sfxOn.SetActive(true);
         sfxOff.SetActive(false);
     }
     
     public void ToggleSFXOff(){
-        AudioListener.volume = 0f;
+        sfx = false;
         sfxOn.SetActive(false);
         sfxOff.SetActive(true);
     }

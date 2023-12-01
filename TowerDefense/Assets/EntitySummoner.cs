@@ -56,7 +56,7 @@ public class EntitySummoner : MonoBehaviour
 
                 SummonedEnemy.Init();
                 SummonedEnemy.gameObject.SetActive(true);
-
+                SummonedEnemy.transform.position = new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z);
             }
             else
             {

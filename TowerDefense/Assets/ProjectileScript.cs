@@ -12,12 +12,13 @@ public class ProjectileScript : MonoBehaviour
     private Vector3 originalSize;
     private int attackDamage = 0;
     public GameObject bulletAnimation;
-    private string effect;
+    public string effect;
     public GameObject[] splashHit = new GameObject[100];
     public AudioClip laserSound;
     public AudioClip bulletSound;
     public AudioClip splashSound;
     public AudioSource audioSource;
+    public GameObject sound;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class ProjectileScript : MonoBehaviour
 
         // Create a new AudioSource and play the clip
         audioSource = gameObject.AddComponent<AudioSource>();
+        sound = GameObject.Find("Progression");
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class ProjectileScript : MonoBehaviour
                 Destroy(bulletAnimation);
             }
             this.gameObject.SetActive(true);
-            if(i<1)
+            if((i<1)&&(sound.GetComponent<ToggleSFX>().sfx == true))
             {
                 audioSource.PlayOneShot(laserSound, 0.2f);
             }
@@ -57,7 +59,7 @@ public class ProjectileScript : MonoBehaviour
             i++;
         } else if((attackType == "bullet")&&(activate == true)){
             this.gameObject.SetActive(true);
-            if(i<1)
+            if((i<1)&&(sound.GetComponent<ToggleSFX>().sfx == true))
             {
                 audioSource.PlayOneShot(bulletSound, 0.2f);
             }
@@ -73,7 +75,7 @@ public class ProjectileScript : MonoBehaviour
             this.gameObject.transform.localScale = Vector3.Lerp(originalSize, originalSize*7f, (i%20)/20);
             this.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0,90*i,0));
             this.gameObject.SetActive(true);
-            if(i<1)
+            if((i<1)&&(sound.GetComponent<ToggleSFX>().sfx == true))
             {
             audioSource.time = 200f;
             audioSource.PlayOneShot(splashSound, 0.2f);
@@ -114,22 +116,21 @@ public class ProjectileScript : MonoBehaviour
             // this.gameObject.transform.position = Vector3.Lerp(this.transform.parent.position, newTarget.transform.position, (i%10)/10);
             // this.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.3f*Vector3.Distance(this.transform.parent.position, newTarget.transform.position));
     public void attack(GameObject target, string type, int damage, string orbEffect)
-    {
-        GameObject newTarget = target;
-        for (int i = 0; i < 10; i++)
-        {
-            transform.LookAt(newTarget.transform);
-
-            this.gameObject.transform.localScale = Vector3.Lerp(transform.localScale, transform.localScale * (Vector3.Distance(transform.position, newTarget.transform.position)), i / 10);
-            this.gameObject.transform.position = Vector3.Lerp(transform.position, Vector3.Lerp(transform.position, newTarget.transform.position, 0.5F), i / 10);
-        }
-        this.gameObject.SetActive(false);
+{
+        this.gameObject.SetActive(true);
+        //Debug.Log("test");
+        newTarget = target;
+        activate = true;
+        attackType = type;
+        attackDamage = damage;
+        effect = orbEffect;
+        i = 0;
     }
 
     //on destroy
     public void OnDisable()
     {
-        Destroy(audioSource, splashSound.length);
+        //Destroy(audioSource, splashSound.length);
     }
 
 }
