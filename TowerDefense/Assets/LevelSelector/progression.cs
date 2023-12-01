@@ -27,6 +27,9 @@ public class progression : MonoBehaviour
             selectionScript.levelsCompleted = levelsCompleted;
             //at any point hit escape to go back to level select
 
+        } else {
+            //if not in levels scene, display health and timer
+            
         }
         if (Input.GetKey(KeyCode.Escape))
         {

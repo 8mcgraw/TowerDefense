@@ -19,6 +19,7 @@ public class Currencies : MonoBehaviour
 
     public bool incrementCurrency(string name, int amount)
     {
+        Debug.Log("Incrementing " + name + " by " + amount);
         if (currencies.ContainsKey(name))
         {
             if ((currencies[name] + amount) > -1)

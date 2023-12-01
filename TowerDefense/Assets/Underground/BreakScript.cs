@@ -154,11 +154,11 @@ public class BreakScript : MonoBehaviour
                 {
                     if (dropChance < 101f)
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Dirt", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("dirt", 1);
                     }
                     else
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Granite", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("granite", 1);
                     }
                 }
                 //50% chance of getting iron or gold
@@ -166,11 +166,11 @@ public class BreakScript : MonoBehaviour
                 {
                     if (dropChance < 30f)
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Iron", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("iron", 1);
                     }
                     else if (dropChance < 50f)
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Gold", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("gold", 1);
                     }
                 }
                 //50% chance of getting gems or orbs
@@ -178,11 +178,11 @@ public class BreakScript : MonoBehaviour
                 {
                     if (dropChance < 50f)
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Gems", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("gems", 1);
                     }
                     else
                     {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("Orbs", 1);
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("orbs", 1);
                     }
                 }
                 this.gameObject.SetActive(false);

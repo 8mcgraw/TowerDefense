@@ -18,7 +18,7 @@ public class selection : MonoBehaviour
     IEnumerator updateLevels(){
         notStarted = false;
         for(int i = 0; i<levels.Length; i++){
-            Debug.Log("Level "+i+" is "+levelsCompleted[i]);
+            //Debug.Log("Level "+i+" is "+levelsCompleted[i]);
             if(levelsCompleted[i]){
                 //set the tag to playable, set the color to green, set the light to blue
                 levels[i].tag = "complete";
