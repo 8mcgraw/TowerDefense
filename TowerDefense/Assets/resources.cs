@@ -28,8 +28,7 @@ public class resources : MonoBehaviour
         } else {
             resourcesBackground.SetActive(true);
            // Debug.Log("Bank");
-            if (Bank.GetComponent<Currencies>().updated==true){
-                Bank.GetComponent<Currencies>().updated = false;
+            if (true){
                 Debug.Log("BankUpdate");
                 currencies = Bank.GetComponent<Currencies>().currencies;
                 BankUpdate();

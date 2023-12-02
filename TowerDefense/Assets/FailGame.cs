@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro; 
 
 public class FailGame : MonoBehaviour
 {
     public int health = 100;
     public bool close = false;
+    public GameObject prompt;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +17,28 @@ public class FailGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(close == true){
-            if(Input.GetKeyDown(KeyCode.E)){
-                GameLoopManager gameLoopManager = GameObject.Find("GameMaster").GetComponent<GameLoopManager>();
-                gameLoopManager.StartWave();
-                //Debug.Log("Wave Started");
+        if (close == true)
+        {
+            prompt.SetActive(true);
+            GameObject text = prompt.gameObject.transform.GetChild(0).gameObject;
+            TextMeshProUGUI textComponent = text.GetComponent<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = "Press Enter to Start Wave";
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                GameLoopManager gameLoopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
+                if (gameLoopManager != null)
+                {
+                    gameLoopManager.StartWave();
+                    //Debug.Log("Wave Started");
+                }
+            }
+        }
+        else
+        {
+            prompt.SetActive(false);
         }
     }
     void OnTriggerEnter(Collider collision)
