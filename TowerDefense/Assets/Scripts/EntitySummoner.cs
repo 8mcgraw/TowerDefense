@@ -18,30 +18,35 @@ public class EntitySummoner : MonoBehaviour
     {
         if (!IsInitialized)
         {
-            EnemyPrefabs = new Dictionary<int, GameObject>();
-            EnemyObjectPools = new Dictionary<int, Queue<Enemy>>();
-            EnemiesInGameTransform = new List<Transform>();
-            EnemiesInGame = new List<Enemy>();
+        EnemyPrefabs = new Dictionary<int, GameObject>();
+        EnemyObjectPools = new Dictionary<int, Queue<Enemy>>();
+        EnemiesInGameTransform = new List<Transform>();
+        EnemiesInGame = new List<Enemy>();
 
-            EnemySummonData[] Enemies = Resources.LoadAll<EnemySummonData>("Enemies");
-            foreach (EnemySummonData enemy in Enemies)
-            {
-                EnemyPrefabs.Add(enemy.EnemyID, enemy.EnemyPrefab);
-                EnemyObjectPools.Add(enemy.EnemyID, new Queue<Enemy>());
-            }
-            IsInitialized = true;
+        EnemySummonData[] Enemies = Resources.LoadAll<EnemySummonData>("Enemies");
+        foreach (EnemySummonData enemy in Enemies)
+        {
+            EnemyPrefabs.Add(enemy.EnemyID, enemy.EnemyPrefab);
+            EnemyObjectPools.Add(enemy.EnemyID, new Queue<Enemy>());
+        }
+        IsInitialized = true;
         }
         else
         {
-            Debug.Log("ENTITY SUMMONER: Already Initialized");
+        Debug.Log("ENTITY SUMMONER: Already Initialized");
         }
 
     }
     public Enemy SummonEnemy(int EnemyID, int spawnPoint)
     {
+        if (spawnPoints.Length < 1){
+            spawnPoint = 0;
+        } else {
+            spawnPoint = spawnPoint % spawnPoints.Length;
+        }
         Enemy SummonedEnemy = null;
 
-        if (EnemyPrefabs.ContainsKey(EnemyID))
+        if(EnemyPrefabs.ContainsKey(EnemyID))
         {
             Queue<Enemy> ReferencedQueue = EnemyObjectPools[EnemyID];
             if (ReferencedQueue.Count > 0)
@@ -51,19 +56,16 @@ public class EntitySummoner : MonoBehaviour
 
                 SummonedEnemy.Init();
                 SummonedEnemy.gameObject.SetActive(true);
-
+                SummonedEnemy.transform.position = new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z);
             }
             else
             {
                 //Instantiate New Instance of Enemy And Initialize
-                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z), Quaternion.Euler(0,0,0));
-                Debug.Log(spawnPoint);
+                GameObject NewEnemy = Instantiate(EnemyPrefabs[EnemyID], new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z), Quaternion.identity);
                 SummonedEnemy = NewEnemy.GetComponent<Enemy>();
                 SummonedEnemy.Init();
             }
-        }
-        else
-        {
+        } else {
             Debug.Log($"ENTITY SUMMONER: {EnemyID} not found");
             return null;
         }
@@ -79,5 +81,6 @@ public class EntitySummoner : MonoBehaviour
         EnemyToRemove.gameObject.SetActive(false);
         EnemiesInGameTransform.Remove(EnemyToRemove.transform);
         EnemiesInGame.Remove(EnemyToRemove);
+        
     }
 }

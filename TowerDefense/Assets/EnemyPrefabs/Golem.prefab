@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: -2636600173204357674}
   m_Layer: 0
   m_Name: Golem
-  m_TagString: Enemy
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,8 +425,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawn: {fileID: 1077356408}
   animator: {fileID: 1077356409}
-  maxHealth: 100
-  currentHealth: 100
+  maxHealth: 200
+  currentHealth: 200
   baseSpeed: 0
   speed: 2.5
   removedSpeedStun: 0

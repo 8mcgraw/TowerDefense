@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: -5794280188591751707}
   m_Layer: 0
   m_Name: FreeLichPolyart
-  m_TagString: Enemy
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,10 +255,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Spawn: {fileID: 0}
   animator: {fileID: 0}
-  maxHealth: 200
-  currentHealth: 200
+  maxHealth: 75
+  currentHealth: 75
   baseSpeed: 0
-  speed: 1.5
+  speed: 3.5
   removedSpeedStun: 0
   removedSpeedFrozen: 0
   NodeIndex: 0

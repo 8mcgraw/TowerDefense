@@ -59,15 +59,18 @@
     <Compile Include="Assets\Scripts\playerScript.cs" />
     <Compile Include="Assets\Scripts\OrbScript.cs" />
     <Compile Include="Assets\Underground\craftingBank.cs" />
+    <Compile Include="Assets\ToggleSFX.cs" />
     <Compile Include="Assets\Storage\AurynSky\Forest Pack\Scripts\MaterialMover.cs" />
     <Compile Include="Assets\Scripts\TeleportToUnderground.cs" />
     <Compile Include="Assets\Storage\AurynSky\WinterArena\Scripts\Rotator.cs" />
+    <Compile Include="Assets\ToggleMusic.cs" />
     <Compile Include="Assets\Storage\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\Scripts\Mining.cs" />
+    <Compile Include="Assets\LevelSelector\selection.cs" />
     <Compile Include="Assets\OldStuff\VillageElderScript.cs" />
-    <Compile Include="Assets\Scripts\WinCondition.cs" />
     <Compile Include="Assets\Scripts\ProjectileScript.cs" />
     <Compile Include="Assets\Underground\CraftingScript.cs" />
+    <Compile Include="Assets\resources.cs" />
     <Compile Include="Assets\Scripts\GameLoopManager.cs" />
     <Compile Include="Assets\Storage\AurynSky\Desert Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\FailGame.cs" />
@@ -83,7 +86,9 @@
     <Compile Include="Assets\Storage\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
     <Compile Include="Assets\Scripts\TowerScript.cs" />
     <Compile Include="Assets\Storage\AurynSky\WinterArena\Scripts\ChestDemo.cs" />
+    <Compile Include="Assets\circularLoading.cs" />
     <Compile Include="Assets\OldStuff\BodyScript.cs" />
+    <Compile Include="Assets\LevelSelector\progression.cs" />
     <Compile Include="Assets\Underground\underSpawn.cs" />
     <Compile Include="Assets\Storage\AurynSky\Forest Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\PathScript.cs" />
@@ -99,6 +104,8 @@
     <Compile Include="Assets\Underground\playerScriptUnderground.cs" />
     <Compile Include="Assets\Scripts\TeleportToOverworld.cs" />
     <Compile Include="Assets\OldStuff\enemyAI.cs" />
+    <Compile Include="Assets\healthChange.cs" />
+    <Compile Include="Assets\craftingOrbs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -108,7 +115,7 @@
     <None Include="Assets\EnemyPrefabs\Aight Knight\Read me.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-    <None Include="Assets\Storage\Tower Defence\Shaders\Double Side.shader" />
+    <None Include="Assets\TowerPrefabs\Tower Defence\Shaders\Double Side.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Storage\AurynSky\Dungeon Pack\READ ME.txt" />
     <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Readme.txt" />

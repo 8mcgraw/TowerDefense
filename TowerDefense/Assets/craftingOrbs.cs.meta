@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ab46027b3721b574ab1402ecc570786b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - IceOrb: {fileID: 585267891884488233, guid: 23656fdf8338632469bb16f55d7621ed, type: 3}
+  - FireOrb: {instanceID: 0}
+  - LightningOrb: {instanceID: 0}
+  - EarthOrb: {instanceID: 0}
+  - WindOrb: {instanceID: 0}
+  - LightOrb: {fileID: 4009924737344933741, guid: 6a2b22170183578438bad7b33e609f1a, type: 3}
+  - DarkOrb: {fileID: 329082860312410384, guid: 699bc0e89fa504a449913bd31ad57bf5, type: 3}
+  - OrbCraft: {fileID: 4850945834808341918, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+  - text: {instanceID: 0}
+  - notEnoughText: {instanceID: 0}
+  - Bank: {fileID: 5177247840006157621, guid: e6b9d16e22ead844a8f6afa21a033f9a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
