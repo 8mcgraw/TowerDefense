@@ -1,50 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameLoopManager : MonoBehaviour
 {
-    public static Vector3[] NodePositions;
     private static Queue<Enemy> EnemiesToRemove;
     private static Queue<int> EnemyIDsToSummon;
-
-    //public TMPro.TextMeshPro t;
-    public Transform NodeParent;
     public bool endLoop = false;
     public int timer = 0;
-    public bool wave1 = false, wave2 = false, wave3 = false, bossed = false, startWave = false;
-    public GameObject summoner;
+    public bool wave1 = false, wave2 = false, wave3 = false;
+    public bool pause1 = false, pause2 = false, pause3 = false;
+    public bool towerBuilt;
     public int spawnPoint = 0;
+    public int level = 1;
+    public bool pause = false;
+    public bool startWave;
+    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt;
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        EnemyIDsToSummon = new Queue<int>();
         EnemiesToRemove = new Queue<Enemy>();
+        EnemyIDsToSummon = new Queue<int>();
         EntitySummoner.Init();
 
-        NodePositions = new Vector3[NodeParent.childCount];
-
-        for (int i = 0; i < NodePositions.Length; i++)
-        {
-            NodePositions[i] = NodeParent.GetChild(i).position;
-        }
-
-        //SummonTest();
         StartCoroutine(GameLoop());
-        //InvokeRepeating("SummonTest", 6f, 1f);
+        // SummonTest();
+        //InvokeRepeating("SummonTest", 1f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
     // Update is called once per frame
 
-    void SummonTest()
-    {
+    void SummonTest(){
         EnqueueEnemyIDToSummon(1);
-        EnqueueEnemyIDToSummon(2);
-        EnqueueEnemyIDToSummon(3);
-        EnqueueEnemyIDToSummon(4);
-
     }
 
     void RemoveTest(){
@@ -56,170 +45,139 @@ public class GameLoopManager : MonoBehaviour
     IEnumerator GameLoop()
     {
 
-        while (endLoop == false)
+        while(endLoop == false)
         {
             //Spawn Enemies, Towers, Move Enemies, Tick Towers, Apply Effects, Damage Enemies, Remove Enemies, Remove Towers.
-            if (EnemyIDsToSummon.Count > 0)
-            {
-                for (int i = 0; i < EnemyIDsToSummon.Count; i++)
+            if(EnemyIDsToSummon.Count > 0){
+                for(int i = 0; i<EnemyIDsToSummon.Count; i++ )
                 {
-                    summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(EnemyIDsToSummon.Dequeue(), spawnPoint);
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(EnemyIDsToSummon.Dequeue(), spawnPoint);
                 }
             }
-            if (EnemiesToRemove.Count > 0)
-            {
-                for (int i = 0; i < EnemiesToRemove.Count; i++)
-                {
-                    Debug.Log(EnemiesToRemove);
+            if(EnemiesToRemove.Count > 0){
+                for (int i=0; i< EnemiesToRemove.Count; i++){
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
-
-            //LEVEL1
-            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(3))
-            {
-                //Start waves
-                if (startWave == true)
-                {
-                    if ((timer > 1000) && (wave1 == false))
-                    {
-                        EnqueueEnemyIDToSummon(2);
-                        wave1 = true;
-                    }
-                    if ((timer > 2000) && (wave2 == false))
-                    {
-                        EnqueueEnemyIDToSummon(2);
-                        EnqueueEnemyIDToSummon(2);
-                        wave2 = true;
-                    }
-                    if ((timer > 3000) && (wave3 == false))
-                    {
-                        EnqueueEnemyIDToSummon(3);
-                        EnqueueEnemyIDToSummon(3);
-                        EnqueueEnemyIDToSummon(3);
-                        wave3 = true;
-                    }
-                    if ((timer > 4000) && (wave3 == true))
-                    {
-                        endLoop = true;
-                    }
+            if(level==0){
+                if ((timer % 200 == 0)&&(wave1==false)){
+                    spawnPoint = Random.Range(0, 4);
+                    Debug.Log(spawnPoint);
+                    EnqueueEnemyIDToSummon(1);
+                    //wave1=true;
                 }
             }
-            //LEVEL2
-            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(4))
-            {
-                //Start waves
-                if (startWave == true)
-                {
-                    if ((timer > 1000) && (wave1 == false))
-                    {
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        wave1 = true;
-                    }
-                    if ((timer > 2000) && (wave2 == false))
-                    {
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        wave2 = true;
-                    }
-                    if ((timer > 3000) && (wave3 == false))
-                    {
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        EnqueueEnemyIDToSummon(1);
-                        wave3 = true;
-                    }
+            if(level==1){
+                if ((timer > 3000)&&(!wave1)&&(!pause1)){
+                    pause = true;
+                    pause1 = true;
+                    //Teleport
+                    transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                    cameraUnderground.SetActive(false);
+                    cameraOverworld.SetActive(true);
+                    //Force Play
+                    if (!towerBuilt) {
 
-                    //If waves finished, spawn boss
-                    if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && wave3 == true)
-                    {
-                        EnqueueEnemyIDToSummon(2);
-                        bossed = true;
-                    }
-                    //Boss ded
-                    if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && bossed == true)
-                    {
-                        endLoop = true;
-                    }
-                }
-            }
-            //LEVEL3
-            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(5))
-            {
-                //Start waves
-                if (startWave == true)
-                {
-                    if ((timer % 500 == 0) && (wave1 == false))
-                    {
-                        spawnPoint = 8;
-                        EnqueueEnemyIDToSummon(2);
-
-                    }
-                    //if ((timer % 200 == 0) && (wave1 == false))
-                    //{
-                    //    spawnPoint = Random.Range(0, 4);
-                    //    Debug.Log(spawnPoint);
-                    //    EnqueueEnemyIDToSummon(1);
-                    //    //wave1=true;
-                    //}
-                    if ((timer > 2000) && (wave2 == false))
-                    {
-                        EnqueueEnemyIDToSummon(4);
-                        if (GameObject.FindGameObjectsWithTag("Enemy").Length != 0)
+                        prompt.SetActive(true);
+                        GameObject text = prompt.gameObject.transform.GetChild(0).gameObject;
+                        TextMeshProUGUI textComponent = text.GetComponent<TextMeshProUGUI>();
+                        if (textComponent != null)
                         {
-                            Debug.Log("Its a witch!");
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 1);
-                            yield return new WaitForSeconds(1);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 2);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 3);
-                            yield return new WaitForSeconds(1);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 4);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 5);
-                            yield return new WaitForSeconds(1);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 6);
-                            summoner.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 7);
-                            wave2 = true;
+                            textComponent.text = "Must Build Tower Before Starting";
                         }
-                        wave1 = true;
+                        if (Input.GetKeyDown(KeyCode.Return))
+                        {
+                            GameLoopManager gameLoopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
+                            if (gameLoopManager != null)
+                            {
+                                gameLoopManager.StartWave();
 
+                                //Debug.Log("Wave Started");
+                            }
+                        }
                     }
                 }
-            }
-            //LEVEL4
-            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(6))
-            {
+                if ((!pause)&&(pause1)&&(!wave1)){
+                    wave1=true;
+                    spawnPoint = 0;
+                    EnqueueEnemyIDToSummon(2);
+                    EnqueueEnemyIDToSummon(2);
+                    EnqueueEnemyIDToSummon(2);
+                    EnqueueEnemyIDToSummon(2);
 
-            }
-            //LEVEL5
-            else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(7))
-            {
+                    yield return new WaitForSeconds(10);
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
+                    yield return new WaitForSeconds(10);
+
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+                    yield return new WaitForSeconds(10);
+
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+                    
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
+                    yield return new WaitForSeconds(10);
+
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(5, 0);
+                    yield return new WaitForSeconds(1);
+
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
+
+                    if(GameObject.FindGameObjectsWithTag("enemy").Length == 0)
+                    {
+                        endLoop = true;
+                    }
+
+                }
+
 
             }
             yield return null;
-
-
-
-
-
-
-
-
-
         }
         Debug.Log("Game Over"); 
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
-    } 
+    }
 
     void FixedUpdate()
     {
-        timer++;
+        if (!pause){
+            timer++;
+        }
+    }
+
+    public void StartWave(){
+        if(towerBuilt)
+        {
+            pause = false;
+        }
+        //Debug.Log("Wave Started2");
     }
 
     public static void EnqueueEnemyIDToSummon(int ID){

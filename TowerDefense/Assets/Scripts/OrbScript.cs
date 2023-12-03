@@ -59,7 +59,6 @@ public class OrbScript : MonoBehaviour
         if (timer > 0){
             timer--;
         } else {
-            timer = cooldown;
         
             if (target[0] != null)
             {
@@ -68,9 +67,12 @@ public class OrbScript : MonoBehaviour
                 {
                     transform.LookAt(target[0].transform);
                     projectilescript.attack(target[0], projectileType, damage, orbEffect);
+                    timer = cooldown;
                 } else {
                     popTarget(target[0]);
                 }
+            }else{
+                popTarget(target[0]);
             }
         }
     }
@@ -118,9 +120,14 @@ public class OrbScript : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if ((collision.gameObject.tag == "Enemy")||(collision.gameObject.tag == "enemy"))
+        if (((collision.gameObject.tag == "Enemy")||(collision.gameObject.tag == "enemy"))&&(System.Array.IndexOf(target, collision.gameObject) == -1))
         {
             pushTarget(collision.gameObject);
+        }
+        //if target[0] is missing, pop target
+        if (target[0] == null)
+        {
+            popTarget(target[0]);
         }
     }
     private void OnTriggerExit(Collider collision)

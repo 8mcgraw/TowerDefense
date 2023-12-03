@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mining : MonoBehaviour
 {
-    public int miningTimer = 0;
+    public float miningTimer = 0;
     public bool canMine = false;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class Mining : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (miningTimer > 20)
+        if (miningTimer > 2)
         {
             canMine = true;
         } else {

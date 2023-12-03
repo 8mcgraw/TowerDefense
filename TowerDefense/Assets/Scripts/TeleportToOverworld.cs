@@ -13,8 +13,8 @@ public GameObject cameraOverworld;
     // Start is called before the first frame update
     void Start()
     {
-        overworldScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("");
-        undergroundScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        // overworldScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName("");
+        // undergroundScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -29,9 +29,10 @@ public GameObject cameraOverworld;
             // //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
             // UnityEditor.SceneManagement.EditorSceneManager.OpenScene("Basic Tower Defense");
             // UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(undergroundScene);
-            collider.transform.position = destination.transform.position + new Vector3(0,0,2);
+            collider.transform.position = destination.transform.position + new Vector3(-2,0,3);
             cameraUnderworld.SetActive(false);
             cameraOverworld.SetActive(true);
+
         }
     }
 }
