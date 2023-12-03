@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class healthChange : MonoBehaviour
 {
-    public GameObject health, healthBar, finish;
+    public GameObject finish;
     public float h, hbase = 0f;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class healthChange : MonoBehaviour
             if (hbase == 0) {
                 hbase = h;
             }
-            health.transform.localScale = new Vector3(h/hbase, 1, 1);
+            this.gameObject.transform.localScale = new Vector3(h/hbase, 1, 1);
         }
 
         
