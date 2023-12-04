@@ -69,6 +69,7 @@ public class GameLoopManager : MonoBehaviour
             }
             if(level==1){
                 if ((timer > 3000)&&(!wave1)&&(!pause1)){
+                    Debug.Log("Wave 1 Started");
                     pause = true;
                     pause1 = true;
                     //Teleport

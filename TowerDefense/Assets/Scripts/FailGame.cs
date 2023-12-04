@@ -8,6 +8,7 @@ public class FailGame : MonoBehaviour
     public int health = 100;
     public bool close = false;
     public GameObject prompt;
+    public GameObject textt;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,25 +21,26 @@ public class FailGame : MonoBehaviour
         if (close == true)
         {
             prompt.SetActive(true);
+            textt.SetActive(true);
             GameObject text = prompt.gameObject.transform.GetChild(0).gameObject;
             TextMeshProUGUI textComponent = text.GetComponent<TextMeshProUGUI>();
             if (textComponent != null)
             {
                 textComponent.text = "Press Enter to Start Wave";
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 GameLoopManager gameLoopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
                 if (gameLoopManager != null)
                 {
                     gameLoopManager.StartWave();
+                    
                     //Debug.Log("Wave Started");
                 }
             }
         }
         else
         {
-            prompt.SetActive(false);
         }
     }
     void OnTriggerEnter(Collider collision)
@@ -56,6 +58,8 @@ public class FailGame : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             close = true;
+            prompt.SetActive(true);
+            textt.SetActive(true);
         }
     }
     void OnTriggerExit (Collider collision)
@@ -63,5 +67,7 @@ public class FailGame : MonoBehaviour
         if (collision.gameObject.tag == "Player"){
             close = false;
         }
+        prompt.SetActive(false);
+        textt.SetActive(false);
     }
 }

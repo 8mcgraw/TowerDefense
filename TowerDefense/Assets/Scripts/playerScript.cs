@@ -9,7 +9,7 @@ public class playerScript : MonoBehaviour
     public Animator animator;
     public GameObject model;
     public GameObject GameMaster;
-    public GameObject prompt;
+    public GameObject prompt, textt;
 
     // Start is called before the first frame update
     void Start()
@@ -47,9 +47,11 @@ public class playerScript : MonoBehaviour
         if(Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false){
             animator.SetBool("walking", false);
         }
-        if (GameMaster.gameObject.GetComponent<GameLoopManager>().startWave == false)
+        if (GameMaster.gameObject.GetComponent<GameLoopManager>().pause == true)
         {
             Debug.Log("Press Enter to Start Wave");
+            prompt.SetActive(true);
+            textt.SetActive(true);
         }
         if (Input.GetKey(KeyCode.Return) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 2
             && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex < 8)
@@ -57,7 +59,8 @@ public class playerScript : MonoBehaviour
             GameMaster.gameObject.GetComponent<GameLoopManager>().startWave = true;
             GameMaster.gameObject.GetComponent<GameLoopManager>().StartWave();
             Debug.Log("Wave Started");
-
+            prompt.SetActive(false);
+            textt.SetActive(false);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Currencies : MonoBehaviour
 {
+    public bool updated = false;
     //All currencies will go in this dictionary.
     public IDictionary<string, int> currencies = new Dictionary<string, int>();
 
@@ -19,6 +20,8 @@ public class Currencies : MonoBehaviour
 
     public bool incrementCurrency(string name, int amount)
     {
+        updated = true;
+        Debug.Log("Incrementing " + name + " by " + amount);
         if (currencies.ContainsKey(name))
         {
             if ((currencies[name] + amount) > -1)
