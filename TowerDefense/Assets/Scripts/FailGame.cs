@@ -18,30 +18,30 @@ public class FailGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (close == true)
-        {
-            prompt.SetActive(true);
-            textt.SetActive(true);
-            GameObject text = prompt.gameObject.transform.GetChild(0).gameObject;
-            TextMeshProUGUI textComponent = text.GetComponent<TextMeshProUGUI>();
-            if (textComponent != null)
-            {
-                textComponent.text = "Press Enter to Start Wave";
-            }
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                GameLoopManager gameLoopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
-                if (gameLoopManager != null)
-                {
-                    gameLoopManager.StartWave();
+        // if (close == true)
+        // {
+        //     prompt.SetActive(true);
+        //     textt.SetActive(true);
+        //     GameObject text = prompt.gameObject.transform.GetChild(0).gameObject;
+        //     TextMeshProUGUI textComponent = text.GetComponent<TextMeshProUGUI>();
+        //     if (textComponent != null)
+        //     {
+        //         textComponent.text = "Press Enter to Start Wave";
+        //     }
+        //     if (Input.GetKeyDown(KeyCode.Return))
+        //     {
+        //         GameLoopManager gameLoopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
+        //         if (gameLoopManager != null)
+        //         {
+        //             gameLoopManager.StartWave();
                     
-                    //Debug.Log("Wave Started");
-                }
-            }
-        }
-        else
-        {
-        }
+        //             //Debug.Log("Wave Started");
+        //         }
+        //     }
+        // }
+        // else
+        // {
+        // }
     }
     void OnTriggerEnter(Collider collision)
     {
@@ -55,19 +55,19 @@ public class FailGame : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.tag == "Player")
-        {
-            close = true;
-            prompt.SetActive(true);
-            textt.SetActive(true);
-        }
+        // if (collision.gameObject.tag == "Player")
+        // {
+        //     close = true;
+        //     prompt.SetActive(true);
+        //     textt.SetActive(true);
+        // }
     }
     void OnTriggerExit (Collider collision)
     {
-        if (collision.gameObject.tag == "Player"){
-            close = false;
-        }
-        prompt.SetActive(false);
-        textt.SetActive(false);
+    //     if (collision.gameObject.tag == "Player"){
+    //         close = false;
+    //     }
+    //     prompt.SetActive(false);
+    //     textt.SetActive(false);
     }
 }

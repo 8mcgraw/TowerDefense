@@ -16,7 +16,7 @@ public class GameLoopManager : MonoBehaviour
     public int level = 1;
     public bool pause = false;
     public bool startWave;
-    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt;
+    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower;
     // Start is called before the first frame update
     void Start()
     {
@@ -78,28 +78,12 @@ public class GameLoopManager : MonoBehaviour
                     cameraUnderground.SetActive(false);
                     cameraOverworld.SetActive(true);
                     //Force Play
-                    if (!towerBuilt) {
 
-                        prompt.SetActive(true);
-                        GameObject text = prompt.gameObject.transform.GetChild(0).gameObject;
-                        TextMeshProUGUI textComponent = text.GetComponent<TextMeshProUGUI>();
-                        if (textComponent != null)
-                        {
-                            textComponent.text = "Must Build Tower Before Starting";
-                        }
-                        if (Input.GetKeyDown(KeyCode.Return))
-                        {
-                            GameLoopManager gameLoopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
-                            if (gameLoopManager != null)
-                            {
-                                gameLoopManager.StartWave();
-
-                                //Debug.Log("Wave Started");
-                            }
-                        }
-                    }
                 }
                 if ((!pause)&&(pause1)&&(!wave1)){
+                    prompt.SetActive(false);
+                    textPressEnter.SetActive(false);
+                    textBuildTower.SetActive(false);
                     wave1=true;
                     spawnPoint = 0;
                     EnqueueEnemyIDToSummon(2);
@@ -171,6 +155,18 @@ public class GameLoopManager : MonoBehaviour
     {
         if (!pause){
             timer++;
+        }else{
+            if (!towerBuilt) {
+                prompt.SetActive(true);
+                textBuildTower.SetActive(true);
+                textPressEnter.SetActive(false);
+                Debug.Log("Build Tower");
+            } else {
+                prompt.SetActive(true);
+                textPressEnter.SetActive(true);
+                textBuildTower.SetActive(false);
+                Debug.Log("Press Enter to Start Wave");
+            }
         }
     }
 
@@ -178,7 +174,7 @@ public class GameLoopManager : MonoBehaviour
         if(towerBuilt)
         {
             pause = false;
-        }
+        } 
         //Debug.Log("Wave Started2");
     }
 

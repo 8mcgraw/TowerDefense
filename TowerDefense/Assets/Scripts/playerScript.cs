@@ -49,9 +49,7 @@ public class playerScript : MonoBehaviour
         }
         if (GameMaster.gameObject.GetComponent<GameLoopManager>().pause == true)
         {
-            Debug.Log("Press Enter to Start Wave");
-            prompt.SetActive(true);
-            textt.SetActive(true);
+            Debug.Log("Press Enter to Start Wave (From Player)");
         }
         if (Input.GetKey(KeyCode.Return) && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 2
             && UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex < 8)
