@@ -9031,7 +9031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &355724185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9044,7 +9044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1492b403d1951144af8037f0196313e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 1449277144}
   Spawn: {fileID: 355724184}
 --- !u!4 &355724186
 Transform:
@@ -35250,6 +35250,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SelectPurple
       objectReference: {fileID: 0}
+    - target: {fileID: 4851514330173069886, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_AreaSize.x
+      value: 3.46
+      objectReference: {fileID: 0}
     - target: {fileID: 4851514330206172665, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -35270,9 +35274,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 148.01
       objectReference: {fileID: 0}
+    - target: {fileID: 4851514330374604630, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330374604630, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -550.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -390.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -26.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851514330382514919, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4851514330917318979, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4851514330937800596, guid: 6b5019a762d99834c8f5424d902fda18, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -45863,6 +45903,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5262901712238954942, guid: 1997b7fed18442342a69ec937a71d197, type: 3}
   m_PrefabInstance: {fileID: 1873012727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1449277144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5191294845304634917, guid: e58bedc15a38b61429ab8ad10545bcf2, type: 3}
+  m_PrefabInstance: {fileID: 5191294845474809464}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1451698596 stripped
 Transform:
@@ -87670,6 +87715,10 @@ PrefabInstance:
       propertyPath: NodeParent
       value: 
       objectReference: {fileID: 1521461360}
+    - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
+      propertyPath: towerBuilt
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
       propertyPath: cameraOverworld
       value: 

@@ -26,8 +26,17 @@ public class EntitySummoner : MonoBehaviour
         EnemySummonData[] Enemies = Resources.LoadAll<EnemySummonData>("Enemies");
         foreach (EnemySummonData enemy in Enemies)
         {
-            EnemyPrefabs.Add(enemy.EnemyID, enemy.EnemyPrefab);
-            EnemyObjectPools.Add(enemy.EnemyID, new Queue<Enemy>());
+            if (!EnemyObjectPools.ContainsKey(enemy.EnemyID))
+            {
+                // Add the new Enemy to the Dictionary
+                EnemyObjectPools.Add(enemy.EnemyID, new Queue<Enemy>());
+                EnemyPrefabs.Add(enemy.EnemyID, enemy.EnemyPrefab);
+            }
+            else
+            {
+                // Handle the situation where the key already exists
+                Debug.LogWarning($"Key {enemy.EnemyID} already exists in EnemyObjectPools. Associated prefab: {EnemyPrefabs[enemy.EnemyID].name}");
+            }
         }
         IsInitialized = true;
         }

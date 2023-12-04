@@ -47,6 +47,7 @@ public class GameLoopManager : MonoBehaviour
 
         while(endLoop == false)
         {
+            //Debug.Log("Game Loop");
             //Spawn Enemies, Towers, Move Enemies, Tick Towers, Apply Effects, Damage Enemies, Remove Enemies, Remove Towers.
             if(EnemyIDsToSummon.Count > 0){
                 for(int i = 0; i<EnemyIDsToSummon.Count; i++ )
@@ -151,7 +152,7 @@ public class GameLoopManager : MonoBehaviour
 
                     this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
 
-                    if(GameObject.FindGameObjectsWithTag("enemy").Length == 0)
+                    if((GameObject.FindGameObjectsWithTag("enemy").Length == 0)&&(timer>5000))
                     {
                         endLoop = true;
                     }
