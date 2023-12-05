@@ -16,7 +16,8 @@ public class GameLoopManager : MonoBehaviour
     public int level = 1;
     public bool pause = false;
     public bool startWave;
-    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower;
+    public HashSet<int> SpecialScriptIDs = new HashSet<int>();
+    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower, overworldTeleporter;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class GameLoopManager : MonoBehaviour
 
         StartCoroutine(GameLoop());
         //SummonTest();
-        InvokeRepeating("SummonTest", 1f, 1f);
+        //InvokeRepeating("SummonTest", 1f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
@@ -74,7 +75,9 @@ public class GameLoopManager : MonoBehaviour
                     pause = true;
                     pause1 = true;
                     //Teleport
-                    transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                    GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                    //pause the teleporting script of the teleporter
+                    overworldTeleporter.GetComponent<TeleportToUnderground>().pause = true;
                     cameraUnderground.SetActive(false);
                     cameraOverworld.SetActive(true);
                     //Force Play
@@ -84,59 +87,67 @@ public class GameLoopManager : MonoBehaviour
                     prompt.SetActive(false);
                     textPressEnter.SetActive(false);
                     textBuildTower.SetActive(false);
-                    wave1=true;
+                    //wave1=true;
                     spawnPoint = 0;
-                    EnqueueEnemyIDToSummon(2);
-                    EnqueueEnemyIDToSummon(2);
-                    EnqueueEnemyIDToSummon(2);
-                    EnqueueEnemyIDToSummon(2);
 
-                    yield return new WaitForSeconds(10);
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
-                    yield return new WaitForSeconds(1);
+                    SummonEnemyAmount(2,4,1);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
-                    yield return new WaitForSeconds(10);
+                    //yield return new WaitForSeconds(10);
+                    if(timer==3300)
+                    SummonEnemyAmount(1,1,2);
+                    //yield return new WaitForSeconds(1);
 
+                    if(timer==3400)
+                    SummonEnemyAmount(1,1,3);
+                    //yield return new WaitForSeconds(10);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
-                    yield return new WaitForSeconds(1);
-
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
-                    yield return new WaitForSeconds(1);
-
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, 0);
-                    yield return new WaitForSeconds(1);
-
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
-                    yield return new WaitForSeconds(10);
-
-
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+                    if(timer==3800)
+                    SummonEnemyAmount(1,1,4);
                     
-                    yield return new WaitForSeconds(1);
+                    //yield return new WaitForSeconds(1);
+                    if(timer==3900)
+                    SummonEnemyAmount(1,1,5);
+                    //yield return new WaitForSeconds(1);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+                    if(timer==4000)
+                    SummonEnemyAmount(1,1,6);
+                    //yield return new WaitForSeconds(1);
 
-                    yield return new WaitForSeconds(1);
+                    if(timer==4100)
+                    SummonEnemyAmount(4,1,7);
+                    //yield return new WaitForSeconds(10);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(4, 0);
+                    if(timer==5000)
+                    SummonEnemyAmount(4,1,8);
+                    
+                    //yield return new WaitForSeconds(1);
 
-                    yield return new WaitForSeconds(1);
+                    if(timer==5100)
+                    SummonEnemyAmount(4,1,9);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
-                    yield return new WaitForSeconds(10);
+                    //yield return new WaitForSeconds(1);
 
+                    if(timer==5200)
+                    SummonEnemyAmount(4,1,10);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
-                    yield return new WaitForSeconds(1);
+                    //yield return new WaitForSeconds(1);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(5, 0);
-                    yield return new WaitForSeconds(1);
+                    if(timer==5300)
+                    SummonEnemyAmount(3,1,11);
+                    //yield return new WaitForSeconds(10);
 
-                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(3, 0);
+                    if(timer==6000)
+                    SummonEnemyAmount(3,1,12);
+                    //yield return new WaitForSeconds(1);
 
-                    if((GameObject.FindGameObjectsWithTag("enemy").Length == 0)&&(timer>5000))
+                    if(timer==6100)
+                    SummonEnemyAmount(5,1,13);
+                    //yield return new WaitForSeconds(1);
+
+                    if(timer==6200)
+                    SummonEnemyAmount(5,1,14);
+
+                    if((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>6500))
                     {
                         endLoop = true;
                     }
@@ -149,6 +160,19 @@ public class GameLoopManager : MonoBehaviour
         }
         Debug.Log("Game Over"); 
         UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
+    }
+    //Function to call to summon an enemy a certain amount of time. Wont be called more than once.
+    //Special number needs to be once more for every time this is called
+    void SummonEnemyAmount(int enemy, int amount, int specialNumber){
+        //checks if specialNumber is in SpecialScriptIDs
+        if (SpecialScriptIDs.Contains(specialNumber)){
+            return;
+        } else {
+            SpecialScriptIDs.Add(specialNumber);
+            for (int i = 0; i < amount; i++){
+                this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(enemy, 0);
+            }
+        }
     }
 
     void FixedUpdate()

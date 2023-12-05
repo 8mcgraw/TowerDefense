@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987e75ad5cdf4ca4cb8480b63dc296a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawn: {fileID: 0}
-  animator: {fileID: 0}
+  Spawn: {fileID: 1839304754744059133}
+  animator: {fileID: 8735932539965035658}
   maxHealth: 200
   currentHealth: 200
   baseSpeed: 0
@@ -376,6 +376,7 @@ MonoBehaviour:
   blown: {fileID: 0}
   bonusDamageOnHit: 0
   dot: 0
+  goal: {fileID: 0}
 --- !u!195 &-5794280188591751707
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1839304754744059133}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -397,7 +398,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 8
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!1 &1860493697606966921
 GameObject:
   m_ObjectHideFlags: 0

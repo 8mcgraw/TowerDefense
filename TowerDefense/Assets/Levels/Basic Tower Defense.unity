@@ -27868,6 +27868,7 @@ MonoBehaviour:
     m_Handle: 0
   cameraUnderworld: {fileID: 811475126}
   cameraOverworld: {fileID: 1412132318}
+  pause: 0
   destination: {fileID: 1887907380}
 --- !u!4 &767422135
 Transform:
@@ -44519,7 +44520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2836980032323366602, guid: 3ed4f9aaa81ba7d4a88c741139e822be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.6
+      value: -9.26
       objectReference: {fileID: 0}
     - target: {fileID: 2836980032323366602, guid: 3ed4f9aaa81ba7d4a88c741139e822be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -87431,6 +87432,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
+      propertyPath: Teleporter
+      value: 
+      objectReference: {fileID: 767422132}
+    - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
       propertyPath: towerBuilt
       value: 0
       objectReference: {fileID: 0}
@@ -87447,9 +87452,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1412132318}
     - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
+      propertyPath: TeleportOverworld
+      value: 
+      objectReference: {fileID: 1887907380}
+    - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
       propertyPath: cameraUnderground
       value: 
       objectReference: {fileID: 811475126}
+    - target: {fileID: 1699624398272876539, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
+      propertyPath: overworldTeleporter
+      value: 
+      objectReference: {fileID: 767422132}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59ff5ab2b8de45843b31fdc20e181ef2, type: 3}
 --- !u!1001 &5177247839494822891

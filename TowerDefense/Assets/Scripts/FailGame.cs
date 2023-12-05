@@ -45,7 +45,7 @@ public class FailGame : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if ((collision.gameObject.tag == "enemy")||(collision.gameObject.tag == "Enemy"))
         {
             health -= 10;
             Debug.Log("Health: " + health);

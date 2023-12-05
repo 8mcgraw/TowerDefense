@@ -9,6 +9,7 @@ public UnityEngine.SceneManagement.Scene undergroundScene;
 public UnityEngine.SceneManagement.Scene overworldScene;
 public GameObject cameraUnderworld;
 public GameObject cameraOverworld;
+public bool pause = false;
 
 public GameObject destination;
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public GameObject destination;
     }
 
     void OnTriggerEnter(Collider collider){
-        if(collider.gameObject.tag == "Player"){
+        if((collider.gameObject.tag == "Player")&&(!pause)){
             // UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Lv1 Underground");
             // //UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(collider.gameObject, undergroundScene);
             // UnityEditor.SceneManagement.EditorSceneManager.OpenScene("LV1 Underground");
