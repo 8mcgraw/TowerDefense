@@ -25,8 +25,8 @@ public class GameLoopManager : MonoBehaviour
         EntitySummoner.Init();
 
         StartCoroutine(GameLoop());
-        // SummonTest();
-        //InvokeRepeating("SummonTest", 1f, 1f);
+        //SummonTest();
+        InvokeRepeating("SummonTest", 1f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 

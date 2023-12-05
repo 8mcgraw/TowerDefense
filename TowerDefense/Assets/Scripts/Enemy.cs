@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public GameObject Spawn;
     public Animator animator;
     public float maxHealth;
-    public float currentHealth;
+    public float currentHealth = 1;
     public float baseSpeed;
     public float speed;
     public float removedSpeedStun;
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public GameObject slow, slow2, cursed, poisoned, frozen, stunned, bleeding, burning, blown;
     public int bonusDamageOnHit = 0;
     public float dot = 0f;
+    public Transform goal;
 
     void Start(){
         Init();
