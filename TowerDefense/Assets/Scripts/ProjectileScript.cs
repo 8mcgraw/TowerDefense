@@ -10,7 +10,7 @@ public class ProjectileScript : MonoBehaviour
     public float i = 0;
     public string attackType = "bullet";
     private Vector3 originalSize;
-    public int attackDamage = 0;
+    public float attackDamage = 0;
     public GameObject bulletAnimation;
     public string effect;
     public GameObject[] splashHit = new GameObject[100];
@@ -121,7 +121,7 @@ public class ProjectileScript : MonoBehaviour
                     //pierce??
             // this.gameObject.transform.position = Vector3.Lerp(this.transform.parent.position, newTarget.transform.position, (i%10)/10);
             // this.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.3f*Vector3.Distance(this.transform.parent.position, newTarget.transform.position));
-    public void attack(GameObject target, string type, int damage, string orbEffect)
+    public void attack(GameObject target, string type, float damage, string orbEffect)
 {
         this.gameObject.SetActive(true);
         Debug.Log("test");

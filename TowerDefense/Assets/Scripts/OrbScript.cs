@@ -6,7 +6,7 @@ public class OrbScript : MonoBehaviour
 {
     public GameObject[] target = new GameObject[100];
     public ProjectileScript projectilescript;
-    public int damage;
+    public float damage;
     public float cooldown = 100f;
     public float timer = 50f;
     public bool setTower = false;
@@ -30,17 +30,17 @@ public class OrbScript : MonoBehaviour
                 range = 5f;
                 projectileType = "bullet";
                 cooldown = 10f;
-                damage = 5;
+                damage = 2f;
             } else if (Tower.MaterialType == "iron"){
                 range = 3f;
                 projectileType = "lazer";
                 cooldown = 2f;
-                damage = 1;
+                damage = 0.5f;
             } else if (Tower.MaterialType == "gold"){
                 range = 7.5f;
                 projectileType = "splash";
                 cooldown = 20f;
-                damage = 10;
+                damage = 3f;
             }
             if (Model == "short"){
             cooldown = cooldown * 0.5f;

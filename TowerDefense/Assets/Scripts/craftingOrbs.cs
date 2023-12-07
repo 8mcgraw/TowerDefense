@@ -99,6 +99,18 @@ public class craftingOrbs : MonoBehaviour
                 }
             }
         }
+        if (orbCombination[0] == "green")
+        {
+            if (orbCombination[1] == "green")
+            {
+                if (orbCombination[2] == "green")
+                {
+                    product = EarthOrb;
+                    cost = 3;
+                    resource = "greenCrystal";
+                }
+            }
+        }
         if (Bank.gameObject.GetComponent<Currencies>().incrementCurrency(resource, -cost))
         {
             product.SetActive(true);

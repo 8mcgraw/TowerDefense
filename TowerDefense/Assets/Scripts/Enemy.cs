@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,9 +16,11 @@ public class Enemy : MonoBehaviour
     public int NodeIndex;
     public int ID;
     public string[] effects = new string[100];
-    public int[] effectDuration = new int[100];
+    public List<float> effectDuration = new List<float>();
     //effects: slowed, burning, cursed, poisoned, frozen, stunned, bleeding, blown 
-    public GameObject slow, slow2, cursed, poisoned, frozen, stunned, bleeding, burning, blown;
+    //iceSlow is building up, nature slow is decaying slow
+    public GameObject iceSlow, natureSlow, cursed, poisoned, frozen, stunned, bleeding, burning, blown;
+    public float iceSlowAmount, natureSlowAmount;
     public int bonusDamageOnHit = 0;
     public float dot = 0f;
     public Transform goal;
@@ -54,16 +57,25 @@ public class Enemy : MonoBehaviour
                 break;
             } else {
                 effectDuration[i]--;
-                if (effectDuration[i] <= 0)
+                if (effects[i] == "iceSlow"){
+                    iceSlowAmount = (effectDuration[i])/500f;
+                } else if (effects[i] == "natureSlow"){
+                    natureSlowAmount = (effectDuration[i])/300f;
+                }
+                if (effectDuration[i] <= 0f)
                 {
                     RemoveEffect(effects[i]);
                 } 
             }
         }
+        //constantly update nature slow and ice slow
+        speed = baseSpeed - (iceSlowAmount + natureSlowAmount);
+        if (speed < 0.1f){
+            speed = 0.1f;
+        }
         this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed;
-
     }
-    public void TakeDamage(int damage){
+    public void TakeDamage(float damage){
         currentHealth -= damage + bonusDamageOnHit;
     }
     private void pushEffect(string effect)
@@ -74,7 +86,15 @@ public class Enemy : MonoBehaviour
             if (effects[i] == "")
             {
                 effects[i] = effect;
-                effectDuration[i] = 300;
+                if (effect == "iceSlow"){
+                    effectDuration[i] += 20f;
+                    iceSlowAmount = (effectDuration[i])/500f;
+                }else{
+                    effectDuration[i] = 200f;
+                }
+                if (effect == "natureSlow"){
+                    natureSlowAmount = (effectDuration[i])/200f;
+                }
                 break;
             }
         }
@@ -91,7 +111,7 @@ public class Enemy : MonoBehaviour
                 if (found)
                 {
                     effects[i - 1] = "";
-                    effectDuration[i - 1] = 0;
+                    effectDuration[i - 1] = 0f;
                 }
                 return;
             }
@@ -111,12 +131,10 @@ public class Enemy : MonoBehaviour
     public void ApplyEffect(string effect){
         if (!(((IList)effects).Contains((effect)))){
             pushEffect(effect);
-            if (effect == "slow"){
-                speed -= baseSpeed/2;
-                slow.SetActive(true);
-            } else if (effect == "slow2"){
-                speed -= 3*(baseSpeed/4);
-                slow2.SetActive(true);
+            if (effect == "iceSlow"){
+                iceSlow.SetActive(true);
+            } else if (effect == "natureSlow"){
+                natureSlow.SetActive(true);
             } else if (effect == "cursed"){
                 bonusDamageOnHit += 3;
                 cursed.SetActive(true);
@@ -124,12 +142,12 @@ public class Enemy : MonoBehaviour
                 dot += 0.2f;
                 poisoned.SetActive(true);
             } else if (effect == "frozen"){
-                removedSpeedFrozen = speed;
-                speed = 0;
+                // removedSpeedFrozen = speed;
+                // speed = 0;
                 frozen.SetActive(true);
             } else if (effect == "stunned"){
-                removedSpeedStun = speed;
-                speed = 0;
+                // removedSpeedStun = speed;
+                // speed = 0;
                 stunned.SetActive(true);
             } else if (effect == "bleeding"){
                 dot += 0.3f;
@@ -139,7 +157,7 @@ public class Enemy : MonoBehaviour
                 bonusDamageOnHit += 1;
                 burning.SetActive(true);
             } else if (effect == "blown"){
-                speed -= 20 + baseSpeed;
+                // speed -= 20 + baseSpeed;
                 blown.SetActive(true);
             }
             
@@ -148,7 +166,15 @@ public class Enemy : MonoBehaviour
             {
                 if (effects[i] == effect)
                 {
-                    effectDuration[i] = 300;
+                    if (effect == "iceSlow"){
+                        effectDuration[i] += 20f;
+                        iceSlowAmount = (effectDuration[i])/500f;
+                    } else {
+                        effectDuration[i] = 200f;
+                    }
+                    if (effect == "natureSlow"){
+                        natureSlowAmount = (effectDuration[i])/200f;
+                    }
                     break;
                 }
             }
@@ -157,12 +183,12 @@ public class Enemy : MonoBehaviour
     public void RemoveEffect(string effect){
         if (((IList)effects).Contains((effect))){
             popEffect(effect);
-            if (effect == "slow"){
-                speed += baseSpeed/2;
-                slow.SetActive(false);
-            } else if (effect == "slow2"){
-                speed += 3*(baseSpeed/4);
-                slow2.SetActive(false);
+            if (effect == "iceSlow"){
+                iceSlowAmount = 0;
+                iceSlow.SetActive(false);
+            } else if (effect == "natureSlow"){
+                natureSlowAmount = 0;
+                natureSlow.SetActive(false);
             } else if (effect == "cursed"){
                 bonusDamageOnHit -= 3;
                 cursed.SetActive(false);
