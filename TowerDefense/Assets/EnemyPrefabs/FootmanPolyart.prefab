@@ -1254,7 +1254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5008464593237032722, guid: 91065e5e437b7ff4eb46ed701f4230ed, type: 3}
       propertyPath: m_Name
-      value: Slow
+      value: iceSlow
       objectReference: {fileID: 0}
     - target: {fileID: 5008464593237032722, guid: 91065e5e437b7ff4eb46ed701f4230ed, type: 3}
       propertyPath: m_IsActive

@@ -20,6 +20,7 @@ public class GameLoopManager : MonoBehaviour
     public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower, overworldTeleporter, undergroundText;
     public GameObject hammer;
     public bool waitForEnemies = false;
+    public GameObject prompt2, winText;
     // Start is called before the first frame update
     void Start()
     {
@@ -171,7 +172,9 @@ public class GameLoopManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("Game Over"); 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
+        prompt2.SetActive(true);
+        winText.SetActive(true);
+        // UnityEngine.SceneManagement.SceneManager.LoadScene("VictoryScreen");
     }
     //Function to call to summon an enemy a certain amount of time. Wont be called more than once.
     //Special number needs to be once more for every time this is called

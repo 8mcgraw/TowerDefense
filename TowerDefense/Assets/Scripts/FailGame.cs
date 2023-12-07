@@ -5,14 +5,17 @@ using TMPro;
 
 public class FailGame : MonoBehaviour
 {
-    public int health = 100;
+    public int health = 21;
     public bool close = false;
-    public GameObject prompt;
+    public GameObject prompt, prompt2;
     public GameObject textt;
+    public GameObject failText;
+    public GameObject gameLoopManager;
+    public GameLoopManager loopManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        loopManager = GameObject.Find("GameMaster")?.GetComponent<GameLoopManager>();
     }
 
     // Update is called once per frame
@@ -52,7 +55,11 @@ public class FailGame : MonoBehaviour
             Debug.Log("Health: " + health);
             if (health <= 0)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Failed Screen");
+                health = 0;
+                prompt2.SetActive(true);
+                failText.SetActive(true);
+                loopManager.pause = true;
+                loopManager.timer = -1000000000;
             }
             Destroy(collision.gameObject);
         }
