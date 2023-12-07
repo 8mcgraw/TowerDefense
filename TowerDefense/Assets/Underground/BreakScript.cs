@@ -17,23 +17,43 @@ public class BreakScript : MonoBehaviour
     public int attempts = 0;
     //add sounds
     public AudioClip breakSound;
+    public AudioSource audioSource;
+    public GameObject sound;
+
     // Start is called before the first frame update
 
     private void Start()
     {
+        // Create a new AudioSource and play the clip
+        audioSource = gameObject.AddComponent<AudioSource>();
+        sound = GameObject.Find("Progression");
+
+
         Bank = GameObject.Find("Bank");
 
-        int dirtChance = 0;
-        int rockChance = 0;
-        int crystalChance = 0;
+        float dirtChance = 0;
+        float rockChance = 0;
+        float crystalChance = 0;
+        float redChance = 0;
+        float blueChance = 0;
+        float greenChance = 0;
+        float yellowChance = 0;
+        float purpleChance = 0;
+        
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Tower Defense Title"){
 
         } else if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Basic Tower Defense"){
-            dirtChance = 3;
-            rockChance = 4;
-            crystalChance = 3;
+            dirtChance = 30;
+            rockChance = 40;
+            crystalChance = 30;
+            redChance = crystalChance/5;
+            blueChance = crystalChance/5;
+            greenChance = crystalChance/5;
+            yellowChance = crystalChance/5;
+            purpleChance = crystalChance/5;
+            
         }
-        int r = UnityEngine.Random.Range(0,10);
+        float r = UnityEngine.Random.Range(0,100);
         if (r <= dirtChance)
         {
             this.gameObject.tag = "dirt";
@@ -42,9 +62,25 @@ public class BreakScript : MonoBehaviour
         {
             this.gameObject.tag = "rock";
         }
-        else
+        else if (r <= rockChance+dirtChance+redChance)
         {
-            this.gameObject.tag = "crystal";
+            this.gameObject.tag = "crystalRed";
+        }
+        else if (r <= rockChance+dirtChance+redChance+blueChance)
+        {
+            this.gameObject.tag = "crystalBlue";
+        }
+        else if (r <= rockChance+dirtChance+redChance+blueChance+greenChance)
+        {
+            this.gameObject.tag = "crystalGreen";
+        }
+        else if (r <= rockChance+dirtChance+redChance+blueChance+greenChance+yellowChance)
+        {
+            this.gameObject.tag = "crystalYellow";
+        }
+        else if (r <= rockChance+dirtChance+redChance+blueChance+greenChance+yellowChance+purpleChance)
+        {
+            this.gameObject.tag = "crystalPurple";
         }
 
 
@@ -59,10 +95,30 @@ public class BreakScript : MonoBehaviour
             health = 20f;
             gameObject.GetComponent<Renderer>().material = rock;
         }
-        if (this.gameObject.tag == "crystal")
+        if (this.gameObject.tag == "crystalRed" || this.gameObject.tag == "crystalBlue" || this.gameObject.tag == "crystalGreen" || this.gameObject.tag == "crystalYellow" || this.gameObject.tag == "crystalPurple")
         {
             health = 30f;
             gameObject.GetComponent<Renderer>().material = crystal;
+            if (this.gameObject.tag == "crystalRed")
+            {
+                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 0f, 0f));
+            }
+            if (this.gameObject.tag == "crystalBlue")
+            {
+                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(0f, 0f, 1f));
+            }
+            if (this.gameObject.tag == "crystalGreen")
+            {
+                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(0f, 1f, 0f));
+            }
+            if (this.gameObject.tag == "crystalYellow")
+            {
+                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 1f, 0f));
+            }
+            if (this.gameObject.tag == "crystalPurple")
+            {
+                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 0f, 1f));
+            }
         }
     }
 
@@ -124,6 +180,11 @@ public class BreakScript : MonoBehaviour
                 adjacent[i].GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 1f, 1f));
             }
         }
+            if(sound.GetComponent<ToggleSFX>().sfx == true)
+            {
+                Debug.Log("Broken");
+                audioSource.PlayOneShot(laserSound, 0.05f);
+            }
     }
 
     private void FixedUpdate()

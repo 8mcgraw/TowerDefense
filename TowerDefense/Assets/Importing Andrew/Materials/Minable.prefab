@@ -112,8 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b262e622e37da9a43b30100281392053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  text1: {fileID: 0}
   Bank: {fileID: 0}
   tileMined: 0
   timer: 0

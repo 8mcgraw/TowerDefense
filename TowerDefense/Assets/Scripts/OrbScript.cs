@@ -12,13 +12,12 @@ public class OrbScript : MonoBehaviour
     public bool setTower = false;
     public string orbEffect;
     SphereCollider myCollider;
-    string projectileType;
+    public string projectileType;
     public float range = 0f; //adjust collider to fit range, change range in model section
     // Start is called before the first frame update
     void Start()
     {
         myCollider = GetComponent<SphereCollider>();
-        
     }
 
     
@@ -27,7 +26,7 @@ public class OrbScript : MonoBehaviour
         if((this.transform.parent.parent != null)&&(this.transform.parent.parent.tag == "Tower")&&(setTower == false)){
             TowerScript Tower = this.transform.parent.parent.GetComponent<TowerScript>();
             string Model = Tower.Model.tag;
-            if (Tower.MaterialType == "wood"){
+            if (Tower.MaterialType == "dirt"){
                 range = 5f;
                 projectileType = "bullet";
                 cooldown = 10f;
@@ -55,6 +54,9 @@ public class OrbScript : MonoBehaviour
             }
             myCollider.radius = range;
             setTower = true;
+        }
+        if(target[0] == null){
+            popTarget(target[0]);
         }
         if (timer > 0){
             timer--;
@@ -101,8 +103,12 @@ public class OrbScript : MonoBehaviour
                 if (found)
                 {
                     target[i - 1] = null;
+                    return;
+                } else {
+                    if (i > 10){
+                        return;
+                    }
                 }
-                return;
             }
             if (found)
             {

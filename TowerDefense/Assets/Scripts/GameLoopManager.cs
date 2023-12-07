@@ -90,7 +90,13 @@ public class GameLoopManager : MonoBehaviour
                     //wave1=true;
                     spawnPoint = 0;
 
-                    SummonEnemyAmount(2,4,1);
+                    SummonEnemyAmount(2,1,1);
+                    if(timer==3005)
+                    SummonEnemyAmount(2,1,100);
+                    if(timer==3010)
+                    SummonEnemyAmount(2,1,101);
+                    if(timer==3015)
+                    SummonEnemyAmount(2,1,102);
 
                     //yield return new WaitForSeconds(10);
                     if(timer==3300)

@@ -60,6 +60,7 @@ public class Enemy : MonoBehaviour
                 } 
             }
         }
+        this.gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>().speed = speed;
 
     }
     public void TakeDamage(int damage){

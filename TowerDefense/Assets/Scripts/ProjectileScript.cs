@@ -5,12 +5,12 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     public int speed;
-    private bool activate = false;
+    public bool activate = false;
     private GameObject newTarget;
-    private float i = 0;
+    public float i = 0;
     public string attackType = "bullet";
     private Vector3 originalSize;
-    private int attackDamage = 0;
+    public int attackDamage = 0;
     public GameObject bulletAnimation;
     public string effect;
     public GameObject[] splashHit = new GameObject[100];
@@ -31,19 +31,23 @@ public class ProjectileScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        Debug.Log("Projectile");
         if ((attackType == "lazer")&&(activate == true)){
+            Debug.Log("Lazer2");
             if (bulletAnimation != null)
             {
                 Destroy(bulletAnimation);
             }
             this.gameObject.SetActive(true);
+            Debug.Log("Lazer2.1");
             if((i<1)&&(sound.GetComponent<ToggleSFX>().sfx == true))
             {
-                audioSource.PlayOneShot(laserSound, 0.2f);
+                Debug.Log("Lazer2.25");
+                audioSource.PlayOneShot(laserSound, 0.05f);
             }
-
+            Debug.Log("Lazer2.5");
             // Calculate the scale of the projectile
             float scale = 0.10f + (1.1f * Vector3.Distance(this.transform.parent.position, newTarget.transform.position));
             this.gameObject.transform.localScale = new Vector3(0.10f, 0.10f, scale);
@@ -51,17 +55,19 @@ public class ProjectileScript : MonoBehaviour
             // Set the position of the projectile halfway between the parent and the target
             this.gameObject.transform.position = Vector3.Lerp(this.transform.parent.position, newTarget.transform.position, 0.5f);
             //this.gameObject.transform.position = new Vector3(0f, Vector3.Distance(transform.parent.position, newTarget.transform.position), 0f);
-            if (i%10 >= 9){
+            if ((i%10 >= 9)){
+                Debug.Log("Lazer3");
                 activate = false;
                 newTarget.gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
                 newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effect);
             }
+            Debug.Log("Lazer");
             i++;
         } else if((attackType == "bullet")&&(activate == true)){
             this.gameObject.SetActive(true);
             if((i<1)&&(sound.GetComponent<ToggleSFX>().sfx == true))
             {
-                audioSource.PlayOneShot(bulletSound, 0.2f);
+                audioSource.PlayOneShot(bulletSound, 0.05f);
             }
             this.gameObject.transform.position = Vector3.Lerp(this.transform.parent.position, newTarget.transform.position, (i%10)/10);
             if (i%10 >= 9){
@@ -78,7 +84,7 @@ public class ProjectileScript : MonoBehaviour
             if((i<1)&&(sound.GetComponent<ToggleSFX>().sfx == true))
             {
             audioSource.time = 200f;
-            audioSource.PlayOneShot(splashSound, 0.2f);
+            audioSource.PlayOneShot(splashSound, 0.05f);
             }
             if (i%20 >= 19){
                 activate = false;
@@ -118,13 +124,13 @@ public class ProjectileScript : MonoBehaviour
     public void attack(GameObject target, string type, int damage, string orbEffect)
 {
         this.gameObject.SetActive(true);
-        //Debug.Log("test");
+        Debug.Log("test");
         newTarget = target;
         activate = true;
         attackType = type;
         attackDamage = damage;
         effect = orbEffect;
-        i = 0;
+        //i = 0;
     }
 
     //on destroy

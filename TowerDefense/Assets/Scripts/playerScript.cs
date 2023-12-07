@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class playerScript : MonoBehaviour
 {
-    public Vector3 speed = new Vector3(0.1f, 0.1f, 0.1f);
+    public float speed = 5f;
     public Animator animator;
     public GameObject model;
     public GameObject GameMaster;
@@ -24,27 +24,32 @@ public class playerScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.W)){
-            transform.position += Vector3.Scale(Vector3.forward, speed);
+        if (Input.GetKey(KeyCode.W)){
+            GetComponent<Rigidbody>().velocity = new Vector3(0,GetComponent<Rigidbody>().velocity.y,speed);
+            //transform.position += Vector3.Scale(Vector3.forward, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
         }
         if(Input.GetKey(KeyCode.S)){
-            transform.position += Vector3.Scale(Vector3.back, speed);
+            GetComponent<Rigidbody>().velocity = new Vector3(0,GetComponent<Rigidbody>().velocity.y,-speed);
+            //transform.position += Vector3.Scale(Vector3.back, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
         }
         if(Input.GetKey(KeyCode.A)){
-            transform.position += Vector3.Scale(Vector3.left, speed);
+            GetComponent<Rigidbody>().velocity = new Vector3(-speed,GetComponent<Rigidbody>().velocity.y,0);
+            //transform.position += Vector3.Scale(Vector3.left, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,270,0));
         }
         if(Input.GetKey(KeyCode.D)){
-            transform.position += Vector3.Scale(Vector3.right, speed);
+            GetComponent<Rigidbody>().velocity = new Vector3(speed,GetComponent<Rigidbody>().velocity.y,0);
+            //transform.position += Vector3.Scale(Vector3.right, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,90,0));
         }
         if(Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false){
+            GetComponent<Rigidbody>().velocity = new Vector3(0,GetComponent<Rigidbody>().velocity.y,0);
             animator.SetBool("walking", false);
         }
         if (GameMaster.gameObject.GetComponent<GameLoopManager>().pause == true)

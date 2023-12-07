@@ -377,7 +377,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   maxHealth: 500
   currentHealth: 500
-  baseSpeed: 0
+  baseSpeed: 1
   speed: 1
   removedSpeedStun: 0
   removedSpeedFrozen: 0
