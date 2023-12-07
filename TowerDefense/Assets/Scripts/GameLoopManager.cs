@@ -17,8 +17,9 @@ public class GameLoopManager : MonoBehaviour
     public bool pause = false;
     public bool startWave;
     public HashSet<int> SpecialScriptIDs = new HashSet<int>();
-    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower, overworldTeleporter;
+    public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower, overworldTeleporter, undergroundText;
     public GameObject hammer;
+    public bool waitForEnemies = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,98 +72,101 @@ public class GameLoopManager : MonoBehaviour
                 }
             }
             if(level==1){
-                if ((timer > 3000)&&(!wave1)&&(!pause1)){
-                    Debug.Log("Wave 1 Started");
-                    pause = true;
-                    pause1 = true;
-                    //Teleport
+                //put player in overworld
+                if(timer==0){
                     GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
-                    hammer.SetActive(false);
-                    //pause the teleporting script of the teleporter
-                    overworldTeleporter.GetComponent<TeleportToUnderground>().pause = true;
                     cameraUnderground.SetActive(false);
                     cameraOverworld.SetActive(true);
-                    //Force Play
-
                 }
-                if ((!pause)&&(pause1)&&(!wave1)){
-                    prompt.SetActive(false);
-                    textPressEnter.SetActive(false);
-                    textBuildTower.SetActive(false);
-                    //wave1=true;
-                    spawnPoint = 0;
-
-                    SummonEnemyAmount(2,1,1);
-                    if(timer==3005)
-                    SummonEnemyAmount(2,1,100);
-                    if(timer==3010)
-                    SummonEnemyAmount(2,1,101);
-                    if(timer==3015)
-                    SummonEnemyAmount(2,1,102);
-
-                    //yield return new WaitForSeconds(10);
-                    if(timer==3300)
-                    SummonEnemyAmount(1,1,2);
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==3400)
-                    SummonEnemyAmount(1,1,3);
-                    //yield return new WaitForSeconds(10);
-
-                    if(timer==3800)
-                    SummonEnemyAmount(1,1,4);
-                    
-                    //yield return new WaitForSeconds(1);
-                    if(timer==3900)
-                    SummonEnemyAmount(1,1,5);
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==4000)
-                    SummonEnemyAmount(1,1,6);
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==4100)
-                    SummonEnemyAmount(4,1,7);
-                    //yield return new WaitForSeconds(10);
-
-                    if(timer==5000)
-                    SummonEnemyAmount(4,1,8);
-                    
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==5100)
-                    SummonEnemyAmount(4,1,9);
-
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==5200)
-                    SummonEnemyAmount(4,1,10);
-
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==5300)
-                    SummonEnemyAmount(3,1,11);
-                    //yield return new WaitForSeconds(10);
-
-                    if(timer==6000)
-                    SummonEnemyAmount(3,1,12);
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==6100)
-                    SummonEnemyAmount(5,1,13);
-                    //yield return new WaitForSeconds(1);
-
-                    if(timer==6200)
-                    SummonEnemyAmount(5,1,14);
-
-                    if((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>6500))
-                    {
-                        endLoop = true;
-                    }
-
+                //pause before combat
+                if(timer==1)
+                    pause = true;
+                //first wave
+                if(timer==2){
+                    SummonEnemyAmount(2,2,200);
+                    waitForEnemies = true;
+                    //wait till wave over
+                    if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                        waitForEnemies = false;
+                }
+                //first wave over
+                //tell player to go underground
+                if(timer==3){
+                    prompt.SetActive(true);
+                    undergroundText.SetActive(true);
                 }
 
 
+
+
+                if(timer==3000) 
+                SummonEnemyAmount(2,1,1);
+                if(timer==3005)
+                SummonEnemyAmount(2,1,100);
+                if(timer==3010)
+                SummonEnemyAmount(2,1,101);
+                if(timer==3015)
+                SummonEnemyAmount(2,1,102);
+
+                //yield return new WaitForSeconds(10);
+                if(timer==3300)
+                SummonEnemyAmount(1,1,2);
+                //yield return new WaitForSeconds(1);
+
+                if(timer==3400)
+                SummonEnemyAmount(1,1,3);
+                //yield return new WaitForSeconds(10);
+
+                if(timer==3800)
+                SummonEnemyAmount(1,1,4);
+                
+                //yield return new WaitForSeconds(1);
+                if(timer==3900)
+                SummonEnemyAmount(1,1,5);
+                //yield return new WaitForSeconds(1);
+
+                if(timer==4000)
+                SummonEnemyAmount(1,1,6);
+                //yield return new WaitForSeconds(1);
+
+                if(timer==4100)
+                SummonEnemyAmount(4,1,7);
+                //yield return new WaitForSeconds(10);
+
+                if(timer==5000)
+                SummonEnemyAmount(4,1,8);
+                
+                //yield return new WaitForSeconds(1);
+
+                if(timer==5100)
+                SummonEnemyAmount(4,1,9);
+
+                //yield return new WaitForSeconds(1);
+
+                if(timer==5200)
+                SummonEnemyAmount(4,1,10);
+
+                //yield return new WaitForSeconds(1);
+
+                if(timer==5300)
+                SummonEnemyAmount(3,1,11);
+                //yield return new WaitForSeconds(10);
+
+                if(timer==6000)
+                SummonEnemyAmount(3,1,12);
+                //yield return new WaitForSeconds(1);
+
+                if(timer==6100)
+                SummonEnemyAmount(5,1,13);
+                //yield return new WaitForSeconds(1);
+
+                if(timer==6200)
+                SummonEnemyAmount(5,1,14);
+
+                if((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>6500))
+                {
+                    endLoop = true;
+                }
             }
             yield return null;
         }
@@ -185,21 +189,26 @@ public class GameLoopManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!pause){
-            timer++;
-        }else{
-            if (!towerBuilt) {
-                prompt.SetActive(true);
-                textBuildTower.SetActive(true);
-                textPressEnter.SetActive(false);
-                Debug.Log("Build Tower");
-            } else {
-                prompt.SetActive(true);
-                textPressEnter.SetActive(true);
-                textBuildTower.SetActive(false);
-                Debug.Log("Press Enter to Start Wave");
+        if(!waitForEnemies){
+            if (!pause){
+                timer++;
+                overworldTeleporter.GetComponent<TeleportToUnderground>().pause = false;
+            }else{
+                if (!towerBuilt) {
+                    prompt.SetActive(true);
+                    textBuildTower.SetActive(true);
+                    textPressEnter.SetActive(false);
+                    Debug.Log("Build Tower");
+                } else {
+                    prompt.SetActive(true);
+                    textPressEnter.SetActive(true);
+                    textBuildTower.SetActive(false);
+                    Debug.Log("Press Enter to Start Wave");
+                }
             }
         }
+        if((waitForEnemies)||(pause))
+            overworldTeleporter.GetComponent<TeleportToUnderground>().pause = true;
     }
 
     public void StartWave(){
