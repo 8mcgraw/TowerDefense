@@ -130,6 +130,10 @@ public class ProjectileScript : MonoBehaviour
         attackType = type;
         attackDamage = damage;
         effect = orbEffect;
+        if ((orbEffect == "holy")||(orbEffect == "Holy"))
+        {
+            attackDamage = damage*3;
+        }
         //i = 0;
     }
 
