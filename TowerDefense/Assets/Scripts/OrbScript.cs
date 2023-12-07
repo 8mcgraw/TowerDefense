@@ -12,7 +12,11 @@ public class OrbScript : MonoBehaviour
     public bool setTower = false;
     public string[] orbEffects = new string[3];
     public GameObject[] orbSpheres = new GameObject[6];
+    public GameObject sphere;
+    //baseSphere, redSphere, blueSphere, purpleSphere, greenSphere, yellowSphere
     public GameObject[] orbProjectiles = new GameObject[6];
+    public GameObject projectile;
+    //empty, redProjectile, blueProjectile, purpleProjectile, greenProjectile, yellowProjectile
     int orbEffectCount = 0;
     SphereCollider myCollider;
     public string projectileType;
@@ -20,34 +24,162 @@ public class OrbScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("OrbScript");
         myCollider = GetComponent<SphereCollider>();
         //check how many orbEffects there are
         for (int i = 0; i < orbEffects.Length; i++)
         {
-            if (orbEffects[i] != null)
+            if (orbEffects[i] != "")
             {
                 orbEffectCount++;
+                Debug.Log(orbEffects[i] +": " + orbEffectCount);
             }
         }
+        Debug.Log("Count: "+orbEffectCount);
         if (orbEffectCount == 0){
             
-        }
-        else if (orbEffectCount == 1){
+        } else if (orbEffectCount == 1){
+    //baseSphere, redSphere, blueSphere, purpleSphere, greenSphere, yellowSphere
             if (orbEffects[0] == "fire"){
-                
+                orbSpheres[1].SetActive(true);
+                orbProjectiles[1].SetActive(true);
+                sphere = orbSpheres[1];
             }
             else if (orbEffects[0] == "ice"){
-                
+                orbSpheres[2].SetActive(true);
+                orbProjectiles[2].SetActive(true);
+                sphere = orbSpheres[2];
             }
-            else if (orbEffects[0] == "poison"){
-                
+            else if (orbEffects[0] == "death"){
+                orbSpheres[3].SetActive(true);
+                orbProjectiles[3].SetActive(true);
+                sphere = orbSpheres[3];
+            } 
+            else if (orbEffects[0] == "nature"){
+                orbSpheres[4].SetActive(true);
+                orbProjectiles[4].SetActive(true);
+                sphere = orbSpheres[4];
             }
-        }
-        else if (orbEffectCount == 2){
-
-        }
-        else if (orbEffectCount == 3){
-
+            else if (orbEffects[0] == "holy"){
+                orbSpheres[5].SetActive(true);
+                orbProjectiles[5].SetActive(true);
+                sphere = orbSpheres[5];
+            } else {
+                orbSpheres[0].SetActive(true);
+                sphere = orbSpheres[0];
+            }
+            
+        }//NEED TO HAVE 5 CHILDREN EACH UNDER MAIN ORB EFFECT
+        else if (orbEffectCount > 1){
+            if (orbEffects[0] == "fire"){
+                orbSpheres[1].SetActive(true);
+                sphere = orbSpheres[1];
+            }
+            else if (orbEffects[0] == "ice"){
+                orbSpheres[2].SetActive(true);
+                sphere = orbSpheres[2];
+            }
+            else if (orbEffects[0] == "death"){
+                orbSpheres[3].SetActive(true);
+                sphere = orbSpheres[3];
+            } 
+            else if (orbEffects[0] == "nature"){
+                orbSpheres[4].SetActive(true);
+                sphere = orbSpheres[4];
+            }
+            else if (orbEffects[0] == "holy"){
+                orbSpheres[5].SetActive(true);
+                sphere = orbSpheres[5];
+            } else {
+                orbSpheres[0].SetActive(true);
+                sphere = orbSpheres[0];
+            }
+            if (orbEffects[1] == "fire"){
+                orbProjectiles[1].SetActive(true);
+                sphere.GetComponent<Renderer>().material = orbSpheres[1].GetComponent<Renderer>().material;
+                //get the sphere's children and change their color to be this material's color
+                sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[1].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
+                sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[1].transform.GetChild(1).GetComponent<Light>().color;
+                //for each of sphere.transform.GetChild(0).transform.GetChild() set the color to be the same as orbSpheres[1].transform.GetChild(0).transform.GetChild()
+                for (int i = 0; i < sphere.transform.GetChild(0).transform.childCount; i++){
+                    sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[1].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
+                }
+            } else if (orbEffects[1] == "ice"){
+                orbProjectiles[2].SetActive(true);
+                sphere.GetComponent<Renderer>().material = orbSpheres[2].GetComponent<Renderer>().material;
+                sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[2].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
+                sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[2].transform.GetChild(1).GetComponent<Light>().color;
+                for (int i = 0; i < sphere.transform.GetChild(0).transform.childCount; i++){
+                    sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[2].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
+                }
+            } else if (orbEffects[1] == "death"){
+                orbProjectiles[3].SetActive(true);
+                sphere.GetComponent<Renderer>().material = orbSpheres[3].GetComponent<Renderer>().material;
+                sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[3].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
+                sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[3].transform.GetChild(1).GetComponent<Light>().color;
+                for (int i = 0; i < sphere.transform.GetChild(0).transform.childCount; i++){
+                    sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[3].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
+                }
+            } else if (orbEffects[1] == "nature"){
+                orbProjectiles[4].SetActive(true);
+                sphere.GetComponent<Renderer>().material = orbSpheres[4].GetComponent<Renderer>().material;
+                sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[4].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
+                sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[4].transform.GetChild(1).GetComponent<Light>().color;
+                for (int i = 0; i < sphere.transform.GetChild(0).transform.childCount; i++){
+                    sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[4].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
+                }
+            } else if (orbEffects[1] == "holy"){
+                orbProjectiles[5].SetActive(true);
+                sphere.GetComponent<Renderer>().material = orbSpheres[5].GetComponent<Renderer>().material;
+                sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[5].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
+                sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[5].transform.GetChild(1).GetComponent<Light>().color;
+                for (int i = 0; i < sphere.transform.GetChild(0).transform.childCount; i++){
+                    sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[5].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
+                }
+            } else {
+                orbProjectiles[0].SetActive(true);
+                sphere.GetComponent<Renderer>().material.color = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
+            }
+            if (orbEffectCount == 3){
+                if (orbEffects[2] == "fire"){
+                    sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[1].transform.GetChild(1).GetComponent<Light>().color;
+                    orbProjectiles[1].SetActive(true);
+                    orbProjectiles[2].SetActive(false);
+                    orbProjectiles[3].SetActive(false);
+                    orbProjectiles[4].SetActive(false);
+                    orbProjectiles[5].SetActive(false);
+                } else if (orbEffects[2] == "ice"){
+                    sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[2].transform.GetChild(1).GetComponent<Light>().color;
+                    orbProjectiles[1].SetActive(false);
+                    orbProjectiles[2].SetActive(true);
+                    orbProjectiles[3].SetActive(false);
+                    orbProjectiles[4].SetActive(false);
+                    orbProjectiles[5].SetActive(false);
+                } else if (orbEffects[2] == "death"){
+                    sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[3].transform.GetChild(1).GetComponent<Light>().color;
+                    orbProjectiles[1].SetActive(false);
+                    orbProjectiles[2].SetActive(false);
+                    orbProjectiles[3].SetActive(true);
+                    orbProjectiles[4].SetActive(false);
+                    orbProjectiles[5].SetActive(false);
+                } else if (orbEffects[2] == "nature"){
+                    sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[4].transform.GetChild(1).GetComponent<Light>().color;
+                    orbProjectiles[1].SetActive(false);
+                    orbProjectiles[2].SetActive(false);
+                    orbProjectiles[3].SetActive(false);
+                    orbProjectiles[4].SetActive(true);
+                    orbProjectiles[5].SetActive(false);
+                } else if (orbEffects[2] == "holy"){
+                    sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[5].transform.GetChild(1).GetComponent<Light>().color;
+                    orbProjectiles[1].SetActive(false);
+                    orbProjectiles[2].SetActive(false);
+                    orbProjectiles[3].SetActive(false);
+                    orbProjectiles[4].SetActive(false);
+                    orbProjectiles[5].SetActive(true);
+                } else {
+                    sphere.transform.GetChild(1).GetComponent<Light>().color = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
+                }
+            }
         }
 
     }

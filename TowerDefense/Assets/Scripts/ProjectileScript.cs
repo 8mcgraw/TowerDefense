@@ -134,6 +134,15 @@ public class ProjectileScript : MonoBehaviour
         {
             attackDamage = damage*3;
         }
+        int orbEffectCount = 0;
+        for (int i = 0; i < orbEffects.Length; i++)
+        {
+            if (orbEffects[i] != "")
+            {
+                orbEffectCount++;
+            }
+        }
+        attackDamage = (attackDamage/3f)*((float)orbEffectCount);
         //i = 0;
     }
 

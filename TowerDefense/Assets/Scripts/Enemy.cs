@@ -17,10 +17,10 @@ public class Enemy : MonoBehaviour
     public int ID;
     public string[] effects = new string[100];
     public List<float> effectDuration = new List<float>();
-    //effects: slowed, burning, cursed, poisoned, frozen, stunned, bleeding, blown 
-    //iceSlow is building up, nature slow is decaying slow
-    public GameObject iceSlow, natureSlow, cursed, poisoned, frozen, stunned, bleeding, burning, blown;
-    public float iceSlowAmount, natureSlowAmount;
+    //effects: slowed, fire, death, poisoned, frozen, stunned, bleeding, blown 
+    //ice slow is building up, nature slow is decaying slow
+    public GameObject ice, nature, death, poisoned, frozen, stunned, bleeding, fire, blown;
+    public float iceAmount, natureAmount;
     public int bonusDamageOnHit = 0;
     public float dot = 0f;
     public Transform goal;
@@ -57,10 +57,10 @@ public class Enemy : MonoBehaviour
                 break;
             } else {
                 effectDuration[i]--;
-                if (effects[i] == "iceSlow"){
-                    iceSlowAmount = (effectDuration[i])/500f;
-                } else if (effects[i] == "natureSlow"){
-                    natureSlowAmount = (effectDuration[i])/300f;
+                if (effects[i] == "ice"){
+                    iceAmount = (effectDuration[i])/500f;
+                } else if (effects[i] == "nature"){
+                    natureAmount = (effectDuration[i])/300f;
                 }
                 if (effectDuration[i] <= 0f)
                 {
@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
             }
         }
         //constantly update nature slow and ice slow
-        speed = baseSpeed - (iceSlowAmount + natureSlowAmount);
+        speed = baseSpeed - (iceAmount + natureAmount);
         if (speed < 0.1f){
             speed = 0.1f;
         }
@@ -86,14 +86,14 @@ public class Enemy : MonoBehaviour
             if (effects[i] == "")
             {
                 effects[i] = effect;
-                if (effect == "iceSlow"){
+                if (effect == "ice"){
                     effectDuration[i] += 20f;
-                    iceSlowAmount = (effectDuration[i])/500f;
+                    iceAmount = (effectDuration[i])/500f;
                 }else{
                     effectDuration[i] = 200f;
                 }
-                if (effect == "natureSlow"){
-                    natureSlowAmount = (effectDuration[i])/200f;
+                if (effect == "nature"){
+                    natureAmount = (effectDuration[i])/200f;
                 }
                 break;
             }
@@ -138,13 +138,13 @@ public class Enemy : MonoBehaviour
         string effect = effects[j];
             if (!(((IList)effects).Contains((effect)))){
             pushEffect(effect);
-            if (effect == "iceSlow"){
-                iceSlow.SetActive(true);
-            } else if (effect == "natureSlow"){
-                natureSlow.SetActive(true);
-            } else if (effect == "cursed"){
+            if (effect == "ice"){
+                ice.SetActive(true);
+            } else if (effect == "nature"){
+                nature.SetActive(true);
+            } else if (effect == "death"){
                 bonusDamageOnHit += 3;
-                cursed.SetActive(true);
+                death.SetActive(true);
             } else if (effect == "poisoned"){
                 dot += 0.2f;
                 poisoned.SetActive(true);
@@ -159,10 +159,10 @@ public class Enemy : MonoBehaviour
             } else if (effect == "bleeding"){
                 dot += 0.3f;
                 bleeding.SetActive(true);
-            } else if (effect == "burning"){
+            } else if (effect == "fire"){
                 dot += 0.1f;
                 bonusDamageOnHit += 1;
-                burning.SetActive(true);
+                fire.SetActive(true);
             } else if (effect == "blown"){
                 // speed -= 20 + baseSpeed;
                 blown.SetActive(true);
@@ -173,14 +173,14 @@ public class Enemy : MonoBehaviour
             {
                 if (effects[i] == effect)
                 {
-                    if (effect == "iceSlow"){
+                    if (effect == "ice"){
                         effectDuration[i] += 20f;
-                        iceSlowAmount = (effectDuration[i])/500f;
+                        iceAmount = (effectDuration[i])/500f;
                     } else {
                         effectDuration[i] = 200f;
                     }
-                    if (effect == "natureSlow"){
-                        natureSlowAmount = (effectDuration[i])/200f;
+                    if (effect == "nature"){
+                        natureAmount = (effectDuration[i])/200f;
                     }
                     break;
                 }
@@ -191,15 +191,15 @@ public class Enemy : MonoBehaviour
     public void RemoveEffect(string effect){
         if (((IList)effects).Contains((effect))){
             popEffect(effect);
-            if (effect == "iceSlow"){
-                iceSlowAmount = 0;
-                iceSlow.SetActive(false);
-            } else if (effect == "natureSlow"){
-                natureSlowAmount = 0;
-                natureSlow.SetActive(false);
-            } else if (effect == "cursed"){
+            if (effect == "ice"){
+                iceAmount = 0;
+                ice.SetActive(false);
+            } else if (effect == "nature"){
+                natureAmount = 0;
+                nature.SetActive(false);
+            } else if (effect == "death"){
                 bonusDamageOnHit -= 3;
-                cursed.SetActive(false);
+                death.SetActive(false);
             } else if (effect == "poisoned"){
                 dot -= 0.2f;
                 poisoned.SetActive(false);
@@ -214,10 +214,10 @@ public class Enemy : MonoBehaviour
             } else if (effect == "bleeding"){
                 dot -= 0.3f;
                 bleeding.SetActive(false);
-            } else if (effect == "burning"){
+            } else if (effect == "fire"){
                 dot -= 0.1f;
                 bonusDamageOnHit -= 1;
-                burning.SetActive(false);
+                fire.SetActive(false);
             } else if (effect == "blown"){
                 speed += 20 + baseSpeed;
                 blown.SetActive(false);
