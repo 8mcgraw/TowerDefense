@@ -58,7 +58,7 @@ public class FailGame : MonoBehaviour
                 health = 0;
                 prompt2.SetActive(true);
                 failText.SetActive(true);
-                loopManager.pause = true;
+                //loopManager.pause = true;
                 loopManager.timer = -1000000000;
             }
             Destroy(collision.gameObject);

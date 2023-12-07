@@ -9,6 +9,7 @@ public class GameLoopManager : MonoBehaviour
     private static Queue<int> EnemyIDsToSummon;
     public bool endLoop = false;
     public int timer = 0;
+    public int nextWave = 0;
     public bool wave1 = false, wave2 = false, wave3 = false;
     public bool pause1 = false, pause2 = false, pause3 = false;
     public bool towerBuilt;
@@ -92,9 +93,11 @@ public class GameLoopManager : MonoBehaviour
                 }
                 //first wave over
                 //tell player to go underground
+                //set timer
                 if(timer==3){
                     prompt.SetActive(true);
                     undergroundText.SetActive(true);
+                    nextWave = 3000;
                 }
 
 

@@ -116,6 +116,13 @@ public class craftingOrbs : MonoBehaviour
             product.SetActive(true);
             Instantiate(product, this.gameObject.transform.position + new Vector3(-2, 3, 0), Quaternion.identity);
             product.SetActive(false);
+            Highlight[0].SetActive(false);
+            Highlight[1].SetActive(false);
+            Highlight[2].SetActive(false);
+            orbCombination[0] = "";
+            orbCombination[1] = "";
+            orbCombination[2] = "";
+            OrbCraft.gameObject.SetActive(false);
         }
         else
         {
