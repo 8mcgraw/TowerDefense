@@ -128,8 +128,15 @@ public class Enemy : MonoBehaviour
         return;
 
     }
-    public void ApplyEffect(string effect){
-        if (!(((IList)effects).Contains((effect)))){
+    public void ApplyEffect(string[] effects){
+        for (int j = 0; j < effects.Length; j++)
+        {
+            if (effects[j] == "")
+            {
+                break;
+            }
+        string effect = effects[j];
+            if (!(((IList)effects).Contains((effect)))){
             pushEffect(effect);
             if (effect == "iceSlow"){
                 iceSlow.SetActive(true);
@@ -178,6 +185,7 @@ public class Enemy : MonoBehaviour
                     break;
                 }
             }
+        }
         }
     }
     public void RemoveEffect(string effect){

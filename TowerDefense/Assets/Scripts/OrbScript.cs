@@ -10,7 +10,10 @@ public class OrbScript : MonoBehaviour
     public float cooldown = 100f;
     public float timer = 50f;
     public bool setTower = false;
-    public string orbEffect;
+    public string[] orbEffects = new string[3];
+    public GameObject[] orbSpheres = new GameObject[6];
+    public GameObject[] orbProjectiles = new GameObject[6];
+    int orbEffectCount = 0;
     SphereCollider myCollider;
     public string projectileType;
     public float range = 0f; //adjust collider to fit range, change range in model section
@@ -18,6 +21,35 @@ public class OrbScript : MonoBehaviour
     void Start()
     {
         myCollider = GetComponent<SphereCollider>();
+        //check how many orbEffects there are
+        for (int i = 0; i < orbEffects.Length; i++)
+        {
+            if (orbEffects[i] != null)
+            {
+                orbEffectCount++;
+            }
+        }
+        if (orbEffectCount == 0){
+            
+        }
+        else if (orbEffectCount == 1){
+            if (orbEffects[0] == "fire"){
+                
+            }
+            else if (orbEffects[0] == "ice"){
+                
+            }
+            else if (orbEffects[0] == "poison"){
+                
+            }
+        }
+        else if (orbEffectCount == 2){
+
+        }
+        else if (orbEffectCount == 3){
+
+        }
+
     }
 
     
@@ -68,7 +100,7 @@ public class OrbScript : MonoBehaviour
                 if ((target[0]!=null)&&(enemy != null)&&(enemy.currentHealth>0)&&(this.transform.parent!=null)&&(this.transform.parent.parent!=null)&&(this.transform.parent.parent.parent==null)&&(this.transform.parent.parent.tag=="Tower")&&(this.transform.parent.parent.GetComponent<TowerScript>().onPath==false))
                 {
                     transform.LookAt(target[0].transform);
-                    projectilescript.attack(target[0], projectileType, damage, orbEffect);
+                    projectilescript.attack(target[0], projectileType, damage, orbEffects);
                     timer = cooldown;
                 } else {
                     popTarget(target[0]);

@@ -12,7 +12,7 @@ public class ProjectileScript : MonoBehaviour
     private Vector3 originalSize;
     public float attackDamage = 0;
     public GameObject bulletAnimation;
-    public string effect;
+    public string[] effects = new string[3];
     public GameObject[] splashHit = new GameObject[100];
     public AudioClip laserSound;
     public AudioClip bulletSound;
@@ -59,7 +59,7 @@ public class ProjectileScript : MonoBehaviour
                 Debug.Log("Lazer3");
                 activate = false;
                 newTarget.gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
-                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effect);
+                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effects);
             }
             Debug.Log("Lazer");
             i++;
@@ -73,7 +73,7 @@ public class ProjectileScript : MonoBehaviour
             if (i%10 >= 9){
                 activate = false;
                 newTarget.gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
-                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effect);
+                newTarget.gameObject.GetComponent<Enemy>().ApplyEffect(effects);
             }
             i++;
         } else if ((attackType == "splash")&&(activate == true)) {
@@ -91,7 +91,7 @@ public class ProjectileScript : MonoBehaviour
                 for (int j = 0; j < splashHit.Length; j++){
                     if (splashHit[j] != null){
                         splashHit[j].gameObject.GetComponent<Enemy>().TakeDamage(attackDamage);
-                        splashHit[j].gameObject.GetComponent<Enemy>().ApplyEffect(effect);
+                        splashHit[j].gameObject.GetComponent<Enemy>().ApplyEffect(effects);
                     }
                 }
             }
@@ -121,7 +121,7 @@ public class ProjectileScript : MonoBehaviour
                     //pierce??
             // this.gameObject.transform.position = Vector3.Lerp(this.transform.parent.position, newTarget.transform.position, (i%10)/10);
             // this.gameObject.transform.localScale = new Vector3(0.25f, 0.25f, 0.3f*Vector3.Distance(this.transform.parent.position, newTarget.transform.position));
-    public void attack(GameObject target, string type, float damage, string orbEffect)
+    public void attack(GameObject target, string type, float damage, string[] orbEffects)
 {
         this.gameObject.SetActive(true);
         Debug.Log("test");
@@ -129,8 +129,8 @@ public class ProjectileScript : MonoBehaviour
         activate = true;
         attackType = type;
         attackDamage = damage;
-        effect = orbEffect;
-        if ((orbEffect == "holy")||(orbEffect == "Holy"))
+        effects = orbEffects;
+        if ((orbEffects[0] == "holy")||(orbEffects[1] == "holy")||(orbEffects[2] == "holy"))
         {
             attackDamage = damage*3;
         }
