@@ -10,6 +10,7 @@ public UnityEngine.SceneManagement.Scene overworldScene;
 public GameObject cameraUnderworld;
 public GameObject cameraOverworld;
 public bool pause = false;
+public GameObject hammer;
 
 public GameObject destination;
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public GameObject destination;
             collider.transform.position = destination.transform.position + new Vector3(-2,0,3);
             cameraOverworld.SetActive(false);
             cameraUnderworld.SetActive(true);
+            hammer.SetActive(true);
         }
     }
 }

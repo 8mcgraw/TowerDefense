@@ -126,7 +126,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   attempts: 0
-  breakSound: {fileID: 0}
+  breakSound: {fileID: 8300000, guid: 56f7d0316110fd94d836df11a00184b3, type: 3}
+  audioSource: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!54 &2018051120179019931
 Rigidbody:
   m_ObjectHideFlags: 0

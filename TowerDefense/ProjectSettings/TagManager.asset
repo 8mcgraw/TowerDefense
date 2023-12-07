@@ -21,6 +21,15 @@ TagManager:
   - animation
   - Goal1
   - Goal2
+  - crystalRed
+  - crystalBlue
+  - crystalGreen
+  - crystalYellow
+  - crystalPurple
+  - nextlevel
+  - unplayable
+  - complete
+  - broken
   layers:
   - Default
   - TransparentFX

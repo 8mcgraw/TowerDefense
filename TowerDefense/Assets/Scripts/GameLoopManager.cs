@@ -18,6 +18,7 @@ public class GameLoopManager : MonoBehaviour
     public bool startWave;
     public HashSet<int> SpecialScriptIDs = new HashSet<int>();
     public GameObject TeleportOverworld, cameraOverworld, cameraUnderground, dest, prompt, textPressEnter, textBuildTower, overworldTeleporter;
+    public GameObject hammer;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +77,7 @@ public class GameLoopManager : MonoBehaviour
                     pause1 = true;
                     //Teleport
                     GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                    hammer.SetActive(false);
                     //pause the teleporting script of the teleporter
                     overworldTeleporter.GetComponent<TeleportToUnderground>().pause = true;
                     cameraUnderground.SetActive(false);

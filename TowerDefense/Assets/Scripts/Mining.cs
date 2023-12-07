@@ -28,7 +28,7 @@ public class Mining : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (((other.transform.tag=="dirt")||(other.transform.tag=="rock")||(other.transform.tag=="wood")||(other.transform.tag=="crystal"))&&(Input.GetKey(KeyCode.Space))&&(canMine==true)){
+        if (((other.transform.tag=="dirt")||(other.transform.tag=="rock")||(other.transform.tag=="wood")||(other.transform.tag=="crystalRed")||(other.transform.tag=="crystalBlue")||(other.transform.tag=="crystalGreen")||(other.transform.tag=="crystalYellow")||(other.transform.tag=="crystalPurple"))&&(Input.GetKey(KeyCode.Space))&&(canMine==true)){
             other.gameObject.GetComponent<BreakScript>().tileMined = true;
             canMine=false;
             miningTimer = 0;

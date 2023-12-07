@@ -3,7 +3,14 @@ guid: b262e622e37da9a43b30100281392053
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Bank: {instanceID: 0}
+  - dirt: {instanceID: 0}
+  - rock: {instanceID: 0}
+  - crystal: {instanceID: 0}
+  - breakSound: {fileID: 8300000, guid: 56f7d0316110fd94d836df11a00184b3, type: 3}
+  - audioSource: {instanceID: 0}
+  - sound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

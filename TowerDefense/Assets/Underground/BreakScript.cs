@@ -54,6 +54,7 @@ public class BreakScript : MonoBehaviour
             
         }
         float r = UnityEngine.Random.Range(0,100);
+        gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
         if (r <= dirtChance)
         {
             this.gameObject.tag = "dirt";
@@ -101,23 +102,23 @@ public class BreakScript : MonoBehaviour
             gameObject.GetComponent<Renderer>().material = crystal;
             if (this.gameObject.tag == "crystalRed")
             {
-                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 0f, 0f));
+                gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,0f,0f));
             }
             if (this.gameObject.tag == "crystalBlue")
             {
-                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(0f, 0f, 1f));
+                gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f,0f,1f));
             }
             if (this.gameObject.tag == "crystalGreen")
             {
-                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(0f, 1f, 0f));
+                gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f,1f,0f));
             }
             if (this.gameObject.tag == "crystalYellow")
             {
-                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 1f, 0f));
+                gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,1f,0f));
             }
             if (this.gameObject.tag == "crystalPurple")
             {
-                gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 0f, 1f));
+                gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,0f,1f));
             }
         }
     }
@@ -160,32 +161,36 @@ public class BreakScript : MonoBehaviour
                     // }
                     //either way set this to be undiscovered
                     this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(-10f, -10f, -10f));
+                    this.gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(-10f, -10f, -10f));
                 } else {
                     //if it doesnt have 4 adjacent gameobjects, set this to be discovered
                     this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 1f, 1f));
+                    if (this.gameObject.tag == "crystalRed")
+                    {
+                        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,0f,0f));
+                    }
+                    if (this.gameObject.tag == "crystalBlue")
+                    {
+                        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f,0f,1f));
+                    }
+                    if (this.gameObject.tag == "crystalGreen")
+                    {
+                        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f,1f,0f));
+                    }
+                    if (this.gameObject.tag == "crystalYellow")
+                    {
+                        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,1f,0f));
+                    }
+                    if (this.gameObject.tag == "crystalPurple")
+                    {
+                        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,0f,1f));
+                    }
                 }
             }
             attempts+=1;
         }
     }
 
-    private void OnDisable()
-    {
-        //for each adjacent gameobject, take this object from its list and change its color to discovered
-        for (int i = 0; i < adjacent.Length; i++)
-        {
-            if (adjacent[i] != null)
-            {
-                adjacent[i].GetComponent<BreakScript>().adjacent[Array.IndexOf(adjacent[i].GetComponent<BreakScript>().adjacent, this.gameObject)] = null;
-                adjacent[i].GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 1f, 1f));
-            }
-        }
-            if(sound.GetComponent<ToggleSFX>().sfx == true)
-            {
-                Debug.Log("Broken");
-                audioSource.PlayOneShot(laserSound, 0.05f);
-            }
-    }
 
     private void FixedUpdate()
     {
@@ -217,41 +222,120 @@ public class BreakScript : MonoBehaviour
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("dirt", 1);
                     }
-                    else
-                    {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("granite", 1);
-                    }
                 }
                 //50% chance of getting iron or gold
                 if (this.gameObject.tag == "rock")
                 {
-                    if (dropChance < 30f)
+                    if (dropChance < 60f)
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("iron", 1);
                     }
-                    else if (dropChance < 50f)
+                    else
                     {
                         Bank.gameObject.GetComponent<Currencies>().incrementCurrency("gold", 1);
                     }
                 }
                 //50% chance of getting gems or orbs
-                if (this.gameObject.tag == "crystal")
-                {
-                    if (dropChance < 50f)
-                    {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("gems", 1);
-                    }
-                    else
-                    {
-                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("orbs", 1);
+                if (this.gameObject.tag == "crystalRed"){
+                    if (dropChance < 50f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("redCrystal", 1);
+                    } else if (dropChance < 75f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("redCrystal", 2);
+                    } else {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("redCrystal", 3);
                     }
                 }
-                this.gameObject.SetActive(false);
-            }
+                if (this.gameObject.tag == "crystalBlue"){
+                    if (dropChance < 50f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("blueCrystal", 1);
+                    } else if (dropChance < 75f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("blueCrystal", 2);
+                    } else {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("blueCrystal", 3);
+                    }
+                }
+                if (this.gameObject.tag == "crystalGreen"){
+                    if (dropChance < 50f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("greenCrystal", 1);
+                    } else if (dropChance < 75f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("greenCrystal", 2);
+                    } else {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("greenCrystal", 3);
+                    }
+                }
+                if (this.gameObject.tag == "crystalYellow"){
+                    if (dropChance < 50f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("yellowCrystal", 1);
+                    } else if (dropChance < 75f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("yellowCrystal", 2);
+                    } else {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("yellowCrystal", 3);
+                    }
+                }
+                if (this.gameObject.tag == "crystalPurple"){
+                    if (dropChance < 50f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("purpleCrystal", 1);
+                    } else if (dropChance < 75f){
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("purpleCrystal", 2);
+                    } else {
+                        Bank.gameObject.GetComponent<Currencies>().incrementCurrency("purpleCrystal", 3);
+                    }
+                }
+                breakThis();
+                timer = 1000f;
+                Debug.Log("Broken");
+                this.gameObject.tag = "broken";
+                //disable this script
+                this.gameObject.GetComponent<BreakScript>().enabled = false;
+            } else {
             yield return new WaitForSeconds(0.1f);
             timer=x;
             tileMined = false;
+            }
         }
+    }
+
+    private void breakThis(){
+        //disable the collider
+        this.gameObject.GetComponent<Collider>().enabled = false;
+        //disable the rigidbody
+        this.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        //disable the mesh renderer
+        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        //for each adjacent gameobject, take this object from its list and change its color to discovered
+        for (int i = 0; i < adjacent.Length; i++)
+        {
+            if (adjacent[i] != null)
+            {
+                adjacent[i].GetComponent<BreakScript>().adjacent[Array.IndexOf(adjacent[i].GetComponent<BreakScript>().adjacent, this.gameObject)] = null;
+                adjacent[i].GetComponent<Renderer>().material.SetColor("_Color", new Color(1f, 1f, 1f));
+                if (adjacent[i].gameObject.tag == "crystalRed")
+                {
+                    adjacent[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,0f,0f));
+                }
+                if (adjacent[i].gameObject.tag == "crystalBlue")
+                {
+                    adjacent[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f,0f,1f));
+                }
+                if (adjacent[i].gameObject.tag == "crystalGreen")
+                {
+                    adjacent[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(0f,1f,0f));
+                }
+                if (adjacent[i].gameObject.tag == "crystalYellow")
+                {
+                    adjacent[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,1f,0f));
+                }
+                if (adjacent[i].gameObject.tag == "crystalPurple")
+                {
+                    adjacent[i].GetComponent<Renderer>().material.SetColor("_EmissionColor", new Color(1f,0f,1f));
+                }
+            }
+        }
+            if(sound.GetComponent<ToggleSFX>().sfx == true)
+            {
+                Debug.Log("Broken");
+                audioSource.PlayOneShot(breakSound, 0.05f);
+            }
     }
 
     private void OnTriggerEnter(Collider other)
