@@ -13,16 +13,20 @@ public class OrbScript : MonoBehaviour
     public string[] orbEffects = new string[3];
     public GameObject[] orbSpheres = new GameObject[6];
     public GameObject sphere;
-    //baseSphere, redSphere, blueSphere, purpleSphere, greenSphere, yellowSphere
+    //baseSphere, fireSphere, iceSphere, deathSphere, natureSphere, holySphere
     public GameObject[] orbProjectiles = new GameObject[6];
     public GameObject projectile;
-    //empty, redProjectile, blueProjectile, purpleProjectile, greenProjectile, yellowProjectile
+    //empty, fireProjectile, iceProjectile, deathProjectile, natureProjectile, holyProjectile
     int orbEffectCount = 0;
     SphereCollider myCollider;
     public string projectileType;
     public float range = 0f; //adjust collider to fit range, change range in model section
     // Start is called before the first frame update
-    void Awake()
+    void Start()
+    {
+        OrbShift();
+    }
+    void OrbShift()
     {
         Debug.Log("OrbScript");
         myCollider = GetComponent<SphereCollider>();
@@ -39,7 +43,7 @@ public class OrbScript : MonoBehaviour
         if (orbEffectCount == 0){
             
         } else if (orbEffectCount == 1){
-    //baseSphere, redSphere, blueSphere, purpleSphere, greenSphere, yellowSphere
+    //baseSphere, fireSphere, iceSphere, deathSphere, natureSphere, holySphere
             if (orbEffects[0] == "fire"){
                 orbSpheres[1].SetActive(true);
                 projectilescript = orbProjectiles[1].GetComponent<ProjectileScript>();

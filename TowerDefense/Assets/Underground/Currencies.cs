@@ -14,6 +14,14 @@ public class Currencies : MonoBehaviour
         currencies.Add(name, amount);
     }
 
+    void Start()
+    {
+        addToCurrencies("blueCrystal", 10);
+        addToCurrencies("redCrystal", 10);
+        addToCurrencies("greenCrystal", 10);
+        addToCurrencies("yellowCrystal", 10);
+        addToCurrencies("purpleCrystal", 10);
+    }
 
     //If you want to add currency, use this, if you want to deduct: use this in an if()else
     //where the else tells the player they dont have enough
