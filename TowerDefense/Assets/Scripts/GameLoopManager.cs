@@ -68,7 +68,7 @@ public class GameLoopManager : MonoBehaviour
             }
 
             if(level==0){
-                if ((timer % 200 == 0)&&(wave1==false)){
+                if ((timer % 400 == 0)&&(wave1==false)){
                     spawnPoint = Random.Range(0, 4);
                     Debug.Log(spawnPoint);
                     this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, spawnPoint);

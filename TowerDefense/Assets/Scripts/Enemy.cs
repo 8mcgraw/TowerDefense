@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
         UnityEngine.AI.NavMeshAgent agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.destination = goal.position;
         speed = baseSpeed;
+        GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
     }
     void Update(){
     }
@@ -58,9 +59,9 @@ public class Enemy : MonoBehaviour
             } else {
                 effectDuration[i]--;
                 if (effects[i] == "ice"){
-                    iceAmount = (effectDuration[i])/500f;
+                    iceAmount = (effectDuration[i])/400f;
                 } else if (effects[i] == "nature"){
-                    natureAmount = (effectDuration[i])/300f;
+                    natureAmount = (effectDuration[i])/200f;
                 }
                 if (effectDuration[i] <= 0f)
                 {
@@ -88,7 +89,7 @@ public class Enemy : MonoBehaviour
                 effects[i] = effect;
                 if (effect == "ice"){
                     effectDuration[i] += 20f;
-                    iceAmount = (effectDuration[i])/500f;
+                    iceAmount = (effectDuration[i])/400f;
                 }else{
                     effectDuration[i] = 200f;
                 }
@@ -175,7 +176,7 @@ public class Enemy : MonoBehaviour
                 {
                     if (effect == "ice"){
                         effectDuration[i] += 20f;
-                        iceAmount = (effectDuration[i])/500f;
+                        iceAmount = (effectDuration[i])/400f;
                     } else {
                         effectDuration[i] = 200f;
                     }

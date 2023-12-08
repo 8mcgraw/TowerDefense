@@ -103,7 +103,7 @@ public class ProjectileScript : MonoBehaviour
 
     }
     void OnTriggerEnter(Collider collision){
-        if ((collision.gameObject.tag == "enemy")&&(attackType == "splash")&&(System.Array.IndexOf(splashHit, collision.gameObject) == -1)){
+        if (((collision.gameObject.tag == "enemy")||(collision.gameObject.tag == "Enemy"))&&(attackType == "splash")&&(System.Array.IndexOf(splashHit, collision.gameObject) == -1)){
             //check if they are in the hit list, if not add them
             if (splashHit[0] == null){
                 splashHit[0] = collision.gameObject;

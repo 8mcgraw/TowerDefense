@@ -21,6 +21,10 @@ public class playerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (afk > 10000)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Tower Defense Title");
+        }
         
     }
     private void FixedUpdate()
