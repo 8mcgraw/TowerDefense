@@ -71,7 +71,7 @@ public class GameLoopManager : MonoBehaviour
                 if ((timer % 200 == 0)&&(wave1==false)){
                     spawnPoint = Random.Range(0, 4);
                     Debug.Log(spawnPoint);
-                    EnqueueEnemyIDToSummon(1);
+                    this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(1, spawnPoint);
                     //wave1=true;
                 }
             }

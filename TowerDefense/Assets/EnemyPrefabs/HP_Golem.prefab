@@ -496,14 +496,14 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  ice: {fileID: 0}
-  nature: {fileID: 0}
-  death: {fileID: 0}
+  ice: {fileID: 2670737759353668203}
+  nature: {fileID: 7533865308271139019}
+  death: {fileID: 7074301898445081174}
   poisoned: {fileID: 0}
   frozen: {fileID: 0}
   stunned: {fileID: 0}
   bleeding: {fileID: 0}
-  fire: {fileID: 0}
+  fire: {fileID: 1075209526392353074}
   blown: {fileID: 0}
   iceAmount: 0
   natureAmount: 0
@@ -35257,6 +35257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f328ddc3756455a4fb2f1db0141a7f1d, type: 3}
+--- !u!1 &7533865308271139019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 420964054017260481, guid: f328ddc3756455a4fb2f1db0141a7f1d, type: 3}
+  m_PrefabInstance: {fileID: 7879674301048939274}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7538822966934018129 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 415876583054867291, guid: f328ddc3756455a4fb2f1db0141a7f1d, type: 3}
