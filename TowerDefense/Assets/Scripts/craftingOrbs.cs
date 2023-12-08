@@ -12,6 +12,7 @@ public class craftingOrbs : MonoBehaviour
     public GameObject OrbCraft;
     public GameObject text, notEnoughText;
     public GameObject Bank;
+    public GameObject floatingOrb;
     // Start is called before the first frame update
     void Start()
     {
