@@ -546,17 +546,17 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  iceSlow: {fileID: 6464860118317572133}
-  natureSlow: {fileID: 6185192166063336236}
-  cursed: {fileID: 7681380122885285023}
+  ice: {fileID: 6464860118317572133}
+  nature: {fileID: 6185192166063336236}
+  death: {fileID: 7681380122885285023}
   poisoned: {fileID: 0}
   frozen: {fileID: 0}
   stunned: {fileID: 0}
   bleeding: {fileID: 0}
-  burning: {fileID: 6087614765984574465}
+  fire: {fileID: 6087614765984574465}
   blown: {fileID: 0}
-  iceSlowAmount: 0
-  natureSlowAmount: 0
+  iceAmount: 0
+  natureAmount: 0
   bonusDamageOnHit: 0
   dot: 0
   goal: {fileID: 0}

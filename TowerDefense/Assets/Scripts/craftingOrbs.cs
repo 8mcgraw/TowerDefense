@@ -6,7 +6,7 @@ using UnityEngine;
 public class craftingOrbs : MonoBehaviour
 {
     public string[] orbCombination = new string[3];
-    public GameObject IceOrb, FireOrb, LightningOrb, EarthOrb, WindOrb, LightOrb, DarkOrb;
+    public GameObject MasterOrb;
     public GameObject[] crystalDust = new GameObject[9];
     public GameObject[] Highlight = new GameObject[3];
     public GameObject OrbCraft;
@@ -48,74 +48,1030 @@ public class craftingOrbs : MonoBehaviour
     }
     public void finalize()
     {
-        string resource = "";
-        int cost = 0;
-        GameObject product = new GameObject();
-        if (orbCombination[0] == "blue")
-        {
-            if (orbCombination[1] == "blue")
-            {
-                if (orbCombination[2] == "blue")
-                {
-                    product = IceOrb;
-                    cost = 3;
-                    resource = "blueCrystal";
-                }
+        //make tuple array of resource: string and int
+        
+        if (orbCombination[0] == "blue"){
+            if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                notEnoughText.SetActive(true);
+                return;
             }
-        }
-        if (orbCombination[0] == "red")
-        {
-            if (orbCombination[1] == "red")
-            {
-                if (orbCombination[2] == "red")
-                {
-                    product = FireOrb;
-                    cost = 3;
-                    resource = "redCrystal";
-                }
+            MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[0] = "blue";
+                    if(orbCombination[1] == "blue"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "blue";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>2)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "red"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "red";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "purple"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "purple";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "yellow"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "yellow";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "green"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "green";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    }
+        } else if (orbCombination[0] == "red"){
+            if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                notEnoughText.SetActive(true);
+                return;
             }
-        }
-        if (orbCombination[0] == "purple")
-        {
-            if (orbCombination[1] == "purple")
-            {
-                if (orbCombination[2] == "purple")
-                {
-                    product = DarkOrb;
-                    cost = 3;
-                    resource = "purpleCrystal";
-                }
+            MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[0] = "red";
+                    if(orbCombination[1] == "blue"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "blue";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "red"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "red";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>2)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "purple"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "purple";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "yellow"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "yellow";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "green"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "green";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } 
+        } else if (orbCombination[0] == "purple"){
+            if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                notEnoughText.SetActive(true);
+                return;
             }
-        }
-        if (orbCombination[0] == "yellow")
-        {
-            if (orbCombination[1] == "yellow")
-            {
-                if (orbCombination[2] == "yellow")
-                {
-                    product = LightOrb;
-                    cost = 3;
-                    resource = "yellowCrystal";
-                }
+            MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[0] = "purple";
+                    if(orbCombination[1] == "blue"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "blue";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "red"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "red";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "purple"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "purple";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>2)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "yellow"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "yellow";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "green"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "green";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    }
+        } else if (orbCombination[0] == "yellow"){
+            if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                notEnoughText.SetActive(true);
+                return;
             }
-        }
-        if (orbCombination[0] == "green")
-        {
-            if (orbCombination[1] == "green")
-            {
-                if (orbCombination[2] == "green")
-                {
-                    product = EarthOrb;
-                    cost = 3;
-                    resource = "greenCrystal";
-                }
+            MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[0] = "yellow";
+                    if(orbCombination[1] == "blue"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "blue";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "red"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "red";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "purple"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "purple";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "yellow"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "yellow";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>2)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "green"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "green";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    }
+        } else if (orbCombination[0] == "green"){
+            if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>0)){
+                notEnoughText.SetActive(true);
+                return;
             }
+            MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[0] = "green";
+                    if(orbCombination[1] == "blue"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "blue";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "red"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "red";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "purple"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "purple";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "yellow"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "yellow";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    } else if (orbCombination[1] == "green"){
+                        if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>1)){
+                            notEnoughText.SetActive(true);
+                            return;
+                        }
+                        MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[1] = "green";
+                                            if(orbCombination[2] == "blue"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("blueCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "blue";
+                                            } else if (orbCombination[2] == "red"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("redCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "red";
+                                            } else if (orbCombination[2] == "purple"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("purpleCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "purple";
+                                            } else if (orbCombination[2] == "yellow"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("yellowCrystal")>0)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "yellow";
+                                            } else if (orbCombination[2] == "green"){
+                                                if (!(Bank.gameObject.GetComponent<Currencies>().checkCurrency("greenCrystal")>2)){
+                                                    notEnoughText.SetActive(true);
+                                                    return;
+                                                }
+                                                MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "green";
+                                            }
+                    }
+                        
         }
-        if (Bank.gameObject.GetComponent<Currencies>().incrementCurrency(resource, -cost))
-        {
-            product.SetActive(true);
-            Instantiate(product, this.gameObject.transform.position + new Vector3(-2, 3, 0), Quaternion.identity);
-            product.SetActive(false);
+        
+        // if (orbCombination[0] == "blue")
+        // {
+        //     if (orbCombination[1] == "blue")
+        //     {
+        //         if (orbCombination[2] == "blue")
+        //         {
+        //             cost = 3;
+        //             resource = "blueCrystal";
+        //         }
+        //     }
+        // }
+        // if (orbCombination[0] == "red")
+        // {
+        //     if (orbCombination[1] == "red")
+        //     {
+        //         if (orbCombination[2] == "red")
+        //         {
+        //             cost = 3;
+        //             resource = "redCrystal";
+        //         }
+        //     }
+        // }
+        // if (orbCombination[0] == "purple")
+        // {
+        //     if (orbCombination[1] == "purple")
+        //     {
+        //         if (orbCombination[2] == "purple")
+        //         {
+        //             cost = 3;
+        //             resource = "purpleCrystal";
+        //         }
+        //     }
+        // }
+        // if (orbCombination[0] == "yellow")
+        // {
+        //     if (orbCombination[1] == "yellow")
+        //     {
+        //         if (orbCombination[2] == "yellow")
+        //         {
+        //             cost = 3;
+        //             resource = "yellowCrystal";
+        //         }
+        //     }
+        // }
+        // if (orbCombination[0] == "green")
+        // {
+        //     if (orbCombination[1] == "green")
+        //     {
+        //         if (orbCombination[2] == "green")
+        //         {
+        //             cost = 3;
+        //             resource = "greenCrystal";
+        //         }
+        //     }
+        // }
+        // if (Bank.gameObject.GetComponent<Currencies>().checkCurrency(resource1)>0)
+        // {
+            GameObject newOrb = Instantiate(MasterOrb, this.gameObject.transform.position + new Vector3(-2, 3, 0), Quaternion.identity);
+            newOrb.SetActive(true);
             Highlight[0].SetActive(false);
             Highlight[1].SetActive(false);
             Highlight[2].SetActive(false);
@@ -123,12 +1079,12 @@ public class craftingOrbs : MonoBehaviour
             orbCombination[1] = "";
             orbCombination[2] = "";
             OrbCraft.gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Not enough resources");
-            notEnoughText.SetActive(true);
-        }
+        // }
+        // else
+        // {
+        //     Debug.Log("Not enough resources");
+        //     notEnoughText.SetActive(true);
+        // }
     }
 
     public void SelectRed()

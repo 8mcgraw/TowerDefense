@@ -22,7 +22,7 @@ public class OrbScript : MonoBehaviour
     public string projectileType;
     public float range = 0f; //adjust collider to fit range, change range in model section
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Debug.Log("OrbScript");
         myCollider = GetComponent<SphereCollider>();
@@ -42,30 +42,31 @@ public class OrbScript : MonoBehaviour
     //baseSphere, redSphere, blueSphere, purpleSphere, greenSphere, yellowSphere
             if (orbEffects[0] == "fire"){
                 orbSpheres[1].SetActive(true);
-                orbProjectiles[1].SetActive(true);
+                projectilescript = orbProjectiles[1].GetComponent<ProjectileScript>();
                 sphere = orbSpheres[1];
             }
             else if (orbEffects[0] == "ice"){
                 orbSpheres[2].SetActive(true);
-                orbProjectiles[2].SetActive(true);
+                projectilescript = orbProjectiles[2].GetComponent<ProjectileScript>();
                 sphere = orbSpheres[2];
             }
             else if (orbEffects[0] == "death"){
                 orbSpheres[3].SetActive(true);
-                orbProjectiles[3].SetActive(true);
+                projectilescript = orbProjectiles[3].GetComponent<ProjectileScript>();
                 sphere = orbSpheres[3];
             } 
             else if (orbEffects[0] == "nature"){
                 orbSpheres[4].SetActive(true);
-                orbProjectiles[4].SetActive(true);
+                projectilescript = orbProjectiles[4].GetComponent<ProjectileScript>();
                 sphere = orbSpheres[4];
             }
             else if (orbEffects[0] == "holy"){
                 orbSpheres[5].SetActive(true);
-                orbProjectiles[5].SetActive(true);
+                projectilescript = orbProjectiles[5].GetComponent<ProjectileScript>();
                 sphere = orbSpheres[5];
             } else {
                 orbSpheres[0].SetActive(true);
+                projectilescript = orbProjectiles[1].GetComponent<ProjectileScript>();
                 sphere = orbSpheres[0];
             }
             
@@ -95,7 +96,7 @@ public class OrbScript : MonoBehaviour
                 sphere = orbSpheres[0];
             }
             if (orbEffects[1] == "fire"){
-                orbProjectiles[1].SetActive(true);
+                projectilescript = orbProjectiles[1].GetComponent<ProjectileScript>();
                 sphere.GetComponent<Renderer>().material = orbSpheres[1].GetComponent<Renderer>().material;
                 //get the sphere's children and change their color to be this material's color
                 sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[1].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
@@ -105,7 +106,7 @@ public class OrbScript : MonoBehaviour
                     sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[1].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
                 }
             } else if (orbEffects[1] == "ice"){
-                orbProjectiles[2].SetActive(true);
+                projectilescript = orbProjectiles[2].GetComponent<ProjectileScript>();
                 sphere.GetComponent<Renderer>().material = orbSpheres[2].GetComponent<Renderer>().material;
                 sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[2].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
                 sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[2].transform.GetChild(1).GetComponent<Light>().color;
@@ -113,7 +114,7 @@ public class OrbScript : MonoBehaviour
                     sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[2].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
                 }
             } else if (orbEffects[1] == "death"){
-                orbProjectiles[3].SetActive(true);
+                projectilescript = orbProjectiles[3].GetComponent<ProjectileScript>();
                 sphere.GetComponent<Renderer>().material = orbSpheres[3].GetComponent<Renderer>().material;
                 sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[3].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
                 sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[3].transform.GetChild(1).GetComponent<Light>().color;
@@ -121,7 +122,7 @@ public class OrbScript : MonoBehaviour
                     sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[3].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
                 }
             } else if (orbEffects[1] == "nature"){
-                orbProjectiles[4].SetActive(true);
+                projectilescript = orbProjectiles[4].GetComponent<ProjectileScript>();
                 sphere.GetComponent<Renderer>().material = orbSpheres[4].GetComponent<Renderer>().material;
                 sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[4].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
                 sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[4].transform.GetChild(1).GetComponent<Light>().color;
@@ -129,7 +130,7 @@ public class OrbScript : MonoBehaviour
                     sphere.transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor = orbSpheres[4].transform.GetChild(0).transform.GetChild(i).GetComponent<ParticleSystem>().startColor;
                 }
             } else if (orbEffects[1] == "holy"){
-                orbProjectiles[5].SetActive(true);
+                projectilescript = orbProjectiles[5].GetComponent<ProjectileScript>();
                 sphere.GetComponent<Renderer>().material = orbSpheres[5].GetComponent<Renderer>().material;
                 sphere.transform.GetChild(0).GetComponent<ParticleSystem>().startColor = orbSpheres[5].transform.GetChild(0).GetComponent<ParticleSystem>().startColor;
                 sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[5].transform.GetChild(1).GetComponent<Light>().color;
@@ -143,39 +144,19 @@ public class OrbScript : MonoBehaviour
             if (orbEffectCount == 3){
                 if (orbEffects[2] == "fire"){
                     sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[1].transform.GetChild(1).GetComponent<Light>().color;
-                    orbProjectiles[1].SetActive(true);
-                    orbProjectiles[2].SetActive(false);
-                    orbProjectiles[3].SetActive(false);
-                    orbProjectiles[4].SetActive(false);
-                    orbProjectiles[5].SetActive(false);
+                    projectilescript = orbProjectiles[1].GetComponent<ProjectileScript>();
                 } else if (orbEffects[2] == "ice"){
                     sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[2].transform.GetChild(1).GetComponent<Light>().color;
-                    orbProjectiles[1].SetActive(false);
-                    orbProjectiles[2].SetActive(true);
-                    orbProjectiles[3].SetActive(false);
-                    orbProjectiles[4].SetActive(false);
-                    orbProjectiles[5].SetActive(false);
+                    projectilescript = orbProjectiles[2].GetComponent<ProjectileScript>(); 
                 } else if (orbEffects[2] == "death"){
                     sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[3].transform.GetChild(1).GetComponent<Light>().color;
-                    orbProjectiles[1].SetActive(false);
-                    orbProjectiles[2].SetActive(false);
-                    orbProjectiles[3].SetActive(true);
-                    orbProjectiles[4].SetActive(false);
-                    orbProjectiles[5].SetActive(false);
+                    projectilescript = orbProjectiles[3].GetComponent<ProjectileScript>();
                 } else if (orbEffects[2] == "nature"){
                     sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[4].transform.GetChild(1).GetComponent<Light>().color;
-                    orbProjectiles[1].SetActive(false);
-                    orbProjectiles[2].SetActive(false);
-                    orbProjectiles[3].SetActive(false);
-                    orbProjectiles[4].SetActive(true);
-                    orbProjectiles[5].SetActive(false);
+                    projectilescript = orbProjectiles[4].GetComponent<ProjectileScript>(); 
                 } else if (orbEffects[2] == "holy"){
                     sphere.transform.GetChild(1).GetComponent<Light>().color = orbSpheres[5].transform.GetChild(1).GetComponent<Light>().color;
-                    orbProjectiles[1].SetActive(false);
-                    orbProjectiles[2].SetActive(false);
-                    orbProjectiles[3].SetActive(false);
-                    orbProjectiles[4].SetActive(false);
-                    orbProjectiles[5].SetActive(true);
+                    projectilescript = orbProjectiles[5].GetComponent<ProjectileScript>(); 
                 } else {
                     sphere.transform.GetChild(1).GetComponent<Light>().color = new Color(Color.white.r, Color.white.g, Color.white.b, 0.5f);
                 }
