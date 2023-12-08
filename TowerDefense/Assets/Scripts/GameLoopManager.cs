@@ -101,8 +101,11 @@ public class GameLoopManager : MonoBehaviour
                     undergroundText.SetActive(true);
                     nextWave = 3000;
                 }
-
-                if(timer==3000)
+                //pause before combat
+                if (timer == 1)
+                    pause = true;
+                
+                if (timer==3000)
                 SummonEnemyAmount(2,1,1);
                 if(timer==3005)
                 SummonEnemyAmount(2,1,2);
@@ -131,6 +134,27 @@ public class GameLoopManager : MonoBehaviour
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
                     waitForEnemies = false;
 
+                //second wave over
+                //tell player to go underground
+                //set timer
+                if (timer == 3)
+                {
+                    prompt.SetActive(true);
+                    undergroundText.SetActive(true);
+                    nextWave = 3000;
+                }
+                //put player in overworld
+                //if (timer == 0)
+                //{
+                //    GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                //    cameraUnderground.SetActive(false);
+                //    cameraOverworld.SetActive(true);
+                //}
+                //pause before combat
+                if (timer == 1)
+                    pause = true;
+
+                //Third wave
                 if (timer==4000)
                 SummonEnemyAmount(7,1,12);                
                 if(timer==4100)
@@ -150,6 +174,27 @@ public class GameLoopManager : MonoBehaviour
                 if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
                     waitForEnemies = false;
 
+                //third wave over
+                //tell player to go underground
+                //set timer
+                if (timer == 3)
+                {
+                    prompt.SetActive(true);
+                    undergroundText.SetActive(true);
+                    nextWave = 3000;
+                }
+                //put player in overworld
+                //if (timer == 0)
+                //{
+                //    GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                //    cameraUnderground.SetActive(false);
+                //    cameraOverworld.SetActive(true);
+                //}
+                //pause before combat
+                if (timer == 1)
+                    pause = true;
+
+                //fourth wave
                 if (timer == 5000)
                 SummonEnemyAmount(4, 1, 18);
                 if (timer == 5200)
@@ -176,6 +221,12 @@ public class GameLoopManager : MonoBehaviour
                 SummonEnemyAmount(8, 1, 29); 
                 if (timer == 6800)
                 SummonEnemyAmount(8, 1, 30);
+
+                pause = true;
+                waitForEnemies = true;
+                //wait till wave over
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                    waitForEnemies = false;
 
                 if ((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>7500))
                 {
@@ -337,7 +388,6 @@ public class GameLoopManager : MonoBehaviour
                     endLoop = true;
                 }
 
-                //set the spawn for each enemrery
             }
             yield return null;
         }
