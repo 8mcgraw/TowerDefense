@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class GameLoopManager : MonoBehaviour
@@ -14,7 +15,7 @@ public class GameLoopManager : MonoBehaviour
     public bool pause1 = false, pause2 = false, pause3 = false;
     public bool towerBuilt;
     public int spawnPoint = 0;
-    public int level = 1;
+    public int level = 1;//0?
     public bool pause = false;
     public bool startWave;
     public HashSet<int> SpecialScriptIDs = new HashSet<int>();
@@ -65,6 +66,7 @@ public class GameLoopManager : MonoBehaviour
                     EntitySummoner.RemoveEnemy(EnemiesToRemove.Dequeue());
                 }
             }
+
             if(level==0){
                 if ((timer % 200 == 0)&&(wave1==false)){
                     spawnPoint = Random.Range(0, 4);
@@ -100,10 +102,7 @@ public class GameLoopManager : MonoBehaviour
                     nextWave = 3000;
                 }
 
-
-
-
-                if(timer==3000) 
+                if(timer==3000)
                 SummonEnemyAmount(2,1,1);
                 if(timer==3005)
                 SummonEnemyAmount(2,1,100);
@@ -112,65 +111,142 @@ public class GameLoopManager : MonoBehaviour
                 if(timer==3015)
                 SummonEnemyAmount(2,1,102);
 
-                //yield return new WaitForSeconds(10);
-                if(timer==3300)
-                SummonEnemyAmount(1,1,2);
-                //yield return new WaitForSeconds(1);
+                if (timer==3300)
+                SummonEnemyAmount(1,1,6);
 
                 if(timer==3400)
-                SummonEnemyAmount(1,1,3);
-                //yield return new WaitForSeconds(10);
+                SummonEnemyAmount(1,1,7);
 
                 if(timer==3800)
-                SummonEnemyAmount(1,1,4);
+                SummonEnemyAmount(1,1,8);
                 
-                //yield return new WaitForSeconds(1);
                 if(timer==3900)
-                SummonEnemyAmount(1,1,5);
-                //yield return new WaitForSeconds(1);
+                SummonEnemyAmount(1,1,9);
 
                 if(timer==4000)
-                SummonEnemyAmount(1,1,6);
-                //yield return new WaitForSeconds(1);
+                SummonEnemyAmount(7,1,10);
 
                 if(timer==4100)
-                SummonEnemyAmount(4,1,7);
-                //yield return new WaitForSeconds(10);
+                SummonEnemyAmount(7,1,11);
 
                 if(timer==5000)
-                SummonEnemyAmount(4,1,8);
+                SummonEnemyAmount(7,1,12);
                 
-                //yield return new WaitForSeconds(1);
-
                 if(timer==5100)
-                SummonEnemyAmount(4,1,9);
-
-                //yield return new WaitForSeconds(1);
+                SummonEnemyAmount(7,1,13);
 
                 if(timer==5200)
-                SummonEnemyAmount(4,1,10);
-
-                //yield return new WaitForSeconds(1);
+                SummonEnemyAmount(4,1,14);
 
                 if(timer==5300)
-                SummonEnemyAmount(3,1,11);
-                //yield return new WaitForSeconds(10);
+                SummonEnemyAmount(4,1,15);
 
                 if(timer==6000)
-                SummonEnemyAmount(3,1,12);
-                //yield return new WaitForSeconds(1);
+                SummonEnemyAmount(2,1,16);
 
                 if(timer==6100)
-                SummonEnemyAmount(5,1,13);
-                //yield return new WaitForSeconds(1);
+                SummonEnemyAmount(2,1,17);
 
-                if(timer==6200)
-                SummonEnemyAmount(5,1,14);
+                if (timer == 6100)
+                    SummonEnemyAmount(4, 1, 18);
+
+                if (timer == 6100)
+                    SummonEnemyAmount(4, 1, 19);
+
+                if (timer == 6100)
+                    SummonEnemyAmount(6, 1, 20);
+
+                if (timer == 6100)
+                    SummonEnemyAmount(5, 1, 21);
+
+                if (timer == 6100)
+                    SummonEnemyAmount(4, 1, 22);
+
+                if (timer==6200)
+                SummonEnemyAmount(8,1,23);
 
                 if((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>6500))
                 {
                     endLoop = true;
                 }
+            }
+            if(level == 2)
+            {
+                //put player in overworld
+                if (timer == 0)
+                {
+                    GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                    cameraUnderground.SetActive(false);
+                    cameraOverworld.SetActive(true);
+                }
+                //pause before combat
+                if (timer == 1)
+                    pause = true;
+                //first wave
+                if (timer == 2)
+                {
+                    SummonEnemyAmount(1, 2, 1);
+                    waitForEnemies = true;
+                    //wait till wave over
+                    if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                        waitForEnemies = false;
+                }
+                //first wave over
+                //set timer
+                if (timer == 3)
+                {
+                    //prompt.SetActive(true);
+                    undergroundText.SetActive(true);//[?]
+                    nextWave = 3000;
+                }
+
+                //enemrerys
+                if (timer == 6200)
+                SummonEnemyAmount(5, 1, 14);
+
+                if ((GameObject.FindGameObjectsWithTag("Enemy").Length == 0) && (timer > 6500))
+                {
+                    endLoop = true;
+                }
+            }
+            if(level == 3)
+            {
+                //put player in overworld
+                if (timer == 0)
+                {
+                    GameObject.FindGameObjectWithTag("Player").transform.position = dest.transform.position + new Vector3(-2, 0, 3);
+                    cameraUnderground.SetActive(false);
+                    cameraOverworld.SetActive(true);
+                }
+                //pause before combat
+                if (timer == 1)
+                    pause = true;
+                //first wave
+                if (timer == 2)
+                {
+                    SummonEnemyAmount(1, 2, 1);
+                    waitForEnemies = true;
+                    //wait till wave over
+                    if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                        waitForEnemies = false;
+                }
+                //first wave over
+                //set timer
+                if (timer == 3)
+                {
+                    //prompt.SetActive(true);
+                    undergroundText.SetActive(true);//[?]
+                    nextWave = 3000;
+                }
+
+                //enemrerys
+
+                if ((GameObject.FindGameObjectsWithTag("Enemy").Length == 0) && (timer > 6500))
+                {
+                    endLoop = true;
+                }
+
+                //set the spawn for each enemrery
             }
             yield return null;
         }
@@ -188,7 +264,7 @@ public class GameLoopManager : MonoBehaviour
         } else {
             SpecialScriptIDs.Add(specialNumber);
             for (int i = 0; i < amount; i++){
-                this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(enemy, 0);
+                this.gameObject.GetComponent<EntitySummoner>().SummonEnemy(enemy, spawnPoint);
             }
         }
     }

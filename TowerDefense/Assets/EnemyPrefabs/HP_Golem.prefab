@@ -375,9 +375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Spawn: {fileID: 1438169871030806}
-  animator: {fileID: 0}
-  maxHealth: 500
-  currentHealth: 500
+  animator: {fileID: 95247164175502188}
+  maxHealth: 350
+  currentHealth: 350
   baseSpeed: 1
   speed: 1
   removedSpeedStun: 0
@@ -496,17 +496,17 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  iceSlow: {fileID: 0}
-  natureSlow: {fileID: 0}
-  cursed: {fileID: 7074301898445081174}
+  ice: {fileID: 0}
+  nature: {fileID: 0}
+  death: {fileID: 0}
   poisoned: {fileID: 0}
   frozen: {fileID: 0}
   stunned: {fileID: 0}
   bleeding: {fileID: 0}
-  burning: {fileID: 1075209526392353074}
+  fire: {fileID: 0}
   blown: {fileID: 0}
-  iceSlowAmount: 0
-  natureSlowAmount: 0
+  iceAmount: 0
+  natureAmount: 0
   bonusDamageOnHit: 0
   dot: 0
   goal: {fileID: 0}
@@ -530,7 +530,7 @@ NavMeshAgent:
   m_AutoRepath: 0
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 9
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &3599990637210981539
 Rigidbody:
