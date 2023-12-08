@@ -1070,6 +1070,21 @@ public class craftingOrbs : MonoBehaviour
         // }
         // if (Bank.gameObject.GetComponent<Currencies>().checkCurrency(resource1)>0)
         // {
+            
+        //MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[2] = "death";
+            for (int i = 0; i < 3; i++){
+                if (MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[i]=="fire"){
+                    Bank.gameObject.GetComponent<Currencies>().incrementCurrency("redCrystal", -1);
+                } else if (MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[i]=="ice"){
+                    Bank.gameObject.GetComponent<Currencies>().incrementCurrency("blueCrystal", -1);
+                } else if (MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[i]=="death"){
+                    Bank.gameObject.GetComponent<Currencies>().incrementCurrency("purpleCrystal", -1);
+                } else if (MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[i]=="holy"){
+                    Bank.gameObject.GetComponent<Currencies>().incrementCurrency("yellowCrystal", -1);
+                } else if (MasterOrb.transform.GetChild(0).GetComponent<OrbScript>().orbEffects[i]=="nature"){
+                    Bank.gameObject.GetComponent<Currencies>().incrementCurrency("greenCrystal", -1);
+                }
+            }
             GameObject newOrb = Instantiate(MasterOrb, this.gameObject.transform.position + new Vector3(-2, 3, 0), Quaternion.identity);
             newOrb.SetActive(true);
             Highlight[0].SetActive(false);
