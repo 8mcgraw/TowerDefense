@@ -15,7 +15,7 @@ public class GameLoopManager : MonoBehaviour
     public bool pause1 = false, pause2 = false, pause3 = false;
     public bool towerBuilt;
     public int spawnPoint = 0;
-    public int level = 1;//0?
+    public int level;
     public bool pause = false;
     public bool startWave;
     public HashSet<int> SpecialScriptIDs = new HashSet<int>();
@@ -105,67 +105,79 @@ public class GameLoopManager : MonoBehaviour
                 if(timer==3000)
                 SummonEnemyAmount(2,1,1);
                 if(timer==3005)
-                SummonEnemyAmount(2,1,100);
+                SummonEnemyAmount(2,1,2);
                 if(timer==3010)
-                SummonEnemyAmount(2,1,101);
+                SummonEnemyAmount(2,1,3);
                 if(timer==3015)
-                SummonEnemyAmount(2,1,102);
-
-                if (timer==3300)
+                SummonEnemyAmount(2,1,4);
+                if (timer == 3300)
+                SummonEnemyAmount(1,1,5);
+                if (timer==3400)
                 SummonEnemyAmount(1,1,6);
-
-                if(timer==3400)
+                if(timer==3500)
                 SummonEnemyAmount(1,1,7);
-
-                if(timer==3800)
-                SummonEnemyAmount(1,1,8);
-                
-                if(timer==3900)
+                if(timer==3600)
+                SummonEnemyAmount(1,1,8);                
+                if(timer==3700)
                 SummonEnemyAmount(1,1,9);
-
-                if(timer==4000)
-                SummonEnemyAmount(7,1,10);
-
-                if(timer==4100)
+                if(timer==3800)
+                SummonEnemyAmount(1,1,10);
+                if(timer==3900)
                 SummonEnemyAmount(7,1,11);
 
-                if(timer==5000)
-                SummonEnemyAmount(7,1,12);
-                
-                if(timer==5100)
+                pause = true;
+                waitForEnemies = true;
+                //wait till wave over
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                    waitForEnemies = false;
+
+                if (timer==4000)
+                SummonEnemyAmount(7,1,12);                
+                if(timer==4100)
                 SummonEnemyAmount(7,1,13);
-
-                if(timer==5200)
+                if(timer==4200)
                 SummonEnemyAmount(4,1,14);
-
-                if(timer==5300)
+                if(timer==4300)
                 SummonEnemyAmount(4,1,15);
+                if(timer==4400)
+                SummonEnemyAmount(7,1,16);
+                if(timer==4500)
+                SummonEnemyAmount(7,1,17);
 
-                if(timer==6000)
-                SummonEnemyAmount(2,1,16);
+                pause = true;
+                waitForEnemies = true;
+                //wait till wave over
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                    waitForEnemies = false;
 
-                if(timer==6100)
-                SummonEnemyAmount(2,1,17);
+                if (timer == 5000)
+                SummonEnemyAmount(4, 1, 18);
+                if (timer == 5200)
+                SummonEnemyAmount(4, 1, 19);
+                if (timer == 5400)
+                SummonEnemyAmount(6, 1, 20);
+                if (timer == 5600)
+                SummonEnemyAmount(6, 1, 21);
+                if (timer == 5800)
+                SummonEnemyAmount(4, 1, 22);
+                if (timer == 6000)
+                SummonEnemyAmount(4, 1, 23); 
+                if (timer == 6200)
+                SummonEnemyAmount(5, 1, 24); 
+                if (timer == 6400)
+                SummonEnemyAmount(3, 1, 25);
+                if (timer==6600)
+                SummonEnemyAmount(8,1,26);
+                if (timer == 6650)
+                SummonEnemyAmount(8, 1, 27); 
+                if (timer == 6700)
+                SummonEnemyAmount(8, 1, 28); 
+                if (timer == 6750)
+                SummonEnemyAmount(8, 1, 29); 
+                if (timer == 6800)
+                SummonEnemyAmount(8, 1, 30);
 
-                if (timer == 6100)
-                    SummonEnemyAmount(4, 1, 18);
-
-                if (timer == 6100)
-                    SummonEnemyAmount(4, 1, 19);
-
-                if (timer == 6100)
-                    SummonEnemyAmount(6, 1, 20);
-
-                if (timer == 6100)
-                    SummonEnemyAmount(5, 1, 21);
-
-                if (timer == 6100)
-                    SummonEnemyAmount(4, 1, 22);
-
-                if (timer==6200)
-                SummonEnemyAmount(8,1,23);
-
-                if((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>6500))
+                if ((GameObject.FindGameObjectsWithTag("Enemy").Length == 0)&&(timer>7500))
                 {
                     endLoop = true;
                 }
@@ -185,26 +197,105 @@ public class GameLoopManager : MonoBehaviour
                 //first wave
                 if (timer == 2)
                 {
-                    SummonEnemyAmount(1, 2, 1);
+                    SummonEnemyAmount(2, 2, 200);
                     waitForEnemies = true;
                     //wait till wave over
                     if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
                         waitForEnemies = false;
                 }
                 //first wave over
+                //tell player to go underground
                 //set timer
                 if (timer == 3)
                 {
                     //prompt.SetActive(true);
-                    undergroundText.SetActive(true);//[?]
+                    undergroundText.SetActive(true);
                     nextWave = 3000;
                 }
 
-                //enemrerys
-                if (timer == 6200)
-                SummonEnemyAmount(5, 1, 14);
+                if (timer == 3000)
+                    SummonEnemyAmount(2, 1, 1);
+                if (timer == 3005)
+                    SummonEnemyAmount(2, 1, 2);
+                if (timer == 3010)
+                    SummonEnemyAmount(2, 1, 3);
+                if (timer == 3015)
+                    SummonEnemyAmount(2, 1, 4);
+                if (timer == 3300)
+                    SummonEnemyAmount(1, 1, 5);
+                if (timer == 3400)
+                    SummonEnemyAmount(1, 1, 6);
+                if (timer == 3500)
+                    SummonEnemyAmount(1, 1, 7);
+                if (timer == 3600)
+                    SummonEnemyAmount(1, 1, 8);
+                if (timer == 3700)
+                    SummonEnemyAmount(1, 1, 9);
+                if (timer == 3800)
+                    SummonEnemyAmount(1, 1, 10);
+                if (timer == 3900)
+                    SummonEnemyAmount(7, 1, 11);
 
-                if ((GameObject.FindGameObjectsWithTag("Enemy").Length == 0) && (timer > 6500))
+                pause = true;
+                waitForEnemies = true;
+                //wait till wave over
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                    waitForEnemies = false;
+
+                if (timer == 4000)
+                    SummonEnemyAmount(7, 1, 12);
+                if (timer == 4100)
+                    SummonEnemyAmount(7, 1, 13);
+                if (timer == 4200)
+                    SummonEnemyAmount(4, 1, 14);
+                if (timer == 4300)
+                    SummonEnemyAmount(4, 1, 15);
+                if (timer == 4400)
+                    SummonEnemyAmount(7, 1, 16);
+                if (timer == 4500)
+                    SummonEnemyAmount(7, 1, 17);
+
+                pause = true;
+                waitForEnemies = true;
+                //wait till wave over
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                    waitForEnemies = false;
+
+                if (timer == 5000)
+                    SummonEnemyAmount(4, 1, 18);
+                if (timer == 5200)
+                    SummonEnemyAmount(4, 1, 19);
+                if (timer == 5400)
+                    SummonEnemyAmount(6, 1, 20);
+                if (timer == 5600)
+                    SummonEnemyAmount(6, 1, 21);
+                if (timer == 5800)
+                    SummonEnemyAmount(4, 1, 22);
+                if (timer == 6000)
+                    SummonEnemyAmount(4, 1, 23);
+                if (timer == 6200)
+                    SummonEnemyAmount(6, 1, 24);
+                if (timer == 6400)
+                    SummonEnemyAmount(6, 1, 25);
+                if (timer == 6600)
+                    SummonEnemyAmount(3, 1, 26);
+                if (timer == 6700)
+                    SummonEnemyAmount(3, 1, 27);
+                if (timer == 6800)
+                    SummonEnemyAmount(3, 1, 28);
+
+                if (timer == 7200)
+                    SummonEnemyAmount(8, 1, 29);
+                if (timer == 7250)
+                    SummonEnemyAmount(8, 1, 30);
+                if (timer == 7300)
+                    SummonEnemyAmount(8, 1, 31);
+                if (timer == 7350)
+                    SummonEnemyAmount(8, 1, 32);
+                if (timer == 7400)
+                    SummonEnemyAmount(8, 1, 33);
+
+                if ((GameObject.FindGameObjectsWithTag("Enemy").Length == 0) && (timer > 8200))
                 {
                     endLoop = true;
                 }
