@@ -128,14 +128,14 @@ public class Enemy : MonoBehaviour
         return;
 
     }
-    public void ApplyEffect(string[] effects){
-        for (int j = 0; j < effects.Length; j++)
+    public void ApplyEffect(string[] effects2){
+        for (int j = 0; j < 2; j++)
         {
-            if (effects[j] == "")
+            if (effects2[j] == "")
             {
                 break;
             }
-        string effect = effects[j];
+        string effect = effects2[j];
             if (!(((IList)effects).Contains((effect)))){
             pushEffect(effect);
             if (effect == "ice"){
