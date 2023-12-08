@@ -61,13 +61,16 @@
     <Compile Include="Assets\Underground\craftingBank.cs" />
     <Compile Include="Assets\Storage\AurynSky\Forest Pack\Scripts\MaterialMover.cs" />
     <Compile Include="Assets\Scripts\TeleportToUnderground.cs" />
+    <Compile Include="Assets\Scripts\craftingOrbs.cs" />
+    <Compile Include="Assets\Importing Andrew\LevelSelector\circularLoading.cs" />
     <Compile Include="Assets\Storage\AurynSky\WinterArena\Scripts\Rotator.cs" />
     <Compile Include="Assets\Storage\AurynSky\Dungeon Pack\Scripts\SpikeTrapDemo.cs" />
     <Compile Include="Assets\Scripts\Mining.cs" />
+    <Compile Include="Assets\Importing Andrew\LevelSelector\selection.cs" />
     <Compile Include="Assets\OldStuff\VillageElderScript.cs" />
-    <Compile Include="Assets\Scripts\WinCondition.cs" />
     <Compile Include="Assets\Scripts\ProjectileScript.cs" />
     <Compile Include="Assets\Underground\CraftingScript.cs" />
+    <Compile Include="Assets\Importing Andrew\LevelSelector\healthChange.cs" />
     <Compile Include="Assets\Scripts\GameLoopManager.cs" />
     <Compile Include="Assets\Storage\AurynSky\Desert Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\FailGame.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Assets\Underground\BreakScript.cs" />
     <Compile Include="Assets\Scripts\EnemySummonData.cs" />
     <Compile Include="Assets\Storage\AurynSky\Forest Pack\Scripts\WheelController.cs" />
+    <Compile Include="Assets\redirectScript.cs" />
     <Compile Include="Assets\Scripts\BreakScript2.cs" />
     <Compile Include="Assets\OldStuff\TextScript.cs" />
     <Compile Include="Assets\OldStuff\CameraSwitch.cs" />
@@ -83,12 +87,15 @@
     <Compile Include="Assets\Storage\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
     <Compile Include="Assets\Scripts\TowerScript.cs" />
     <Compile Include="Assets\Storage\AurynSky\WinterArena\Scripts\ChestDemo.cs" />
+    <Compile Include="Assets\Importing Andrew\LevelSelector\resources.cs" />
     <Compile Include="Assets\OldStuff\BodyScript.cs" />
+    <Compile Include="Assets\Importing Andrew\LevelSelector\progression.cs" />
     <Compile Include="Assets\Underground\underSpawn.cs" />
     <Compile Include="Assets\Storage\AurynSky\Forest Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\PathScript.cs" />
     <Compile Include="Assets\Underground\Currencies.cs" />
     <Compile Include="Assets\OldStuff\SionHead.cs" />
+    <Compile Include="Assets\Importing Andrew\LevelSelector\ToggleSFX.cs" />
     <Compile Include="Assets\OldStuff\EndScreen.cs" />
     <Compile Include="Assets\Underground\tilemapRender.cs" />
     <Compile Include="Assets\Storage\AurynSky\Desert Pack\Scripts\MaterialMover.cs" />
@@ -103,41 +110,74 @@
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\Importing Andrew\Storage\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
+    <None Include="Assets\Importing Andrew\Storage\Meshtint Free Knight\Read me.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Storage\SimpleFX\Materials\UnlitVertexColour_Alpha.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\Importing Andrew\Hovl Studio\HSFiles\Shaders\Blend_CenterGlow.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\EnemyPrefabs\Aight Knight\Read me.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Storage\Tower Defence\Shaders\Double Side.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Storage\AurynSky\Dungeon Pack\READ ME.txt" />
+    <None Include="Assets\Importing Andrew\Hovl Studio\Glowing orbs Vol 4\Demo scene\Add_CenterGlow.txt" />
     <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Readme.txt" />
     <None Include="Assets\Hovl Studio\HSFiles\Shaders\Blend_TwoSides.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\Hovl Studio\HSFiles\Shaders\Blend_CenterGlow.shader" />
+    <None Include="Assets\Importing Andrew\Hovl Studio\HSFiles\Shaders\Add_CenterGlow.shader" />
+    <None Include="Assets\Importing Andrew\Hovl Studio\HSFiles\Shaders\Blend_TwoSides.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\EnemyPrefabs\Aight Knight\www.meshtint.com.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Storage\LowPolyFantasyClouds\Shaders\CloudsShader.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Storage\SimpleSky\ReadMe.txt" />
     <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Add_CenterGlow.txt" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\Importing Andrew\Hovl Studio\Glowing orbs Vol 4\Demo scene\Readme.txt" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Storage\AurynSky\WinterArena\READ ME.txt" />
+    <None Include="Assets\Importing Andrew\Hovl Studio\Glowing orbs Vol 4\Demo scene\Blend_CenterGlow.txt" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Importing Andrew\Storage\Meshtint Free Knight\www.meshtint.com.txt" />
     <None Include="Assets\Storage\AurynSky\Desert Pack\READ ME.txt" />
+    <None Include="Assets\Importing Andrew\Storage\SimpleSky\ReadMe.txt" />
     <None Include="Assets\Hovl Studio\Glowing orbs Vol 4\Demo scene\Blend_CenterGlow.txt" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Importing Andrew\Storage\LowPolyFantasyClouds\Shaders\CloudsShader.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Hovl Studio\HSFiles\Shaders\Add_CenterGlow.shader" />
     <None Include="Assets\Storage\AurynSky\Gems Ultimate Pack\READ ME.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\Importing Andrew\Storage\Tower Defence\Shaders\Double Side.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Storage\AurynSky\Forest Pack\READ ME.txt" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\Importing Andrew\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -836,6 +876,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="sc.utilities.screenshot.editor.csproj">
+      <Project>{BA666710-8920-5A1A-E069-2F772B5EF2B6}</Project>
+      <Name>sc.utilities.screenshot.editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
