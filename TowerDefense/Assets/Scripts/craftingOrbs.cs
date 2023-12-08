@@ -17,6 +17,12 @@ public class craftingOrbs : MonoBehaviour
     void Start()
     {
 
+    }    
+    void UpdateOrbCombination(){
+        floatingOrb.GetComponent<OrbScript>().orbEffects[0] = orbCombination[0];
+        floatingOrb.GetComponent<OrbScript>().orbEffects[1] = orbCombination[1];
+        floatingOrb.GetComponent<OrbScript>().orbEffects[2] = orbCombination[2];
+        floatingOrb.GetComponent<OrbScript>().OrbShift();
     }
 
     // Update is called once per frame
@@ -1139,6 +1145,7 @@ public class craftingOrbs : MonoBehaviour
             orbCombination[2] = "";
             Highlight[2].SetActive(false);
         }
+        UpdateOrbCombination();
 
     }
     public void SelectBlue()
@@ -1177,6 +1184,7 @@ public class craftingOrbs : MonoBehaviour
             orbCombination[2] = "";
             Highlight[2].SetActive(false);
         }
+        UpdateOrbCombination();
 
     }
 
@@ -1216,6 +1224,7 @@ public class craftingOrbs : MonoBehaviour
             orbCombination[2] = "";
             Highlight[2].SetActive(false);
         }
+        UpdateOrbCombination();
     }
     public void SelectGreen()
     {
@@ -1253,6 +1262,7 @@ public class craftingOrbs : MonoBehaviour
             orbCombination[2] = "";
             Highlight[2].SetActive(false);
         }
+        UpdateOrbCombination();
     }
     public void SelectYellow()
     {
@@ -1290,6 +1300,8 @@ public class craftingOrbs : MonoBehaviour
             orbCombination[2] = "";
             Highlight[2].SetActive(false);
         }
+        UpdateOrbCombination();
 
     }
+
 }

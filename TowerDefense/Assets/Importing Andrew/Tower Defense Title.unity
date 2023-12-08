@@ -23146,7 +23146,7 @@ MonoBehaviour:
   pause3: 0
   towerBuilt: 0
   spawnPoint: 0
-  level: 1
+  level: 0
   pause: 0
   startWave: 0
   TeleportOverworld: {fileID: 1039122271}

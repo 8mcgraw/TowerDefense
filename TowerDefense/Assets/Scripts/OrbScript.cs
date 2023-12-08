@@ -26,7 +26,7 @@ public class OrbScript : MonoBehaviour
     {
         OrbShift();
     }
-    void OrbShift()
+    public void OrbShift()
     {
         Debug.Log("OrbScript");
         myCollider = GetComponent<SphereCollider>();
@@ -41,7 +41,8 @@ public class OrbScript : MonoBehaviour
         }
         Debug.Log("Count: "+orbEffectCount);
         if (orbEffectCount == 0){
-            
+            sphere = orbSpheres[0];
+            orbSpheres[0].SetActive(true);
         } else if (orbEffectCount == 1){
     //baseSphere, fireSphere, iceSphere, deathSphere, natureSphere, holySphere
             if (orbEffects[0] == "fire"){
