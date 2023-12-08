@@ -10,6 +10,7 @@ public class playerScript : MonoBehaviour
     public GameObject model;
     public GameObject GameMaster;
     public GameObject prompt, textt;
+    public int afk;
 
     // Start is called before the first frame update
     void Start()
@@ -29,28 +30,33 @@ public class playerScript : MonoBehaviour
             //transform.position += Vector3.Scale(Vector3.forward, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,0,0));
+            afk = 0;
         }
         if(Input.GetKey(KeyCode.S)){
             GetComponent<Rigidbody>().velocity = new Vector3(0,GetComponent<Rigidbody>().velocity.y,-speed);
             //transform.position += Vector3.Scale(Vector3.back, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,180,0));
+            afk = 0;
         }
         if(Input.GetKey(KeyCode.A)){
             GetComponent<Rigidbody>().velocity = new Vector3(-speed,GetComponent<Rigidbody>().velocity.y,0);
             //transform.position += Vector3.Scale(Vector3.left, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,270,0));
+            afk = 0;
         }
         if(Input.GetKey(KeyCode.D)){
             GetComponent<Rigidbody>().velocity = new Vector3(speed,GetComponent<Rigidbody>().velocity.y,0);
             //transform.position += Vector3.Scale(Vector3.right, speed);
             animator.SetBool("walking", true);
             model.transform.rotation = Quaternion.Euler(new Vector3(0,90,0));
+            afk = 0;
         }
         if(Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false && Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false){
             GetComponent<Rigidbody>().velocity = new Vector3(0,GetComponent<Rigidbody>().velocity.y,0);
             animator.SetBool("walking", false);
+            afk++;
         }
         if (GameMaster.gameObject.GetComponent<GameLoopManager>().pause == true)
         {
