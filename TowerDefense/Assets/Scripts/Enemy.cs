@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     //ice slow is building up, nature slow is decaying slow
     public GameObject ice, nature, death, poisoned, frozen, stunned, bleeding, fire, blown;
     public float iceAmount, natureAmount;
-    public int bonusDamageOnHit = 0;
+    public float bonusDamageOnHit = 0f;
     public float dot = 0f;
     public Transform goal;
 
@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
 
     }
     public void ApplyEffect(string[] effects2){
-        for (int j = 0; j < 2; j++)
+        for (int j = 0; j < 3; j++)
         {
             if (effects2[j] == "")
             {
@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour
             } else if (effect == "nature"){
                 nature.SetActive(true);
             } else if (effect == "death"){
-                bonusDamageOnHit += 3;
+                bonusDamageOnHit += 1f;
                 death.SetActive(true);
             } else if (effect == "poisoned"){
                 dot += 0.2f;
@@ -160,8 +160,8 @@ public class Enemy : MonoBehaviour
                 dot += 0.3f;
                 bleeding.SetActive(true);
             } else if (effect == "fire"){
-                dot += 0.1f;
-                bonusDamageOnHit += 1;
+                dot += 0.05f;
+                bonusDamageOnHit += .3f;
                 fire.SetActive(true);
             } else if (effect == "blown"){
                 // speed -= 20 + baseSpeed;
@@ -198,7 +198,7 @@ public class Enemy : MonoBehaviour
                 natureAmount = 0;
                 nature.SetActive(false);
             } else if (effect == "death"){
-                bonusDamageOnHit -= 3;
+                bonusDamageOnHit -= 1f;
                 death.SetActive(false);
             } else if (effect == "poisoned"){
                 dot -= 0.2f;
@@ -216,7 +216,7 @@ public class Enemy : MonoBehaviour
                 bleeding.SetActive(false);
             } else if (effect == "fire"){
                 dot -= 0.1f;
-                bonusDamageOnHit -= 1;
+                bonusDamageOnHit -= 0.3f;
                 fire.SetActive(false);
             } else if (effect == "blown"){
                 speed += 20 + baseSpeed;
