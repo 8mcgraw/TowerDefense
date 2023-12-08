@@ -83,6 +83,10 @@ public class EntitySummoner : MonoBehaviour
         EnemiesInGameTransform.Add(SummonedEnemy.transform);
         EnemiesInGame.Add(SummonedEnemy);
         SummonedEnemy.ID = EnemyID;
+        //disable navagent
+        SummonedEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        SummonedEnemy.transform.position = new Vector3(spawnPoints[spawnPoint].transform.position.x, spawnPoints[spawnPoint].transform.position.y, spawnPoints[spawnPoint].transform.position.z);
+        SummonedEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         return SummonedEnemy;
     }
     public static void RemoveEnemy(Enemy EnemyToRemove)
